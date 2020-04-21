@@ -12,6 +12,7 @@
 coverage
 profiles
 tmp
+pkg
 
 # Ignore compiled native code.
 lib/twisty_puzzles/native.so
