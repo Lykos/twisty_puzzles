@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "bundler/gem_tasks"
+
 begin
   require 'rake/extensiontask'
   Rake::ExtensionTask.new('twisty_puzzles/native')
