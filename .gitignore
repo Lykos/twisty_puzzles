@@ -15,3 +15,7 @@ tmp
 
 # Ignore compiled native code.
 lib/twisty_puzzles/native.so
+
+# Note that for apps, this *should* be checked in. But for gems, it shouldn't.
+# The reason is complicated, but basically Gems shouldn't depend on exact versions while apps should.
+Gemfile.lock
