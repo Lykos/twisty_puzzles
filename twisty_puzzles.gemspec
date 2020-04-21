@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.authors = ['Bernhard F. Brodowsky']
   s.email = 'bernhard.brodowsky@gmail.com'
   s.files = FileList[
+    'ext/**/*.{c,h}',
     'lib/**/*.rb',
     '*.md',
     'LICENSE'
