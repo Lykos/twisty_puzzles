@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'twisty_puzzles'
+require 'pry'
+
+Pry.start
