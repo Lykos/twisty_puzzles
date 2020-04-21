@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/cube'
-require 'twisty_puzzles/coordinate'
-require 'twisty_puzzles/parser'
-require 'twisty_puzzles/letter_scheme'
+
+
+
+
 
 RSpec::Matchers.define(:be_rotationally_equivalent_to) do |expected|
   match do |actual|

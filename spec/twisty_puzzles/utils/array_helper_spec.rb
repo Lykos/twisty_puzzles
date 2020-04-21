@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/utils/array_helper'
+require 'twisty_puzzles/utils'
 
 describe Utils::ArrayHelper do
   include described_class

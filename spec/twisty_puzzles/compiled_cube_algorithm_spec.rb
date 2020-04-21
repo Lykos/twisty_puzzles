@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/color_scheme'
-require 'twisty_puzzles/algorithm'
-require 'twisty_puzzles/compiled_cube_algorithm'
-require 'twisty_puzzles/cube'
-require 'twisty_puzzles/cube_print_helper'
+
+
+
+
+
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'

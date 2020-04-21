@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/color_scheme'
-require 'twisty_puzzles/cube_print_helper'
-require 'twisty_puzzles/cube_state'
-require 'twisty_puzzles/parser'
+
+
+
+
 
 def apply_sexy(cube_state)
   parse_algorithm("R U R' U'").apply_to(cube_state)

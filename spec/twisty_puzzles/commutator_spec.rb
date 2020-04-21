@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/commutator'
-require 'twisty_puzzles/parser'
+
+
 
 describe PureCommutator do
   

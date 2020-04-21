@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/cube'
-require 'twisty_puzzles/letter_scheme'
+
+
 
 describe LetterScheme do |_clazz|
   let(:letter_scheme) { BernhardLetterScheme.new }

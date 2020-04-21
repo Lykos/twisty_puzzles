@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/coordinate'
-require 'twisty_puzzles/cube'
+
+
 
 describe Coordinate do
   

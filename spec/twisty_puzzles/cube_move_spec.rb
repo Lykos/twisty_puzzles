@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/color_scheme'
-require 'twisty_puzzles/cube_move'
-require 'twisty_puzzles/cube_state'
-require 'twisty_puzzles/parser'
+
+
+
+
 
 describe CubeMove do
   

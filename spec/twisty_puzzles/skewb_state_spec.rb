@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'twisty_puzzles/color_scheme'
-require 'twisty_puzzles/parser'
-require 'twisty_puzzles/skewb_notation'
-require 'twisty_puzzles/skewb_state'
+
+
+
+
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'
