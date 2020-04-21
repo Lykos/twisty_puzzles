@@ -1,24 +1,6 @@
 require:
 - rubocop-performance
 - rubocop-rake
-- rubocop-rails
-AllCops:
-  Exclude:
-  - 'lib/**/*_ui.rb'
-  - 'node_modules/**/*'
-  - 'db/schema.rb'
-  - 'db/global_schema.rb'
-  # TODO: Clean up and remove some of the folowing
-  - 'config/**/*'
-  - 'db/migrate/*'
-  - 'bin/rails'
-  - 'bin/bundle'
-  - 'bin/rake'
-  - 'bin/setup'
-  - 'bin/spring'
-  - 'bin/webpack'
-  - 'bin/webpack-dev-server'
-  - 'bin/yarn'
 Layout/LineLength:
   Max: 100
   # TODO: This is temporary
@@ -49,14 +31,6 @@ Metrics/ClassLength:
   Max: 200
 Metrics/ModuleLength:
   Max: 200
-Rails/Output:
-  # TODO: Enable
-  Enabled: false
-Rails/Exit:
-  # TODO: Enable
-  Enabled: false
-Rails/Output:
-  Enabled: false
 Style/AutoResourceCleanup:
   Enabled: true
 Style/CollectionMethods:

@@ -1,5 +1,0 @@
-versions:
-- rubocop
-- rubocop-performance
-- rubocop-rake
-rubocop_fail_level: 'convention'

@@ -1,8 +1,22 @@
 # frozen_string_literal: true
 
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+begin
+  require 'rake/extensiontask'
+  Rake::ExtensionTask.new('twisty_puzzles/native')
+rescue LoadError => e
+  warn "Couldn't create extension task: #{e}"
+end
 
-require_relative 'config/application'
-
-Rails.application.load_tasks
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec, [] => :compile) do |_t|
+    # TODO: Find the proper way to do this
+    ENV['RANTLY_VERBOSE'] ||= '0'
+  end
+  CLOBBER.include('coverage')
+  CLOBBER.include('profiles')
+  CLOBBER.include('spec/examples.txt')
+  task default: :spec
+rescue LoadError => e
+  warn "Couldn't create spec task: #{e}"
+end
