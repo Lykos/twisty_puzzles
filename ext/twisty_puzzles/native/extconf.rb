@@ -2,4 +2,4 @@
 
 require 'mkmf'
 
-create_makefile('native')
+create_makefile('twisty_puzzles/native')
