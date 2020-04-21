@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore temporary output for tests etc.
-spec/examples.txt
+.rspec_status
 coverage
 profiles
 tmp
