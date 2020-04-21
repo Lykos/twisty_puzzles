@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'lib/twisty_puzzles/version'
 require 'rake'
 
 REPO_URI = 'https://github.com/Lykos/twisty_puzzles'
 
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
+  s.platform = Gem::Platform::RUBY
   s.name = 'twisty_puzzles'
   s.version = TwistyPuzzles::VERSION
   s.date = '2020-04-21'
@@ -37,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rspec-prof'
   s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'rubocop-rake'
   s.add_development_dependency 'rubocop-performance'
+  s.add_development_dependency 'rubocop-rake'
   s.add_development_dependency 'simplecov'
 end

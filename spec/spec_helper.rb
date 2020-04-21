@@ -50,4 +50,3 @@ require 'matchers'
 require 'shrink_helpers'
 
 include TwistyPuzzles # rubocop:disable Style/MixinUsage
-

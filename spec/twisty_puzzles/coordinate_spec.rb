@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-
-
-
 describe Coordinate do
-  
-
   let(:coordinate) { described_class.from_indices(Face::U, n, 0, 1) }
 
   context 'for an uneven n' do

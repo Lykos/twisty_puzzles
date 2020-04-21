@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-
-
-
-
-
 def apply_sexy(cube_state)
   parse_algorithm("R U R' U'").apply_to(cube_state)
 end
@@ -19,7 +14,6 @@ RSpec::Matchers.define(:eq_cube_string) do |expected|
 end
 
 describe CubePrintHelper do
-  
   include described_class
 
   let(:color_scheme) { ColorScheme::BERNHARD }

@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
-
-
-
-
-
-
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'
 
 describe Rotation do
-  
-
   let(:color_scheme) { ColorScheme::BERNHARD }
   let(:fixed_corner) { SkewbNotation.fixed_corner }
 

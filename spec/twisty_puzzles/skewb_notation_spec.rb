@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-
-
-
-
-
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'
 
 describe SkewbNotation do
-  
-
   let(:color_scheme) { ColorScheme::WCA }
 
   it 'keep a Sarahs Skewb algorithm as a Sarahs Skewb algorithm' do

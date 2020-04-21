@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Now a simple `require 'twisty_puzzles'` is enough, users don't need to require files separately.
 
 ### Fixed
-- Syntax error in file that wasn't included in tests previously
+- Syntax error in file that wasn't included in tests previously.
+- Rubocop fixes across the codebase.
 	
 ## [0.0.1]
 ### Added

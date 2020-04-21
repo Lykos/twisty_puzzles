@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-
-
-
 describe LetterScheme do |_clazz|
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:letter) { letter_scheme.alphabet.sample }

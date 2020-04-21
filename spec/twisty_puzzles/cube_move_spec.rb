@@ -1,13 +1,6 @@
 # frozen_string_literal: true
 
-
-
-
-
-
 describe CubeMove do
-  
-
   let(:color_scheme) { ColorScheme::BERNHARD }
 
   it 'inverts M slices correctly' do

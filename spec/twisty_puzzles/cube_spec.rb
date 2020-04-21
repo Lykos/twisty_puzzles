@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-
-
-
-
-
 RSpec::Matchers.define(:be_rotationally_equivalent_to) do |expected|
   match do |actual|
     expected.length == actual.length && (0...expected.length).any? { |i| actual.rotate(i) == expected }
@@ -50,8 +45,6 @@ describe Edge do
 end
 
 describe Midge do
-  
-
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 5 }
 
@@ -84,8 +77,6 @@ describe Midge do
 end
 
 describe Wing do
-  
-
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 4 }
 
@@ -160,8 +151,6 @@ describe Wing do
 end
 
 describe Corner do
-  
-
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 3 }
 
@@ -194,8 +183,6 @@ describe Corner do
 end
 
 describe Face do
-  
-
   let(:letter_scheme) { BernhardLetterScheme.new }
 
   it 'returns the right neighbor faces' do
@@ -286,8 +273,6 @@ describe Face do
 end
 
 describe TCenter do
-  
-
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 5 }
 
@@ -320,8 +305,6 @@ describe TCenter do
 end
 
 describe XCenter do
-  
-
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 4 }
 

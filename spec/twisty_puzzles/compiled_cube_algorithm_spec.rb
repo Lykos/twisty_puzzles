@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-
-
-
-
-
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'
 
 shared_examples 'compiled_cube_algorithm' do |cube_size|
-  
   include CubePrintHelper
 
   let(:color_scheme) { ColorScheme::BERNHARD }

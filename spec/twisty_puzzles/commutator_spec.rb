@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-
-
-
 describe PureCommutator do
-  
-
   let(:commutator) { parse_commutator('[R, U\' L\' U]') }
 
   it 'is equal to the inverse of its inverse' do
@@ -22,8 +17,6 @@ describe PureCommutator do
 end
 
 describe SetupCommutator do
-  
-
   let(:commutator) { parse_commutator('[U\' : [R, U\' L\' U]]') }
   let(:rotation_commutator) { parse_commutator('[x2 : [R, U\' L\' U]]') }
 

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-
-
-
-
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'
@@ -18,8 +14,6 @@ RSpec::Matchers.define(:eq_skewb_string) do |expected|
 end
 
 describe SkewbState do
-  
-
   let(:color_scheme) { ColorScheme::BERNHARD }
   let(:skewb_state) { color_scheme.solved_skewb_state }
 

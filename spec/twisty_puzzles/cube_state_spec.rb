@@ -1,20 +1,10 @@
 # frozen_string_literal: true
 
-
-
-
-
-
-
-
-
-
 require 'rantly'
 require 'rantly/rspec_extensions'
 require 'rantly/shrinks'
 
 shared_examples 'cube_state' do |cube_size|
-  
   include CubePrintHelper
 
   let(:letter_scheme) { BernhardLetterScheme.new }

@@ -22,8 +22,6 @@ RSpec::Matchers.define(:eq_cube_coordinate) do |expected_face,
 end
 
 RSpec::Matchers.define(:eq_move) do |expected|
-  
-
   match do |actual|
     expected = parse_move(expected) if expected.is_a?(String)
     actual == expected
@@ -34,8 +32,6 @@ RSpec::Matchers.define(:eq_move) do |expected|
 end
 
 RSpec::Matchers.define(:equivalent_cube_algorithm) do |expected, cube_size, color_scheme|
-  
-
   match do |actual|
     expected = parse_algorithm(expected) if expected.is_a?(String)
     expected_cube_state = color_scheme.solved_cube_state(cube_size)
@@ -58,8 +54,6 @@ RSpec::Matchers.define(:equivalent_cube_algorithm) do |expected, cube_size, colo
 end
 
 RSpec::Matchers.define(:eq_cube_algorithm) do |expected|
-  
-
   match do |actual|
     expected = parse_algorithm(expected) if expected.is_a?(String)
     actual == expected
@@ -70,8 +64,6 @@ RSpec::Matchers.define(:eq_cube_algorithm) do |expected|
 end
 
 RSpec::Matchers.define(:equivalent_skewb_algorithm) do |expected, color_scheme|
-  
-
   match do |actual|
     expected_skewb_state = color_scheme.solved_skewb_state
     expected.apply_to(expected_skewb_state)
@@ -92,8 +84,6 @@ RSpec::Matchers.define(:equivalent_skewb_algorithm) do |expected, color_scheme|
 end
 
 RSpec::Matchers.define(:equivalent_sarahs_skewb_algorithm) do |expected, color_scheme|
-  
-
   match do |actual|
     expected = parse_skewb_algorithm(expected, SkewbNotation.sarah) if expected.is_a?(String)
     expected_skewb_state = color_scheme.solved_skewb_state
@@ -116,8 +106,6 @@ RSpec::Matchers.define(:equivalent_sarahs_skewb_algorithm) do |expected, color_s
 end
 
 RSpec::Matchers.define(:eq_sarahs_skewb_algorithm) do |expected|
-  
-
   match do |actual|
     expected = parse_skewb_algorithm(expected, SkewbNotation.sarah) if expected.is_a?(String)
     actual == expected
@@ -128,12 +116,8 @@ RSpec::Matchers.define(:eq_sarahs_skewb_algorithm) do |expected|
 end
 
 RSpec::Matchers.define(:eq_fixed_corner_skewb_algorithm) do |expected|
-  
-
   match do |actual|
-    if expected.is_a?(String)
-      expected = parse_skewb_algorithm(expected, SkewbNotation.fixed_corner)
-    end
+    expected = parse_skewb_algorithm(expected, SkewbNotation.fixed_corner) if expected.is_a?(String)
     actual == expected
   end
   failure_message do |actual|
@@ -142,8 +126,6 @@ RSpec::Matchers.define(:eq_fixed_corner_skewb_algorithm) do |expected|
 end
 
 RSpec::Matchers.define(:eq_commutator) do |expected|
-  
-
   match do |actual|
     expected = parse_commutator(expected) if expected.is_a?(String)
     actual == expected
@@ -154,8 +136,6 @@ RSpec::Matchers.define(:eq_commutator) do |expected|
 end
 
 RSpec::Matchers.define(:eq_puzzle_state) do |expected|
-  
-
   match do |actual|
     actual == expected
   end
@@ -176,4 +156,3 @@ def transform_symbols_to_strings(value)
     value
   end
 end
-
