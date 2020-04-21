@@ -29,5 +29,4 @@ module TwistyPuzzles
           around_face(face).reject(&:identity?)
         end
       end
-  end
 end
