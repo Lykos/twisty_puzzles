@@ -6,7 +6,7 @@ require 'twisty_puzzles/cube_move_parser'
 require 'twisty_puzzles/skewb_move_parser'
 require 'twisty_puzzles/twisty_puzzles_error'
 
-module TwistyPuzzles
+module TwistyPuzzles # rubocop:disable Style/Documentation
   class CommutatorParseError < TwistyPuzzlesError
   end
 
