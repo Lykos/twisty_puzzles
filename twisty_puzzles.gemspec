@@ -1,9 +1,10 @@
+require_relative 'lib/twisty_puzzles/version'
 require 'rake'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name = 'twisty_puzzles'
-  s.version = "0.0.0"
+  s.version = TwistyPuzzles::VERSION
   s.date = '2020-4-21'
   s.summary = <<~SUMMARY
     Gem for my cube_trainer rails app. Some things are better left in a separate gem with no rails, e.g. native extensions.
@@ -13,19 +14,24 @@ Gem::Specification.new do |s|
   s.email = 'bernhard.brodowsky@gmail.com'
   s.files = FileList[
     'lib/**/*.rb',
-    'README.md',
-    'LICENSE',
+    '*.md',
+    'LICENSE'
   ].to_a
   s.homepage = 'https://github.com/Lykos/twisty_puzzles'
-  s.require_paths = ["lib"]
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
+
+  spec.metadata['homepage_uri'] = spec.homepage
+  spec.metadata['source_code_uri'] = 'https://github.com/Lykos/twisty_puzzles'
+  spec.metadata['changelog_uri'] = 'https://github.com/Lykos/twisty_puzzles/blob/master/CHANGELOG.md'
+  s.require_paths = ['lib']
   s.extensions << 'ext/twisty_puzzles/native/extconf.rb'
   spec.extra_rdoc_files = ['README.md']
   s.licence = 'MIT'
   s.add_runtime_dependency 'colorize'
-  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'rake-compiler'
   s.add_development_dependency 'rantly'
-  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rspec-prof'
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'rubocop-rake'
