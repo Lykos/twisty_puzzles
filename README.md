@@ -1,6 +1,7 @@
 ![Ruby](https://github.com/Lykos/twisty_puzzles/workflows/Ruby/badge.svg)
 ![Rubocop](https://github.com/Lykos/twisty_puzzles/workflows/Rubocop/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Gem Version](https://badge.fury.io/rb/twisty_puzzles.svg)](https://badge.fury.io/rb/twisty_puzzles)
 
 # Twisty Puzzles
 Gem for my cube_trainer rails app. Some things are better left in a separate gem with no rails, e.g. native extensions. The main purpose is to support my Rails app, but if it's useful for someone else, feel free to use it at your own risk.
