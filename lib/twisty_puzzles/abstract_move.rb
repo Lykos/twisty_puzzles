@@ -150,8 +150,7 @@ module TwistyPuzzles
       when :qtm then slice_factor * direction_factor
       when :htm then slice_factor
       when :stm then 1
-      when :qstm then direction_factor
-      when :sqtm then direction_factor
+      when :qstm, :sqtm then direction_factor
       else raise ArgumentError, "Invalid move metric #{metric.inspect}."
       end
     end

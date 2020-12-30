@@ -63,7 +63,7 @@ shared_examples 'cube_state' do |cube_size|
       Rantly { cube_algorithm(cube_size) }
     end.check do |alg|
       modified_cube_state = cube_state.dup
-      alg.apply_temporarily_to(modified_cube_state) {}
+      alg.apply_temporarily_to(modified_cube_state) {} # rubocop:disable Lint/EmptyBlock
       expect(modified_cube_state).to eq_puzzle_state(cube_state)
     end
   end

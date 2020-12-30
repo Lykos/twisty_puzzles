@@ -128,7 +128,7 @@ module TwistyPuzzles
       AbstractMove.check_move_metric(metric)
       return 0 if empty?
 
-      @moves.map { |m| m.move_count(cube_size, metric) }.reduce(:+)
+      @moves.sum { |m| m.move_count(cube_size, metric) }
     end
 
     def *(other)

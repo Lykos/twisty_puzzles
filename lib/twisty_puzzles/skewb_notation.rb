@@ -10,7 +10,7 @@ module TwistyPuzzles
   # Class that represents one notation for Skewb moves, e.g. Sarahs notation or fixed
   # corner notation.
   class SkewbNotation
-    # rubocop:disable Lint/AbcSize
+    # rubocop:disable Metrics/AbcSize
     def initialize(name, move_corner_pairs)
       raise TypeError unless name.is_a?(String)
 
@@ -28,7 +28,7 @@ module TwistyPuzzles
         end.freeze
       freeze
     end
-    # rubocop:enable Lint/AbcSize
+    # rubocop:enable Metrics/AbcSize
 
     # rubocop:disable Metrics/CyclomaticComplexity
     def check_move_corner_pairs(move_corner_pairs)

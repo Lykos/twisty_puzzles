@@ -20,7 +20,7 @@ module TwistyPuzzles
     end
 
     def parse_named_captures(match)
-      present_named_captures = match.named_captures.reject { |_n, v| v.nil? }
+      present_named_captures = match.named_captures.compact
       present_named_captures.map do |name, string|
         key = parse_part_key(name).to_sym
         value = parse_move_part(name, string)

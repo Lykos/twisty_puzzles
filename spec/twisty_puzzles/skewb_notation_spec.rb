@@ -84,8 +84,8 @@ describe SkewbNotation do
     it "transforms a #{input_notation.name} Skewb move #{input_move_string} into a #{output_notation.name} Skewb move plus potential rotations #{expected_move_string}" do
       parsed_move = parse_skewb_algorithm(input_move_string, input_notation)
       actual_move_string = output_notation.algorithm_to_string(parsed_move)
-      actual_move_parts = actual_move_string.split(' ')
-      expected_move_parts = expected_move_string.split(' ')
+      actual_move_parts = actual_move_string.split
+      expected_move_parts = expected_move_string.split
 
       # We check the actual move for exact equality
       expect(actual_move_parts[0]).to eq(expected_move_parts[0])
