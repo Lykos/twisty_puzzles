@@ -62,6 +62,7 @@ module TwistyPuzzles
       [self, alternative].include?(other)
     end
 
+    # rubocop:disable Metrics/AbcSize
     def prepend_rotation(other, _cube_size)
       if same_axis?(other)
         direction = translated_direction(other.axis_face)
@@ -74,6 +75,7 @@ module TwistyPuzzles
         Algorithm.move(Rotation.new(remaining_face, CubeDirection::DOUBLE))
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     def prepend_fat_m_slice_move(_other, _cube_size)
       nil

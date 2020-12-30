@@ -97,7 +97,7 @@ module TwistyPuzzles
     end
 
     def inspect
-      self.class.to_s + '(' + @face_symbols.map(&:to_s).join(', ') + ')'
+      "#{self.class}(#{@face_symbols.map(&:to_s).join(', ')})"
     end
 
     def to_s
@@ -365,7 +365,7 @@ module TwistyPuzzles
     attr_reader :corresponding_part
 
     def inspect
-      self.class.to_s + '(' + face_symbol.to_s + ', ' + @corresponding_part.inspect + ')'
+      "#{self.class}(#{face_symbol}, #{@corresponding_part.inspect})"
     end
 
     def rotate_by(_number)
@@ -532,7 +532,7 @@ module TwistyPuzzles
 
     def self.create_for_face_symbols(face_symbols)
       piece_candidates =
-        face_symbols[1..-1].permutation.map do |cs|
+        face_symbols[1..].permutation.map do |cs|
           new([face_symbols[0]] + cs)
         end
       find_only(piece_candidates, &:valid?)

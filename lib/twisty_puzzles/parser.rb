@@ -185,14 +185,14 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
     end
   end
 
-  def parse_commutator(alg_string, complete_parse = true)
+  def parse_commutator(alg_string, complete_parse: true)
     parser = Parser.new(alg_string, CubeMoveParser::INSTANCE)
     commutator = parser.parse_commutator
     parser.check_eos('commutator') if complete_parse
     commutator
   end
 
-  def parse_cube_algorithm(alg_string, complete_parse = true)
+  def parse_cube_algorithm(alg_string, complete_parse: true)
     parser = Parser.new(alg_string, CubeMoveParser::INSTANCE)
     algorithm = parser.parse_algorithm
     parser.check_eos('algorithm') if complete_parse
@@ -206,7 +206,7 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
   alias parse_algorithm parse_cube_algorithm
   alias parse_move parse_cube_move
 
-  def parse_skewb_algorithm(alg_string, notation, complete_parse = true)
+  def parse_skewb_algorithm(alg_string, notation, complete_parse: true)
     parser = Parser.new(alg_string, SkewbMoveParser.new(notation))
     algorithm = parser.parse_algorithm
     parser.check_eos('algorithm') if complete_parse

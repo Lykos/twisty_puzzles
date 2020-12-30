@@ -422,7 +422,7 @@ shared_examples 'cube_state' do |cube_size|
   end
 
   it 'does fat U moves like D y' do
-    fat_move = (cube_size - 1).to_s + 'Uw'
+    fat_move = "#{cube_size - 1}Uw"
     parse_algorithm(fat_move).apply_to(cube_state)
     expected_cube_state = create_interesting_cube_state(cube_size)
     parse_algorithm('D y').apply_to(expected_cube_state)
@@ -430,7 +430,7 @@ shared_examples 'cube_state' do |cube_size|
   end
 
   it 'does fat R moves like L x' do
-    fat_move = (cube_size - 1).to_s + 'Rw'
+    fat_move = "#{cube_size - 1}Rw"
     parse_algorithm(fat_move).apply_to(cube_state)
     expected_cube_state = create_interesting_cube_state(cube_size)
     parse_algorithm('L x').apply_to(expected_cube_state)
@@ -438,7 +438,7 @@ shared_examples 'cube_state' do |cube_size|
   end
 
   it 'does fat F moves like B z' do
-    fat_move = (cube_size - 1).to_s + 'Fw'
+    fat_move = "#{cube_size - 1}Fw"
     parse_algorithm(fat_move).apply_to(cube_state)
     expected_cube_state = create_interesting_cube_state(cube_size)
     parse_algorithm('B z').apply_to(expected_cube_state)

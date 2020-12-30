@@ -11,6 +11,7 @@ module TwistyPuzzles
       raise TypeError, "Unsuitable axis face #{axis_face}." unless axis_face.is_a?(Face)
       raise TypeError unless direction.is_a?(CubeDirection)
 
+      super()
       @axis_face = axis_face
       @direction = direction
     end

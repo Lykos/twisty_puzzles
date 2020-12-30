@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
     'LICENSE'
   ].to_a
   s.homepage = REPO_URI
-  s.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
+  s.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
 
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = REPO_URI
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rantly'
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rspec-prof'
-  s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'rubocop', '~> 1.7'
   s.add_development_dependency 'rubocop-performance'
   s.add_development_dependency 'rubocop-rake'
   s.add_development_dependency 'simplecov'

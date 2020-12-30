@@ -90,7 +90,7 @@ module TwistyPuzzles
       base_coordinate = Coordinate.from_indices(
         part.solved_face, cube_size, *part.base_index_on_face(cube_size, incarnation_index)
       )
-      other_face_symbols = part.corresponding_part.face_symbols[1..-1]
+      other_face_symbols = part.corresponding_part.face_symbols[1..]
       match_coordinate_internal(base_coordinate, other_face_symbols)
     end
 
@@ -99,7 +99,7 @@ module TwistyPuzzles
     def self.solved_positions(part, cube_size, incarnation_index)
       solved_coordinate = solved_position(part, cube_size, incarnation_index)
       other_coordinates =
-        part.face_symbols[1..-1].map.with_index do |f, i|
+        part.face_symbols[1..].map.with_index do |f, i|
           face = Face.for_face_symbol(f)
           # The reverse is important for edge like parts. We are not in the same position as usual
           # solved pieces would be.
@@ -109,7 +109,7 @@ module TwistyPuzzles
           base_coordinate = Coordinate.from_indices(face, cube_size, *base_indices)
           other_face_symbols = [part.face_symbols[0]] +
                                part.corresponding_part.face_symbols[1...i + 1] +
-                               part.corresponding_part.face_symbols[i + 2..-1]
+                               part.corresponding_part.face_symbols[i + 2..]
           match_coordinate_internal(base_coordinate, other_face_symbols)
         end
       [solved_coordinate] + other_coordinates
@@ -276,7 +276,7 @@ module TwistyPuzzles
       @native = native
     end
 
-    attr_reader :native
+    attr_reader :native, :coordinate
 
     private_class_method :new
 
@@ -311,7 +311,5 @@ module TwistyPuzzles
     def face
       @face ||= Face.for_face_symbol(@native.face)
     end
-
-    attr_reader :coordinate
   end
 end

@@ -17,6 +17,7 @@ module TwistyPuzzles
     def initialize(algorithm)
       raise ArgumentError unless algorithm.is_a?(Algorithm)
 
+      super()
       @algorithm = algorithm
     end
 
@@ -47,6 +48,7 @@ module TwistyPuzzles
       raise ArgumentError unless first_part.is_a?(Algorithm)
       raise ArgumentError unless second_part.is_a?(Algorithm)
 
+      super()
       @first_part = first_part
       @second_part = second_part
     end
@@ -85,6 +87,7 @@ module TwistyPuzzles
         raise ArgumentError, 'Inner commutator has to be a commutator.'
       end
 
+      super()
       @setup = setup
       @inner_commutator = inner_commutator
     end

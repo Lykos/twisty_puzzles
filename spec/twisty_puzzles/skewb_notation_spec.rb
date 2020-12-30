@@ -91,8 +91,8 @@ describe SkewbNotation do
       expect(actual_move_parts[0]).to eq(expected_move_parts[0])
 
       # We check the appended rotations for equivalence
-      actual_rotations = parse_skewb_algorithm(actual_move_parts[1..-1].join(' '), output_notation)
-      expected_rotations = parse_skewb_algorithm(expected_move_parts[1..-1].join(' '), output_notation)
+      actual_rotations = parse_skewb_algorithm(actual_move_parts[1..].join(' '), output_notation)
+      expected_rotations = parse_skewb_algorithm(expected_move_parts[1..].join(' '), output_notation)
       expect(actual_rotations).to equivalent_skewb_algorithm(expected_rotations, color_scheme)
     end
   end

@@ -41,9 +41,10 @@ module TwistyPuzzles
     end
 
     def maybe_reverse(reverse_mode, stuff)
-      if reverse_mode == :reverse
+      case reverse_mode
+      when :reverse
         stuff.reverse
-      elsif reverse_mode == :keep
+      when :keep
         stuff
       else
         raise
@@ -102,7 +103,7 @@ module TwistyPuzzles
       face_symbol_info = FACE_SYMBOL_INFOS[face_symbol]
       stickers = cube_state.sticker_array(face)
       center_color = color_character(stickers[0], color_mode)
-      corner_colors = stickers[1..-1].map { |c| color_character(c, color_mode) }
+      corner_colors = stickers[1..].map { |c| color_character(c, color_mode) }
       permuted_corner_colors =
         apply_permutation(corner_colors, face_symbol_info.skewb_corner_permutation)
       raise unless corner_colors.length == 4

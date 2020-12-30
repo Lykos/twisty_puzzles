@@ -139,8 +139,6 @@ module TwistyPuzzles
       end
     end
 
-    # rubocop:disable Metrics/PerceivedComplexity
-    # rubocop:disable Metrics/CyclomaticComplexity
     def prepend_fat_move(other, cube_size)
       if same_fat_block?(other)
         merge_with_same_fat_block(other)
@@ -156,8 +154,6 @@ module TwistyPuzzles
         Algorithm.move(other.inner_fat_mslice_move(cube_size))
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity
-    # rubocop:enable Metrics/PerceivedComplexity
 
     def prepend_slice_move(other, cube_size)
       return unless same_axis?(other)

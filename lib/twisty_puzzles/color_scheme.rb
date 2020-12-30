@@ -56,7 +56,7 @@ module TwistyPuzzles
       raise ArgumentError unless colors.include?(top_color)
       raise ArgumentError unless colors.include?(front_color)
 
-      # Note: The reason that this is so complicated is that we want it to still work if the
+      # NOTE: The reason that this is so complicated is that we want it to still work if the
       # chirality corner gets exchanged.
 
       # Do the obvious and handle opposites of the top and front color so we have no

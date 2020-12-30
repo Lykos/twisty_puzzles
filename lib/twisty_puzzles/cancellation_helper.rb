@@ -135,7 +135,7 @@ module TwistyPuzzles
     def self.alg_plus_cancelled_move(algorithm, move, cube_size)
       if move.is_a?(Rotation) && (tail_rotations = num_tail_rotations(algorithm)) >= 2
         Algorithm.new(algorithm.moves[0...-tail_rotations]) +
-          cancelled_rotations(algorithm.moves[-tail_rotations..-1] + [move])
+          cancelled_rotations(algorithm.moves[-tail_rotations..] + [move])
       else
         Algorithm.new(algorithm.moves[0...-1]) +
           algorithm.moves[-1].join_with_cancellation(move, cube_size)

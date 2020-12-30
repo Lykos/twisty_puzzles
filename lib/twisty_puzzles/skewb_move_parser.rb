@@ -18,6 +18,7 @@ module TwistyPuzzles
     def initialize(notation)
       raise TypeError unless notation.is_a?(SkewbNotation)
 
+      super()
       @notation = notation
     end
 

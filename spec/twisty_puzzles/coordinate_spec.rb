@@ -6,13 +6,12 @@ describe Coordinate do
   context 'for an uneven n' do
     let(:n) { 7 }
 
+    # rubocop:disable Lint/BinaryOperatorWithIdenticalOperands
     it 'checks equivalence of coordinates appropriately' do
-      # rubocop:disable Lint/UselessComparison
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
              described_class.from_indices(Face::U, n, 1, 0)).to be(true)
-      # rubocop:enable Lint/UselessComparison
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, -7)).to be(true)
+       described_class.from_indices(Face::U, n, 1, -7)).to be(true)
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
              described_class.from_indices(Face::D, n, 1, 0)).to be(false)
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
@@ -20,6 +19,7 @@ describe Coordinate do
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
              described_class.from_indices(Face::U, n + 2, 1, 0)).to be(false)
     end
+    # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 
     it 'returns the values passed in the constructor via the getters' do
       expect(coordinate.face).to eq(Face::U)
@@ -139,13 +139,12 @@ describe Coordinate do
   context 'for an even n' do
     let(:n) { 6 }
 
+    # rubocop:disable Lint/BinaryOperatorWithIdenticalOperands
     it 'checks equivalence of coordinates appropriately' do
-      # rubocop:disable Lint/UselessComparison
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
              described_class.from_indices(Face::U, n, 1, 0)).to be(true)
-      # rubocop:enable Lint/UselessComparison
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, -6)).to be(true)
+       described_class.from_indices(Face::U, n, 1, -6)).to be(true)
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
              described_class.from_indices(Face::D, n, 1, 0)).to be(false)
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
@@ -153,6 +152,7 @@ describe Coordinate do
       expect(described_class.from_indices(Face::U, n, 1, 0) ==
              described_class.from_indices(Face::U, n + 2, 1, 0)).to be(false)
     end
+    # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 
     it 'checks coordinates appropriately' do
       expect { described_class.from_indices(Face::U, n, 0, 1.0) }.to raise_error(ArgumentError)

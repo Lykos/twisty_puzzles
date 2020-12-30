@@ -14,29 +14,29 @@ module TwistyPuzzles
   class CubeMoveParser < AbstractMoveParser
     REGEXP =
       begin
-                      axes_part = "(?<axis_name>[#{AbstractMove::AXES.join}])"
-                      face_names = CubeConstants::FACE_NAMES.join
-                      fat_move_part =
-                        "(?<width>\\d*)(?<fat_face_name>[#{face_names}])w"
-                      normal_move_part = "(?<face_name>[#{face_names}])"
-                      downcased_face_names = face_names.downcase
-                      maybe_fat_maybe_slice_move_part =
-                        "(?<maybe_fat_face_maybe_slice_name>[#{downcased_face_names}])"
-                      slice_move_part =
-                        "(?<slice_index>\\d+)(?<slice_name>[#{downcased_face_names}])"
-                      mslice_move_part =
-                        "(?<mslice_name>[#{AbstractMove::SLICE_FACES.keys.join}])"
-                      move_part = "(?:#{axes_part}|" \
-                                  "#{fat_move_part}|" \
-                                  "#{normal_move_part}|" \
-                                  "#{maybe_fat_maybe_slice_move_part}|" \
-                                  "#{slice_move_part}|#{mslice_move_part})"
-                      direction_names =
-                        AbstractDirection::POSSIBLE_DIRECTION_NAMES.flatten
-                      direction_names.sort_by! { |e| -e.length }
-                      direction_part = "(?<direction>#{direction_names.join('|')})"
-                      Regexp.new("#{move_part}#{direction_part}")
-                    end
+        axes_part = "(?<axis_name>[#{AbstractMove::AXES.join}])"
+        face_names = CubeConstants::FACE_NAMES.join
+        fat_move_part =
+          "(?<width>\\d*)(?<fat_face_name>[#{face_names}])w"
+        normal_move_part = "(?<face_name>[#{face_names}])"
+        downcased_face_names = face_names.downcase
+        maybe_fat_maybe_slice_move_part =
+          "(?<maybe_fat_face_maybe_slice_name>[#{downcased_face_names}])"
+        slice_move_part =
+          "(?<slice_index>\\d+)(?<slice_name>[#{downcased_face_names}])"
+        mslice_move_part =
+          "(?<mslice_name>[#{AbstractMove::SLICE_FACES.keys.join}])"
+        move_part = "(?:#{axes_part}|" \
+                    "#{fat_move_part}|" \
+                    "#{normal_move_part}|" \
+                    "#{maybe_fat_maybe_slice_move_part}|" \
+                    "#{slice_move_part}|#{mslice_move_part})"
+        direction_names =
+          AbstractDirection::POSSIBLE_DIRECTION_NAMES.flatten
+        direction_names.sort_by! { |e| -e.length }
+        direction_part = "(?<direction>#{direction_names.join('|')})"
+        Regexp.new("#{move_part}#{direction_part}")
+      end
 
     MOVE_TYPE_CREATORS = [
       MoveTypeCreator.new(%i[axis_face direction], Rotation),

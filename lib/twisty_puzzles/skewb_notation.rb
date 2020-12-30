@@ -10,9 +10,11 @@ module TwistyPuzzles
   # Class that represents one notation for Skewb moves, e.g. Sarahs notation or fixed
   # corner notation.
   class SkewbNotation
+    # rubocop:disable Lint/AbcSize
     def initialize(name, move_corner_pairs)
       raise TypeError unless name.is_a?(String)
 
+      super()
       check_move_corner_pairs(move_corner_pairs)
       @name = name
       @move_to_corner = move_corner_pairs.to_h.freeze
@@ -26,7 +28,9 @@ module TwistyPuzzles
         end.freeze
       freeze
     end
+    # rubocop:enable Lint/AbcSize
 
+    # rubocop:disable Metrics/CyclomaticComplexity
     def check_move_corner_pairs(move_corner_pairs)
       move_corner_pairs.each do |m|
         raise ArgumentError unless m.length == 2
@@ -37,6 +41,7 @@ module TwistyPuzzles
 
       check_corner_coverage(move_corner_pairs.map(&:last))
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
 
     def check_corner_coverage(corners)
       corner_closure = corners + corners.map(&:diagonal_opposite)
@@ -49,6 +54,7 @@ module TwistyPuzzles
     end
 
     attr_reader :name, :move_strings, :non_zero_moves
+
     private_class_method :new
 
     def self.fixed_corner
@@ -103,7 +109,7 @@ module TwistyPuzzles
         move_to_string(m, reversed_rotations)
       end.join(' ')
       new_tail_rotations = reversed_rotations.reverse! +
-                           algorithm.moves[algorithm.length - num_tail_rotations..-1]
+                           algorithm.moves[algorithm.length - num_tail_rotations..]
       cancelled_rotations = Algorithm.new(new_tail_rotations).cancelled(3)
       cancelled_rotations.empty? ? alg_string : "#{alg_string} #{cancelled_rotations}"
     end
