@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
     'LICENSE'
   ].to_a
   s.homepage = REPO_URI
-  s.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
+  s.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
 
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = REPO_URI
