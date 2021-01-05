@@ -2,7 +2,7 @@ require:
 - rubocop-performance
 - rubocop-rake
 AllCops:
-  TargetRubyVersion: 3.0.0
+  TargetRubyVersion: 3.0
 Layout/LineLength:
   Max: 100
   # TODO: This is temporary
