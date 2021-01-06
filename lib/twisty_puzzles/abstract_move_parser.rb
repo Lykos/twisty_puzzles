@@ -31,14 +31,14 @@ module TwistyPuzzles
     def parse_move(move_string)
       match = move_string.match(regexp)
       if !match || !match.pre_match.empty? || !match.post_match.empty?
-        raise ArgumentError("Invalid move #{move_string}.")
+        raise ArgumentError, "Invalid move #{move_string}."
       end
 
       parsed_parts = parse_named_captures(match)
       move_type_creators.each do |parser|
         return parser.create(parsed_parts) if parser.applies_to?(parsed_parts)
       end
-      raise "No move type creator applies to #{parsed_parts}"
+      raise ArgumentError, "No move type creator applies to #{parsed_parts}"
     end
   end
 end

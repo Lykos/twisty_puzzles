@@ -64,8 +64,16 @@ module TwistyPuzzles
       true
     end
 
+    def num_incarnations(cube_size)
+      1
+    end
+
     def base_index_on_face(cube_size, incarnation_index)
       base_index_on_other_face(solved_face, cube_size, incarnation_index)
+    end
+
+    def base_index_on_other_face(face, cube_size, incarnation_index)
+      raise NotImplementedError
     end
 
     def self.for_face_symbols_internal(face_symbols)
@@ -80,6 +88,10 @@ module TwistyPuzzles
 
     def self.for_index(index)
       self::ELEMENTS[index]
+    end
+
+    def self.valid?(face_symbols)
+      false
     end
 
     def <=>(other)
@@ -110,7 +122,7 @@ module TwistyPuzzles
     # Rotate a piece such that the given face symbol is the first face symbol.
     def rotate_face_symbol_up(face_symbol)
       index = @face_symbols.index(face_symbol)
-      raise "Part #{self} doesn't have face symbol #{c}." unless index
+      raise "Part #{self} doesn't have face symbol #{face_symbol}." unless index
 
       rotate_by(index)
     end
@@ -131,10 +143,6 @@ module TwistyPuzzles
 
     def rotations
       (0...@face_symbols.length).map { |i| rotate_by(i) }
-    end
-
-    def self.create_for_face_symbols(face_symbols)
-      new(face_symbols)
     end
 
     def self.parse(piece_description)
@@ -338,10 +346,6 @@ module TwistyPuzzles
       find_only(self::ELEMENTS) { |e| e.corresponding_part == corresponding_part }
     end
 
-    def self.create_for_face_symbols(face_symbols)
-      new(self::CORRESPONDING_PART_CLASS.create_for_face_symbols(face_symbols))
-    end
-
     def face_symbol
       @face_symbols[0]
     end
@@ -514,7 +518,7 @@ module TwistyPuzzles
     end
 
     def num_incarnations(cube_size)
-      [cube_size / 2 - 1, 0].max
+      cube_size > 3 ? cube_size / 2 - 1 : 0
     end
 
     # One index of such a piece on a on a NxN face.
@@ -529,14 +533,6 @@ module TwistyPuzzles
   # Represents one corner or the position of one corner on the cube.
   class Corner < Part
     FACES = 3
-
-    def self.create_for_face_symbols(face_symbols)
-      piece_candidates =
-        face_symbols[1..].permutation.map do |cs|
-          new([face_symbols[0]] + cs)
-        end
-      find_only(piece_candidates, &:valid?)
-    end
 
     def self.for_face_symbols(face_symbols)
       unless face_symbols.length == FACES
@@ -621,7 +617,7 @@ module TwistyPuzzles
     ELEMENTS = generate_parts
 
     def num_incarnations(cube_size)
-      [cube_size / 2 - 1, 0].max
+      cube_size > 3 ? cube_size / 2 - 1 : 0
     end
 
     # One index of such a piece on a on a NxN face.
@@ -644,10 +640,10 @@ module TwistyPuzzles
     end
 
     def num_incarnations(cube_size)
-      if cube_size.even?
+      if cube_size.even? || cube_size <= 3
         0
       else
-        [cube_size / 2 - 1, 0].max
+        cube_size / 2 - 1
       end
     end
 

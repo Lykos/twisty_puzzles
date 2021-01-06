@@ -10,6 +10,10 @@ module TwistyPuzzles
     def cancellations(other, cube_size, metric = :htm)
       algorithm.cancellations(other.algorithm, cube_size, metric)
     end
+
+    def algorithm
+      raise NotImplementedError
+    end
   end
 
   # Algorithm that is used like a commutator but actually isn't one.
