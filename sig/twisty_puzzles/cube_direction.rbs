@@ -3,20 +3,20 @@ module TwistyPuzzles
   class CubeDirection < AbstractDirection
     NUM_DIRECTIONS: ::Integer
 
-    NON_ZERO_DIRECTIONS: untyped
+    NON_ZERO_DIRECTIONS: ::Array[CubeDirection]
 
-    ALL_DIRECTIONS: untyped
+    ALL_DIRECTIONS: ::Array[CubeDirection]
 
-    ZERO: untyped
+    ZERO: CubeDirection
 
-    FORWARD: untyped
+    FORWARD: CubeDirection
 
-    DOUBLE: untyped
+    DOUBLE: CubeDirection
 
-    BACKWARD: untyped
+    BACKWARD: CubeDirection
 
-    def name: () -> untyped
+    def name: () -> ::String
 
-    def double_move?: () -> untyped
+    def double_move?: () -> (::TrueClass | ::FalseClass)
   end
 end

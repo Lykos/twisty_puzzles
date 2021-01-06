@@ -2,11 +2,14 @@ module TwistyPuzzles
   # Intermediate base class for all types of moves that have an axis face and a direction,
   # i.e. cube moves and rotations.
   class AxisFaceAndDirectionMove < AbstractMove
-    def initialize: (Face axis_face, untyped direction) -> untyped
+    @axis_face: Face
+    @direction: CubeDirection
 
-    attr_reader direction: untyped
+    def initialize: (Face axis_face, CubeDirection direction) -> untyped
 
-    attr_reader axis_face: untyped
+    attr_reader direction: CubeDirection
+
+    attr_reader axis_face: Face
 
     def translated_direction: (Face other_axis_face) -> untyped
 

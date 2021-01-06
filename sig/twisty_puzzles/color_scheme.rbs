@@ -13,7 +13,7 @@ module TwistyPuzzles
 
     def opposite_color: (untyped color) -> untyped
 
-    def part_for_colors: (Class part_type, untyped colors) -> untyped
+    def part_for_colors: (singleton(Part) part_type, untyped colors) -> untyped
 
     def face_symbol: (untyped color) -> untyped
 

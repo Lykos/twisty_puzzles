@@ -3,32 +3,34 @@ module TwistyPuzzles
   class AbstractDirection
     include Comparable
 
-    POSSIBLE_DIRECTION_NAMES: untyped
+    POSSIBLE_DIRECTION_NAMES: ::Array[::Array[::String]]
 
-    SIMPLE_DIRECTION_NAMES: untyped
+    SIMPLE_DIRECTION_NAMES: ::Array[::String]
 
-    POSSIBLE_SKEWB_DIRECTION_NAMES: untyped
+    POSSIBLE_SKEWB_DIRECTION_NAMES: ::Array[::Array[::String]]
 
-    SIMPLE_SKEWB_DIRECTION_NAMES: untyped
+    SIMPLE_SKEWB_DIRECTION_NAMES: ::Array[::String]
 
-    def initialize: (untyped value) -> untyped
+    @value: ::Integer
 
-    attr_reader value: untyped
+    def initialize: (::Integer value) -> untyped
 
-    def <=>: (untyped other) -> untyped
+    attr_reader value: ::Integer
 
-    def zero?: () -> untyped
+    def <=>: (self other) -> ::Integer
 
-    def non_zero?: () -> untyped
+    def zero?: () -> bool
 
-    def inverse: () -> untyped
+    def non_zero?: () -> bool
 
-    def +: (untyped other) -> untyped
+    def inverse: () -> self
 
-    def eql?: (untyped other) -> untyped
+    def +: (self other) -> self
+
+    def eql?: (untyped other) -> bool
 
     alias == eql?
 
-    def hash: () -> untyped
+    def hash: () -> ::Integer
   end
 end
