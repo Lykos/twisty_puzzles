@@ -144,7 +144,7 @@ module TwistyPuzzles
     end
 
     def prepend_slice_move(other, cube_size)
-      raise NotImplementedError, "#{class}##{prepend_slice_move} is not implemented"
+      raise NotImplementedError, "#{self.class}#prepend_slice_move is not implemented"
     end
 
     private
