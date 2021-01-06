@@ -1,0 +1,87 @@
+module TwistyPuzzles
+  # Base class for moves.
+  class AbstractMove
+    include Comparable
+
+    include Utils::StringHelper
+
+    include Utils::ArrayHelper
+
+    AXES: ::Array[String]
+
+    # rubocop:disable Style/StringHashKeys
+    SLICE_FACES: ::Hash[String, Face]
+
+    # rubocop:enable Style/StringHashKeys
+    SLICE_NAMES: ::Hash[Face, String]
+
+    MOVE_METRICS: untyped
+
+    def <=>: (untyped other) -> untyped
+
+    def hash: () -> untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def identifying_fields: () -> untyped
+
+    def inverse: () -> untyped
+
+    def identity?: () -> untyped
+
+    def self.check_move_metric: (untyped metric) -> untyped
+
+    def equivalent?: (untyped other, untyped cube_size) -> untyped
+
+    def equivalent_internal?: (untyped other, untyped _cube_size) -> untyped
+
+    def can_swap?: (untyped other) -> untyped
+
+    # For moves A, B, returns [C, D] if they can be swapped.
+    def swap: (untyped other) -> untyped
+
+    def swap_internal: (untyped other) -> untyped
+
+    # Cube size is needed to decide whether 'u' is a slice move (like on bigger cubes) or a fat
+    # move (like on 3x3).
+    def move_count: (untyped cube_size, ?::Symbol metric) -> (0 | untyped)
+
+    def slice_move?: () -> untyped
+
+    def direction: () -> untyped
+
+    def rotate_by: (untyped _rotation) -> untyped
+
+    def mirror: (untyped _normal_face) -> untyped
+
+    # The superclass for all moves that work on the same type puzzle as the given one
+    # (modulo cube size, i.e. 3x3 is the same as 4x4, but Skewb is different).
+    def puzzles: () -> untyped
+
+    # Return an algorithm from cancelling this move with `other` and cancelling as much as
+    # possible.
+    # Note that it doesn't cancel rotations with moves even if we theoretically could do this by
+    # using uncanonical wide moves.
+    # Expects prepend_xyz methods to be present. That one can return a cancelled implementation
+    # or nil if nothing can be cancelled.
+    def join_with_cancellation: (untyped other, untyped cube_size) -> untyped
+
+    # We handle the annoying inconsistency that u is a slice move for bigger cubes, but a fat
+    # move for 3x3. Furthermore, M slice moves are fat m slice moves for even cubes and normal
+    # m slice moves for odd cubes.
+    def decide_meaning: (untyped _cube_size) -> untyped
+
+    # In terms of prepending, inner M slice moves are exactly like other slice moves.
+    def prepend_inner_m_slice_move: (untyped other, untyped cube_size) -> untyped
+
+    def prepend_slice_move: (untyped other, untyped cube_size) -> untyped
+
+    private
+
+    def move_count_internal: (untyped metric, untyped slice_factor, untyped direction_factor) -> untyped
+
+    def prepend_to: (untyped other, untyped cube_size) -> untyped
+  end
+end

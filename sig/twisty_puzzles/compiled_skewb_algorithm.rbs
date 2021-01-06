@@ -1,0 +1,12 @@
+module TwistyPuzzles
+  # Wrapper of the native C implementation of a compiled algorithm for a particular cube size.
+  class CompiledSkewbAlgorithm < CompiledAlgorithm
+    def self.transform_move: (untyped move) -> untyped
+
+    def self.for_moves: (untyped moves) -> untyped
+
+    NATIVE_CLASS: untyped
+
+    EMPTY: untyped
+  end
+end

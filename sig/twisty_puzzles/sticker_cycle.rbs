@@ -1,0 +1,33 @@
+module TwistyPuzzles
+  # A sticker cycle that can be applied to a cube state.
+  class StickerCycle
+    include ReversibleApplyable
+
+    def initialize: (untyped cube_size, untyped sticker_cycle) -> untyped
+
+    attr_reader cube_size: untyped
+
+    attr_reader sticker_cycle: untyped
+
+    def apply_to: (untyped cube_state) -> untyped
+
+    def inverse: () -> untyped
+  end
+
+  # A set of disjoint sticker cycles that can be applied to a cube state together
+  class StickerCycles
+    include ReversibleApplyable
+
+    def initialize: (untyped cube_size, untyped sticker_cycles) -> untyped
+
+    attr_reader cube_size: untyped
+
+    attr_reader sticker_cycles: untyped
+
+    def apply_to: (untyped cube_state) -> untyped
+
+    def +: (untyped other) -> untyped
+
+    def inverse: () -> untyped
+  end
+end

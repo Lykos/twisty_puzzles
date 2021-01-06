@@ -1,0 +1,14 @@
+module TwistyPuzzles
+  module Utils
+    # A few string related helper methods.
+    module StringHelper
+      def camel_case_to_snake_case: (untyped camel_case) -> untyped
+
+      def simple_class_name: (untyped clazz) -> untyped
+
+      def snake_case_class_name: (untyped clazz) -> untyped
+
+      def format_time: (untyped time_s) -> untyped
+    end
+  end
+end

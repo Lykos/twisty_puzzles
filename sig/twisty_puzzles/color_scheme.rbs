@@ -1,0 +1,55 @@
+module TwistyPuzzles
+  # A color scheme that assigns a color to each face.
+  class ColorScheme
+    include CubeConstants
+
+    include Utils::ArrayHelper
+
+    RESERVED_COLORS: untyped
+
+    def initialize: (untyped face_symbols_to_colors) -> untyped
+
+    def color: (untyped face_symbol) -> untyped
+
+    def opposite_color: (untyped color) -> untyped
+
+    def part_for_colors: (Class part_type, untyped colors) -> untyped
+
+    def face_symbol: (untyped color) -> untyped
+
+    def colors: () -> untyped
+
+    def turned: (untyped top_color, untyped front_color) -> untyped
+
+    def solved_cube_state: (untyped cube_size) -> untyped
+
+    # Colors in the order of the face symbols.
+    def ordered_colors: () -> untyped
+
+    def solved_skewb_state: () -> untyped
+
+    private
+
+    def chirality_corner_source_and_unknown_index: (untyped obvious_turned_face_symbols_to_colors) -> ::Array[untyped]
+
+    # Corner matcher that finds a corner that has one arbitrary
+    # face symbol and two given face symbol.
+    class CornerMatcher
+      def initialize: (untyped face_symbol_matchers) -> untyped
+
+      def matches?: (untyped corner) -> untyped
+
+      def wildcard_index: () -> untyped
+    end
+
+    def check_face_symbols_to_colors: (untyped face_symbols_to_colors) -> untyped
+
+    def add_missing_mappings: (untyped turned_face_symbols_to_colors, untyped chirality_corner_source, untyped unknown_index) -> untyped
+
+    def obvious_turned_face_symbols_to_colors: (untyped top_color, untyped front_color) -> untyped
+
+    WCA: untyped
+
+    BERNHARD: untyped
+  end
+end

@@ -1,0 +1,65 @@
+module TwistyPuzzles
+  # Represents the state (i.e. the sticker positions) of a Skewb.
+  class SkewbState
+    include CubePrintHelper
+
+    include StateHelper
+
+    include CubeConstants
+
+    # Pairs of coordinate pairs that should match in case of solved layers.
+    MATCHING_CORNERS: untyped
+
+    # Pairs of stickers that can be used to check whether the "outside" of a layer on the given
+    # face is a proper layer.
+    LAYER_CHECK_NEIGHBORS: untyped
+
+    def initialize: (untyped native) -> untyped
+
+    attr_reader native: untyped
+
+    def self.for_solved_colors: (untyped solved_colors) -> untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    # TODO: Get rid of this backwards compatibility artifact
+    def sticker_array: (untyped face) -> untyped
+
+    def dup: () -> untyped
+
+    def to_s: () -> untyped
+
+    def colored_to_s: () -> untyped
+
+    def apply_move: (untyped move) -> untyped
+
+    def apply_algorithm: (untyped alg) -> untyped
+
+    def apply_rotation: (untyped rot) -> untyped
+
+    def []: (untyped coordinate) -> untyped
+
+    def []=: (untyped coordinate, untyped color) -> untyped
+
+    def any_layer_solved?: () -> untyped
+
+    # Returns the color of all solved layers. Empty if there is none.
+    def solved_layers: () -> untyped
+
+    def layer_solved?: (untyped color) -> untyped
+
+    def center_face: (untyped color) -> untyped
+
+    def layer_check_neighbors: (untyped face) -> untyped
+
+    # Note that this does NOT say that the layer corresponding to the given face is solved.
+    # The face argument is used as the position where a solved face is present.
+    def layer_at_face_solved?: (untyped face) -> (::FalseClass | untyped)
+
+    def rotate_face: (untyped face, untyped direction) -> untyped
+  end
+end

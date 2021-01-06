@@ -1,0 +1,11 @@
+module TwistyPuzzles
+  # Class for creating one move type from its parts.
+  # Helper class for parsing logic.
+  class MoveTypeCreator
+    def initialize: (untyped capture_keys, untyped move_class) -> untyped
+
+    def applies_to?: (untyped parsed_parts) -> untyped
+
+    def create: (untyped parsed_parts) -> untyped
+  end
+end

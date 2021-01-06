@@ -1,0 +1,27 @@
+module TwistyPuzzles
+  # Parser for cube moves.
+  class CubeMoveParser < AbstractMoveParser
+    REGEXP: untyped
+
+    MOVE_TYPE_CREATORS: untyped
+
+    INSTANCE: untyped
+
+    def regexp: () -> untyped
+
+    def move_type_creators: () -> untyped
+
+    def parse_part_key: (untyped name) -> untyped
+
+    def parse_direction: (untyped direction_string) -> untyped
+
+    def parse_axis_face: (untyped axis_face_string) -> untyped
+
+    def parse_mslice_face: (untyped mslice_name) -> untyped
+
+    def parse_width: (untyped width_string) -> untyped
+
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def parse_move_part: (untyped name, untyped value) -> untyped
+  end
+end

@@ -1,0 +1,47 @@
+module TwistyPuzzles
+  # A rotation of a Skewb or cube.
+  class Rotation < AxisFaceAndDirectionMove
+    ALL_ROTATIONS: ::Array[Rotation]
+
+    NON_ZERO_ROTATIONS: ::Array[Rotation]
+
+    LEFT: Rotation
+
+    RIGHT: Rotation
+
+    # Translates a Skewb direction into a cube direction.
+    def self.translated_direction: (SkewbDirection direction) -> CubeDirection
+
+    # Returns an algorithm consisting of two rotations that are equivalent to rotating
+    # the puzzle around a corner.
+    # Takes a Skewb direction as an argument (even for cubes) because rotating around
+    # is like a Skewb move given that it's modulo 3.
+    def self.around_corner: (Corner corner, SkewbDirection skewb_direction) -> Algorithm
+
+    def to_s: () -> ::String
+
+    def puzzles: () -> ::Array[Puzzle]
+
+    def slice_move?: () -> ::FalseClass
+
+    # Returns an alternative representation of the same rotation
+    def alternative: () -> Rotation
+
+    def equivalent_internal?: (untyped other, untyped _cube_size) -> (::TrueClass | ::FalseClass)
+
+    # rubocop:disable Metrics/AbcSize
+    def prepend_rotation: (untyped other, untyped _cube_size) -> Algorithm
+
+    def prepend_fat_m_slice_move: (untyped _other, untyped _cube_size) -> nil
+
+    def prepend_fat_move: (untyped other, untyped cube_size) -> (nil | Algorithm)
+
+    def prepend_slice_move: (untyped _other, untyped _cube_size) -> nil
+
+    def move_count: (untyped _cube_size, ?::Symbol _metric) -> 0
+
+    private
+
+    def compatible_fat_move?: (AxisFaceAndDirectionMove other) -> (::TrueClass | ::FalseClass)
+  end
+end

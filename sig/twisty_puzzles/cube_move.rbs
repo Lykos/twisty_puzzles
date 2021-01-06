@@ -1,0 +1,145 @@
+module TwistyPuzzles
+  # Helper class to print various types of M slice moves.
+  module MSlicePrintHelper
+    def to_s: () -> ::String
+  end
+
+  # Base class for cube moves.
+  class CubeMove < AxisFaceAndDirectionMove
+    def puzzles: () -> ::Array[untyped]
+  end
+
+  # A fat M slice move that moves everything but the outer layers.
+  class FatMSliceMove < CubeMove
+    include MSlicePrintHelper
+
+    def prepend_rotation: (untyped _other, untyped _cube_size) -> nil
+
+    def prepend_fat_m_slice_move: (untyped other, untyped _cube_size) -> (nil | untyped)
+
+    def prepend_fat_move: (untyped other, untyped cube_size) -> untyped
+
+    def prepend_slice_move: (untyped _other, untyped _cube_size) -> nil
+
+    def slice_move?: () -> ::TrueClass
+
+    def equivalent_internal?: (untyped other, untyped cube_size) -> (untyped | ::FalseClass)
+
+    def equivalent_slice_move?: (untyped other, untyped cube_size) -> untyped
+  end
+
+  # An M slice move for which we don't know yet whether it's an inner or fat M slice move.
+  class MaybeFatMSliceMaybeInnerMSliceMove < CubeMove
+    include MSlicePrintHelper
+
+    # For even layered cubes, m slice moves are meant as very fat moves where only the outer
+    # layers stay.
+    # For odd layered cubes, we only move the very middle.
+    def decide_meaning: (untyped cube_size) -> untyped
+  end
+
+  # A fat move with a width. For width 1, this becomes a normal outer move.
+  class FatMove < CubeMove
+    def initialize: (untyped axis_face, untyped direction, ?::Integer width) -> untyped
+
+    OUTER_MOVES: untyped
+
+    attr_reader width: untyped
+
+    def identifying_fields: () -> untyped
+
+    def to_s: () -> ::String
+
+    def slice_move?: () -> ::FalseClass
+
+    def with_width: (untyped width) -> untyped
+
+    def inverted_width: (untyped cube_size) -> untyped
+
+    def prepend_rotation: (untyped other, untyped cube_size) -> untyped
+
+    def prepend_fat_m_slice_move: (untyped other, untyped cube_size) -> untyped
+
+    def prepend_fat_move: (untyped other, untyped cube_size) -> untyped
+
+    def prepend_slice_move: (untyped other, untyped cube_size) -> (nil | untyped)
+
+    def merge_with_same_fat_block: (untyped other) -> untyped
+
+    def merge_with_opposite_fat_block: (untyped other) -> untyped
+
+    # The outermost slice move inside this fat move.
+    def inner_slice_move: () -> untyped
+
+    # The fat M-slice move inside this fat move.
+    def inner_fat_mslice_move: (untyped cube_size) -> untyped
+
+    def contained_mslice_move?: (untyped other, untyped cube_size) -> untyped
+
+    def adjacent_mslice_move?: (untyped other) -> untyped
+
+    def same_fat_block?: (untyped other) -> untyped
+
+    def leaves_inner_slice_move?: (untyped other) -> untyped
+
+    def leaves_inner_fat_mslice_move?: (untyped other, untyped cube_size) -> untyped
+
+    def opposite_fat_block?: (untyped other, untyped cube_size) -> untyped
+  end
+
+  # A slice move of any slice, not necessary the middle one.
+  class SliceMove < CubeMove
+    def initialize: (untyped axis_face, untyped direction, untyped slice_index) -> untyped
+
+    attr_reader slice_index: untyped
+
+    def identifying_fields: () -> untyped
+
+    def to_s: () -> ::String
+
+    def slice_move?: () -> ::TrueClass
+
+    def mirror: (untyped normal_face) -> untyped
+
+    def equivalent_internal?: (untyped other, untyped cube_size) -> (untyped | ::FalseClass)
+
+    def translated_slice_index: (untyped other_axis_face, untyped cube_size) -> untyped
+
+    def prepend_rotation: (untyped _other, untyped _cube_size) -> nil
+
+    def prepend_fat_m_slice_move: (untyped _other, untyped _cube_size) -> nil
+
+    def prepend_fat_move: (untyped other, untyped cube_size) -> untyped
+
+    def prepend_slice_move: (untyped other, untyped cube_size) -> (nil | untyped)
+
+    def simplified: (untyped cube_size) -> untyped
+
+    def invert_slice_index: (untyped cube_size) -> untyped
+
+    # Note that this is only a partial implementation of what we need internally.
+    # It does NOT get all cases correctly because there might be equivalent versions of the
+    # same slice move.
+    def can_join_to_fat_mslice?: (untyped other, untyped cube_size) -> untyped
+
+    # Note that this is only a partial implementation of what we need internally.
+    # It does NOT get all cases correctly because there might be equivalent versions of the
+    # same slice move.
+    def same_slice?: (untyped other) -> untyped
+  end
+
+  # Inner M slice moves that move only one middle layer.
+  class InnerMSliceMove < SliceMove
+    include MSlicePrintHelper
+  end
+
+  # Not that this represents a move that is written as 'u' which is a slice move on bigger cubes
+  # but a fat move on 3x3...
+  class MaybeFatMaybeSliceMove < CubeMove
+    # We handle the annoying inconsistency that u is a slice move for bigger cubes, but a fat move
+    # for 3x3.
+    def decide_meaning: (untyped cube_size) -> untyped
+
+    def to_s: () -> ::String
+  end
+end

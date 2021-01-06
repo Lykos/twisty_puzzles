@@ -1,0 +1,24 @@
+module TwistyPuzzles
+  # Parser for Skewb moves.
+  class SkewbMoveParser < AbstractMoveParser
+    MOVE_TYPE_CREATORS: untyped
+
+    def initialize: (untyped notation) -> untyped
+
+    FIXED_CORNER_INSTANCE: untyped
+
+    SARAH_INSTANCE: untyped
+
+    RUBIKS_INSTANCE: untyped
+
+    def regexp: () -> untyped
+
+    def move_type_creators: () -> untyped
+
+    def parse_skewb_direction: (untyped direction_string) -> untyped
+
+    def parse_part_key: (untyped name) -> untyped
+
+    def parse_move_part: (untyped name, untyped value) -> untyped
+  end
+end

@@ -1,0 +1,16 @@
+module TwistyPuzzles
+  # Factory for sticker cycles given part cycles.
+  class PartCycleFactory
+    include Utils::ArrayHelper
+
+    def initialize: (untyped cube_size, untyped incarnation_index) -> untyped
+
+    def coordinates: (untyped part) -> untyped
+
+    def multi_twist: (untyped parts) -> untyped
+
+    def check_type_consistency: (untyped parts) -> (nil | untyped)
+
+    def construct: (untyped parts) -> untyped
+  end
+end

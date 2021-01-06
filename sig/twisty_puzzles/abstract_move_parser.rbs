@@ -1,0 +1,16 @@
+module TwistyPuzzles
+  # Base class for move parsers.
+  class AbstractMoveParser
+    def regexp: () -> untyped
+
+    def parse_part_key: (untyped _name) -> untyped
+
+    def parse_move_part: (untyped _name, untyped _string) -> untyped
+
+    def move_type_creators: () -> untyped
+
+    def parse_named_captures: (untyped match) -> untyped
+
+    def parse_move: (untyped move_string) -> untyped
+  end
+end

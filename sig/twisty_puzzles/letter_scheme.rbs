@@ -1,0 +1,34 @@
+module TwistyPuzzles
+  # Letter scheme that maps stickers to letters.
+  class LetterScheme
+    def initialize: () -> untyped
+
+    def letter: (untyped piece) -> untyped
+
+    def for_letter: (untyped part_type, untyped desired_letter) -> untyped
+
+    def valid_letter?: (untyped letter) -> untyped
+
+    def alphabet: () -> untyped
+
+    def canonicalize_letter: (untyped _letter) -> untyped
+
+    def parse_part: (untyped part_type, untyped part_string) -> untyped
+
+    alias parse_buffer parse_part
+  end
+
+  # Letter scheme used by Bernhard Brodowsky.
+  class BernhardLetterScheme < LetterScheme
+    PART_TYPE_BUFFERS: untyped
+
+    def alphabet: () -> untyped
+
+    def canonicalize_letter: (untyped letter) -> untyped
+
+    # Letters that we shoot to by default.
+    def shoot_letters: (untyped _part_type) -> ::Array["a" | "b" | "d" | "l" | "h" | "t" | "p"]
+
+    def default_buffer: (untyped part_type) -> untyped
+  end
+end

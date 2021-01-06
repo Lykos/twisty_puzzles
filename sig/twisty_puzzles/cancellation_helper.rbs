@@ -1,0 +1,41 @@
+module TwistyPuzzles
+  # Helper class to figure out information about the cancellation between two algs.
+  module CancellationHelper
+    include CubeConstants
+
+    def self.swap_to_end: (untyped algorithm, untyped index) -> (nil | untyped)
+
+    # Possible variations of the algorithm where the last move has been swapped as much as allowed
+    # (e.g. D U can swap).
+    def self.cancel_variants: (untyped algorithm) -> untyped
+
+    # Cancel this algorithm as much as possilbe
+    def self.cancel: (untyped algorithm, untyped cube_size) -> untyped
+
+    def self.combine_transformations: (untyped left, untyped right) -> untyped
+
+    def self.apply_transformation_to!: (untyped transformation, untyped face_state) -> untyped
+
+    TRIVIAL_CENTER_TRANSFORMATION: untyped
+
+    def self.create_directed_transformations: (untyped basic_transformation, untyped invert) -> untyped
+
+    CENTER_TRANSFORMATIONS: untyped
+
+    def self.center_transformation: (untyped rotation) -> untyped
+
+    def self.rotated_center_state: (untyped rotations) -> untyped
+
+    def self.combined_rotation_algs: () -> untyped
+
+    def self.rotation_sequences: () -> untyped
+
+    def self.cancelled_rotations: (untyped rotations) -> untyped
+
+    def self.num_tail_rotations: (untyped algorithm) -> untyped
+
+    def self.alg_plus_cancelled_move: (untyped algorithm, untyped move, untyped cube_size) -> untyped
+
+    def self.push_with_cancellation: (untyped algorithm, untyped move, untyped cube_size) -> untyped
+  end
+end

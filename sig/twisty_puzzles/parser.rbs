@@ -1,0 +1,79 @@
+module TwistyPuzzles
+  # rubocop:disable Style/Documentation
+  class CommutatorParseError < TwistyPuzzlesError
+  end
+
+  # Parser for commutators and algorithms.
+  class Parser
+    OPENING_BRACKET: ::String
+
+    OPENING_PAREN: ::String
+
+    CLOSING_BRACKET: ::String
+
+    CLOSING_PAREN: ::String
+
+    TIMES: ::String
+
+    def initialize: (untyped alg_string, untyped move_parser) -> untyped
+
+    def parse_open_paren: () -> untyped
+
+    def parse_close_paren: () -> untyped
+
+    def parse_times: () -> untyped
+
+    def parse_factor: () -> untyped
+
+    def parse_multiplier: () -> untyped
+
+    def parse_trigger: () -> untyped
+
+    # Parses at least one move and allows for triggers in parentheses.
+    def parse_moves_with_triggers: () -> untyped
+
+    # Parses at least one move.
+    def parse_nonempty_moves: () -> untyped
+
+    # Parses a series of moves.
+    def parse_moves: () -> untyped
+
+    def complain: (untyped parsed_object) -> untyped
+
+    def check_eos: (untyped parsed_object) -> untyped
+
+    def parse_open_bracket: () -> untyped
+
+    def parse_close_bracket: () -> untyped
+
+    def parse_commutator: () -> untyped
+
+    def parse_algorithm: () -> untyped
+
+    def parse_setup_commutator_inner: () -> untyped
+
+    def parse_pure_commutator: () -> untyped
+
+    def parse_commutator_internal_after_separator: (untyped setup_or_first_part, untyped separator) -> untyped
+
+    def parse_commutator_internal: () -> untyped
+
+    def parse_move_internal: () -> (nil | untyped)
+
+    def skip_spaces: () -> untyped
+  end
+
+  def parse_commutator: (untyped alg_string, ?complete_parse: bool complete_parse) -> untyped
+
+  def parse_cube_algorithm: (untyped alg_string, ?complete_parse: bool complete_parse) -> untyped
+
+  def parse_cube_move: (untyped move_string) -> untyped
+
+  alias parse_algorithm parse_cube_algorithm
+
+  alias parse_move parse_cube_move
+
+  def parse_skewb_algorithm: (untyped alg_string, untyped notation, ?complete_parse: bool complete_parse) -> untyped
+
+  def parse_skewb_move: (untyped move_string, untyped notation) -> untyped
+end

@@ -1,0 +1,45 @@
+module TwistyPuzzles
+  # Represents the state (i.e. the sticker positions) of a cube.
+  class CubeState
+    include Utils::ArrayHelper
+
+    include CubePrintHelper
+
+    include StateHelper
+
+    include CubeConstants
+
+    def self.check_cube_size: (untyped cube_size) -> untyped
+
+    def self.from_stickers: (untyped cube_size, untyped stickers) -> untyped
+
+    def self.create_stickers_hash: (untyped stickers) -> untyped
+
+    def initialize: (untyped native) -> untyped
+
+    def dup: () -> untyped
+
+    attr_reader native: untyped
+
+    def n: () -> untyped
+
+    def stickers: () -> nil
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    # TODO: Get rid of this backwards compatibility artifact
+    def sticker_array: (untyped face) -> untyped
+
+    def to_s: () -> untyped
+
+    def colored_to_s: () -> untyped
+
+    def []: (untyped coordinate) -> untyped
+
+    def []=: (untyped coordinate, untyped color) -> untyped
+  end
+end

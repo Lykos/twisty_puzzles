@@ -1,0 +1,68 @@
+module TwistyPuzzles
+  # Represents a sequence of moves that can be applied to puzzle states.
+  class Algorithm
+    include ReversibleApplyable
+
+    include Comparable
+
+    def initialize: (untyped moves) -> untyped
+
+    EMPTY: untyped
+
+    # Creates a one move algorithm.
+    def self.move: (untyped move) -> untyped
+
+    attr_reader moves: untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    def length: () -> untyped
+
+    def empty?: () -> untyped
+
+    def to_s: () -> untyped
+
+    def inspect: () -> ::String
+
+    def apply_to: (untyped cube_state) -> untyped
+
+    def inverse: () -> untyped
+
+    def +: (untyped other) -> untyped
+
+    def <=>: (untyped other) -> untyped
+
+    # Returns the cancelled version of the given algorithm.
+    # Note that the cube size is important to know which fat moves cancel
+    def cancelled: (untyped cube_size) -> untyped
+
+    # Returns the number of moves that cancel if you concat the algorithm to the right of self.
+    # Note that the cube size is important to know which fat moves cancel
+    def cancellations: (untyped other, untyped cube_size, ?::Symbol metric) -> untyped
+
+    # Rotates the algorithm, e.g. applying "y" to "R U" becomes "F U".
+    # Applying rotation r to alg a is equivalent to r' a r.
+    # Note that this is not implemented for all moves.
+    def rotate_by: (untyped rotation) -> untyped
+
+    # Mirrors the algorithm and uses the given face as the normal of the mirroring.
+    # E.g. mirroring "R U F" with "R" as the normal face, we get "L U' F'".
+    def mirror: (untyped normal_face) -> untyped
+
+    # Cube size is needed to decide whether 'u' is a slice move (like on bigger cubes) or a
+    # fat move (like on 3x3).
+    def move_count: (untyped cube_size, ?::Symbol metric) -> (0 | untyped)
+
+    def *: (untyped other) -> untyped
+
+    def compiled_for_skewb: () -> untyped
+
+    def compiled_for_cube: (untyped cube_size) -> untyped
+
+    attr_writer inverse: untyped
+  end
+end

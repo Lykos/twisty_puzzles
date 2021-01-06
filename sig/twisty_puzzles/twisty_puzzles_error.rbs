@@ -1,0 +1,4 @@
+module TwistyPuzzles
+  class TwistyPuzzlesError < StandardError
+  end
+end

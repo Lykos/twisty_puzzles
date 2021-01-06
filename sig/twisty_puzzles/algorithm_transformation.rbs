@@ -1,0 +1,25 @@
+module TwistyPuzzles
+  class AlgorithmTransformation
+    @rotation: Rotation
+
+    @mirror: (TrueClass | FalseClass)
+
+    @mirror_normal_face: Face
+
+    def initialize: (Rotation rotation, (TrueClass | FalseClass) mirror, Face mirror_normal_face) -> untyped
+
+    def rotation: () -> Rotation
+
+    def mirror: () -> (TrueClass | FalseClass)
+
+    def mirror_normal_face: () -> Face
+
+    def transformed: (Algorithm algorithm) -> Algorithm
+
+    def identity?: () -> (TrueClass | FalseClass)
+
+    def self.around_face: (Face face) -> ::Array[AlgorithmTransformation]
+
+    def self.around_face_without_identity: (Face face) -> ::Array[AlgorithmTransformation]
+  end
+end

@@ -1,0 +1,22 @@
+module TwistyPuzzles
+  # Represents the direction of a cube move or rotation.
+  class CubeDirection < AbstractDirection
+    NUM_DIRECTIONS: ::Integer
+
+    NON_ZERO_DIRECTIONS: untyped
+
+    ALL_DIRECTIONS: untyped
+
+    ZERO: untyped
+
+    FORWARD: untyped
+
+    DOUBLE: untyped
+
+    BACKWARD: untyped
+
+    def name: () -> untyped
+
+    def double_move?: () -> untyped
+  end
+end

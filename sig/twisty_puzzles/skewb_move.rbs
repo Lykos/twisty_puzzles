@@ -1,0 +1,25 @@
+module TwistyPuzzles
+  # Base class for skewb moves.
+  class SkewbMove < AbstractMove
+    @axis_corner: Corner
+    @direction: SkewbDirection
+
+    def initialize: (Corner axis_corner, SkewbDirection direction) -> untyped
+
+    def puzzles: () -> ::Array[Puzzle]
+
+    attr_reader axis_corner: Corner
+
+    attr_reader direction: SkewbDirection
+
+    def to_s: () -> ::String
+
+    def slice_move?: () -> ::FalseClass
+
+    def identifying_fields: () -> ::Array[Corner | SkewbDirection]
+
+    def rotate_by: (Rotation rotation) -> SkewbMove
+
+    def mirror: (Face normal_face) -> SkewbMove
+  end
+end

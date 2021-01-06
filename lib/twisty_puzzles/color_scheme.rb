@@ -37,7 +37,7 @@ module TwistyPuzzles
     end
 
     def part_for_colors(part_type, colors)
-      raise ArgumentError unless part_type.is_a?(Class)
+      raise ArgumentError unless part_type.is_a?(Class) && (part_type < Part)
 
       part_type.for_face_symbols(colors.map { |c| face_symbol(c) })
     end

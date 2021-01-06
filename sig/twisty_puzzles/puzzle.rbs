@@ -1,0 +1,18 @@
+module TwistyPuzzles
+  # Represents one type of puzzle.
+  class Puzzle
+    def initialize: (untyped name) -> untyped
+
+    NXN_CUBE: untyped
+
+    SKEWB: untyped
+
+    attr_reader name: untyped
+
+    def eql?: (untyped other) -> untyped
+
+    def hash: () -> untyped
+
+    alias == eql?
+  end
+end

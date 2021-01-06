@@ -1,0 +1,31 @@
+module TwistyPuzzles
+  module Utils
+    # A few array related helper methods.
+    module ArrayHelper
+      def apply_permutation: (untyped array, untyped permutation) -> untyped
+
+      def turned_equals?: (untyped left, untyped right) -> (::FalseClass | ::TrueClass)
+
+      private
+
+      def next_state_after_nil: (untyped array, untyped state) -> untyped
+
+      def next_state_after_non_nil: (untyped array, untyped state) -> untyped
+
+      def next_state: (untyped state, untyped array, untyped element, untyped first_part, untyped second_part) -> untyped
+
+      public
+
+      def rotate_out_nils: (untyped array) -> untyped
+
+      def check_types: (untyped array, untyped `type`) -> untyped
+
+      # Returns the only element of an array and raises if the array has not exactly one element.
+      def only: (untyped array) -> untyped
+
+      def find_only: (untyped array) { (untyped elem) -> (TrueClass | FalseClass) } -> untyped
+
+      def replace_once: (untyped array, untyped old_element, untyped new_element) -> untyped
+    end
+  end
+end

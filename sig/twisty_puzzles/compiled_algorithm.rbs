@@ -1,0 +1,22 @@
+module TwistyPuzzles
+  # Base class for a compiled algorithm for a particular puzzle.
+  class CompiledAlgorithm
+    include ReversibleApplyable
+
+    def initialize: (untyped native) -> untyped
+
+    attr_reader native: untyped
+
+    def rotate_by: (untyped rotation) -> untyped
+
+    def mirror: (untyped normal_face) -> untyped
+
+    def inverse: () -> untyped
+
+    def +: (untyped other) -> untyped
+
+    def apply_to: (untyped state) -> untyped
+
+    attr_writer inverse: untyped
+  end
+end

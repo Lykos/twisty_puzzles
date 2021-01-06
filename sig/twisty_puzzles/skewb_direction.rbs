@@ -1,0 +1,20 @@
+module TwistyPuzzles
+  # Represents the direction of a Skewb move except a rotation.
+  class SkewbDirection < AbstractDirection
+    NUM_DIRECTIONS: ::Integer
+
+    NON_ZERO_DIRECTIONS: untyped
+
+    ALL_DIRECTIONS: untyped
+
+    ZERO: untyped
+
+    FORWARD: untyped
+
+    BACKWARD: untyped
+
+    def name: () -> untyped
+
+    def double_move?: () -> ::FalseClass
+  end
+end

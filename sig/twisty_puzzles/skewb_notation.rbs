@@ -1,0 +1,41 @@
+module TwistyPuzzles
+  # Class that represents one notation for Skewb moves, e.g. Sarahs notation or fixed
+  # corner notation.
+  class SkewbNotation
+    # rubocop:disable Metrics/AbcSize
+    def initialize: (untyped name, untyped move_corner_pairs) -> untyped
+
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def check_move_corner_pairs: (untyped move_corner_pairs) -> untyped
+
+    def check_corner_coverage: (untyped corners) -> untyped
+
+    attr_reader name: untyped
+
+    attr_reader move_strings: untyped
+
+    attr_reader non_zero_moves: untyped
+
+    def self.fixed_corner: () -> untyped
+
+    def self.sarah: () -> untyped
+
+    def self.rubiks: () -> untyped
+
+    def to_s: () -> untyped
+
+    def corner: (untyped move) -> untyped
+
+    def algorithm_to_string: (untyped algorithm) -> untyped
+
+    private
+
+    def move_to_string: (untyped move, untyped reversed_rotations) -> untyped
+
+    def skewb_move_to_string: (untyped move, untyped reversed_rotations) -> ::String
+
+    # Returns the move string of the given move and true if a rotation has to be done to correct
+    # for the fact that we actually used the opposite corner.
+    def move_to_string_internal: (untyped move) -> untyped
+  end
+end

@@ -1,0 +1,34 @@
+module TwistyPuzzles
+  # Base class for directions.
+  class AbstractDirection
+    include Comparable
+
+    POSSIBLE_DIRECTION_NAMES: untyped
+
+    SIMPLE_DIRECTION_NAMES: untyped
+
+    POSSIBLE_SKEWB_DIRECTION_NAMES: untyped
+
+    SIMPLE_SKEWB_DIRECTION_NAMES: untyped
+
+    def initialize: (untyped value) -> untyped
+
+    attr_reader value: untyped
+
+    def <=>: (untyped other) -> untyped
+
+    def zero?: () -> untyped
+
+    def non_zero?: () -> untyped
+
+    def inverse: () -> untyped
+
+    def +: (untyped other) -> untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+  end
+end

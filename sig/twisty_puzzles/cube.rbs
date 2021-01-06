@@ -1,0 +1,307 @@
+module TwistyPuzzles
+  # Base class of cube parts. Represents one part or the position of one part on the cube.
+  class Part
+    include Utils::ArrayHelper
+
+    extend Utils::ArrayHelper
+
+    include CubeConstants
+
+    extend CubeConstants
+
+    include Comparable
+
+    def initialize: (::Array[Symbol] face_symbols, Integer piece_index) -> untyped
+
+    attr_reader piece_index: untyped
+
+    attr_reader face_symbols: untyped
+
+    def self.generate_parts: () -> untyped
+
+    def self.min_cube_size: () -> 2
+
+    def self.max_cube_size: () -> untyped
+
+    def self.exists_on_even_cube_sizes?: () -> ::TrueClass
+
+    def self.exists_on_odd_cube_sizes?: () -> ::TrueClass
+
+    def num_incarnations: (Integer cube_size) -> Integer
+
+    def base_index_on_face: (Integer cube_size, Integer incarnation_index) -> Integer
+
+    def base_index_on_other_face: (Face face, Integer cube_size, Integer incarnation_index) -> Integer
+
+    def self.for_face_symbols_internal: (untyped face_symbols) -> untyped
+
+    def self.for_face_symbols: (untyped face_symbols) -> untyped
+
+    def self.for_index: (untyped index) -> untyped
+
+    def self.valid?: (::Array[Symbol] face_symbols) -> (::FalseClass | ::TrueClass)
+
+    def <=>: (untyped other) -> untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    def inspect: () -> ::String
+
+    def to_s: () -> untyped
+
+    # Rotate a piece such that the given face symbol is the first face symbol.
+    def rotate_face_symbol_up: (Symbol face_symbol) -> untyped
+
+    def rotate_face_up: (Face faces) -> untyped
+
+    def rotate_by: (untyped number) -> untyped
+
+    # Returns true if the pieces are equal modulo rotation.
+    def turned_equals?: (untyped other) -> untyped
+
+    def rotations: () -> untyped
+
+    def self.parse: (untyped piece_description) -> untyped
+
+    # Only overridden by moveable centers, but returns self for convenience.
+    def corresponding_part: () -> untyped
+
+    # The primary face that this piece is in in the solved state.
+    def solved_face: () -> untyped
+
+    def solved_coordinate: (Integer cube_size, ?::Integer incarnation_index) -> untyped
+
+    def faces: () -> untyped
+  end
+
+  # This is an unmoveable center piece, it's mostly used as a helper class for other pieces.
+  class Face < Part
+    FACES: ::Integer
+
+    def self.min_cube_size: () -> 3
+
+    def self.exists_on_even_cube_sizes?: () -> ::FalseClass
+
+    def self.for_face_symbol: (Symbol face_symbol) -> untyped
+
+    def self.valid?: (::Array[Symbol] _face_symbols) -> ::TrueClass
+
+    ELEMENTS: untyped
+
+    # Whether closeness to this face results in smaller indices for the stickers of other faces.
+    def close_to_smaller_indices?: () -> untyped
+
+    def coordinate_index_base_face: (untyped coordinate_index) -> untyped
+
+    def opposite: () -> untyped
+
+    def same_axis?: (untyped other) -> untyped
+
+    # Returns the index of the coordinate that is used to determine how close a sticker on
+    # `on_face` is to `to_face`.
+    def coordinate_index_close_to: (untyped to_face) -> untyped
+
+    # Priority of the closeness to this face.
+    # This is used to index the stickers on other faces.
+    def axis_priority: () -> untyped
+
+    def canonical_axis_face?: () -> untyped
+
+    def name: () -> untyped
+
+    def self.by_name: (untyped name) -> untyped
+
+    def face_symbol: () -> untyped
+
+    # Neighbor faces in clockwise order.
+    def neighbors: () -> untyped
+
+    def clockwise_neighbor_after: (untyped neighbor) -> untyped
+
+    # Returns the algorithm that performs a rotation after which the current face will
+    # lie where the given other face currently is.
+    def rotation_to: (untyped other) -> untyped
+
+    def clockwise_corners: () -> untyped
+
+    private
+
+    def sort_partial_neighbors: (untyped partial_neighbors) -> untyped
+
+    def rotation_direction_to: (untyped other) -> untyped
+  end
+
+  # Base class of moveable centers. Represents one moveable center or the position of one moveable
+  # center on the cube.
+  class MoveableCenter < Part
+    FACES: ::Integer
+
+    def self.min_cube_size: () -> 4
+
+    def self.valid?: (::Array[Symbol] face_symbols) -> untyped
+
+    def self.for_face_symbols: (untyped face_symbols) -> untyped
+
+    def face_symbol: () -> untyped
+
+    def eql?: (untyped other) -> untyped
+
+    def initialize: (untyped corresponding_part, Integer piece_index) -> untyped
+
+    alias == eql?
+
+    attr_reader corresponding_part: untyped
+
+    def inspect: () -> ::String
+
+    def rotate_by: (untyped _number) -> untyped
+
+    def neighbor?: (untyped other) -> untyped
+
+    def neighbors: () -> untyped
+
+    def self.generate_parts: () -> untyped
+  end
+
+  # Module for methods that are common to all edge-like part classes.
+  module EdgeLike
+    def valid?: (::Array[Symbol] face_symbols) -> untyped
+  end
+
+  # Represents one edge or the position of one edge on the cube.
+  class Edge < Part
+    extend EdgeLike
+
+    FACES: ::Integer
+
+    ELEMENTS: untyped
+
+    def self.min_cube_size: () -> 3
+
+    def self.max_cube_size: () -> 3
+
+    def self.exists_on_even_cube_sizes?: () -> ::FalseClass
+
+    # Edges on uneven bigger cubes are midges, so edges only exist for 3x3.
+    def num_incarnations: (Integer cube_size) -> Integer
+
+    # One index of such a piece on a on a NxN face.
+    def base_index_on_other_face: (untyped _face, untyped _cube_size, untyped _incarnation_index) -> ::Array[0 | 1]
+  end
+
+  # Represents one midge or the position of one midge on the cube.
+  class Midge < Part
+    extend EdgeLike
+
+    FACES: ::Integer
+
+    ELEMENTS: untyped
+
+    def self.min_cube_size: () -> 5
+
+    def self.exists_on_even_cube_sizes?: () -> ::FalseClass
+
+    # One index of such a piece on a on a NxN face.
+    def base_index_on_other_face: (untyped _face, Integer cube_size, untyped _incarnation_index) -> ::Array[0 | untyped]
+
+    def num_incarnations: (Integer cube_size) -> Integer
+  end
+
+  # Represents one wing or the position of one wing on the cube.
+  class Wing < Part
+    extend EdgeLike
+
+    WING_BASE_INDEX_INVERTED_FACE_SYMBOLS: untyped
+
+    FACES: ::Integer
+
+    ELEMENTS: untyped
+
+    def self.min_cube_size: () -> 4
+
+    def self.exists_on_odd_cube_sizes?: () -> ::FalseClass
+
+    def self.for_face_symbols: (untyped face_symbols) -> untyped
+
+    def self.for_corner_face_symbols: (::Array[Symbol] face_symbols) -> untyped
+
+    def corresponding_part: () -> untyped
+
+    def rotations: () -> ::Array[untyped]
+
+    def rotate_by: (untyped _number) -> untyped
+
+    def num_incarnations: (Integer cube_size) -> Integer
+
+    # One index of such a piece on a on a NxN face.
+    def base_index_on_other_face: (Face faces, untyped _cube_size, Integer incarnation_index) -> untyped
+  end
+
+  # Represents one corner or the position of one corner on the cube.
+  class Corner < Part
+    FACES: ::Integer
+
+    def self.for_face_symbols: (untyped face_symbols) -> untyped
+
+    def self.valid_between_faces?: (::Array[Face] faces) -> untyped
+
+    def self.between_faces: (::Array[Face] faces) -> untyped
+
+    def self.valid?: (::Array[Symbol] face_symbols) -> untyped
+
+    ELEMENTS: untyped
+
+    # Rotate such that neither the current face symbol nor the given face symbol are at the
+    # position of the letter.
+    def rotate_other_face_symbol_up: (Symbol face_symbol) -> untyped
+
+    def diagonal_opposite: () -> untyped
+
+    def rotate_other_face_up: (Face faces) -> untyped
+
+    def common_edge_with?: (untyped other) -> untyped
+
+    def common_faces: (untyped other) -> untyped
+
+    def adjacent_edges: () -> ::Array[Edge]
+
+    def adjacent_faces: () -> ::Array[Face]
+
+    def num_incarnations: (Integer cube_size) -> Integer
+
+    # One index of such a piece on a on a NxN face.
+    def base_index_on_other_face: (untyped _face, untyped _cube_size, untyped _incarnation_index) -> ::Array[0]
+  end
+
+  # Represents one X center or the position of one X center on the cube.
+  class XCenter < MoveableCenter
+    CORRESPONDING_PART_CLASS: untyped
+
+    ELEMENTS: untyped
+
+    def num_incarnations: (Integer cube_size) -> Integer
+
+    # One index of such a piece on a on a NxN face.
+    def base_index_on_other_face: (untyped _face, untyped _cube_size, Integer incarnation_index) -> ::Array[untyped]
+  end
+
+  # Represents one T center or the position of one T center on the cube.
+  class TCenter < MoveableCenter
+    CORRESPONDING_PART_CLASS: untyped
+
+    ELEMENTS: untyped
+
+    def self.min_cube_size: () -> 5
+
+    def self.exists_on_even_cube_sizes?: () -> ::FalseClass
+
+    def num_incarnations: (Integer cube_size) -> Integer
+
+    # One index of such a piece on a on a NxN face.
+    def base_index_on_other_face: (untyped _face, Integer cube_size, Integer incarnation_index) -> ::Array[untyped]
+  end
+end

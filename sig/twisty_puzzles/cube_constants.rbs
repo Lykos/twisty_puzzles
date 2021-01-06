@@ -1,0 +1,26 @@
+module TwistyPuzzles
+  # Various constants about the cube.
+  module CubeConstants
+    include Utils::ArrayHelper
+
+    # The order determines the priority of the faces.
+    FACE_SYMBOLS: untyped
+
+    OPPOSITE_FACE_SYMBOLS: untyped
+
+    FACE_NAMES: untyped
+
+    ALPHABET_SIZE: ::Integer
+
+    # Stickers on each Skewb face.
+    SKEWB_STICKERS: ::Integer
+
+    CHIRALITY_FACE_SYMBOLS: untyped
+
+    def opposite_face_symbol: (untyped face_symbol) -> untyped
+
+    def chirality_canonical_face_symbol: (untyped face_symbol) -> untyped
+
+    def valid_chirality?: (untyped face_symbols) -> untyped
+  end
+end

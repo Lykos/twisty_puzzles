@@ -1,0 +1,9 @@
+module TwistyPuzzles
+  # Common utilities for different puzzle states.
+  # TODO: Remove
+  module StateHelper
+    def apply_sticker_cycle: (untyped cycle) -> untyped
+
+    def apply_4sticker_cycle: (untyped cycle, untyped direction) -> untyped
+  end
+end

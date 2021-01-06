@@ -1,0 +1,67 @@
+module TwistyPuzzles
+  # Base class for Commutators.
+  class Commutator
+    def cancellations: (untyped other, untyped cube_size, ?::Symbol metric) -> untyped
+
+    def algorithm: () -> Algorithm
+  end
+
+  # Algorithm that is used like a commutator but actually isn't one.
+  class FakeCommutator < Commutator
+    def initialize: (Algorithm algorithm) -> untyped
+
+    attr_reader algorithm: Algorithm
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    def inverse: () -> untyped
+
+    def to_s: () -> untyped
+  end
+
+  # Pure commutator of the form A B A' B'.
+  class PureCommutator < Commutator
+    def initialize: (untyped first_part, untyped second_part) -> untyped
+
+    attr_reader first_part: untyped
+
+    attr_reader second_part: untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    def inverse: () -> untyped
+
+    def to_s: () -> ::String
+
+    def algorithm: () -> untyped
+  end
+
+  # Setup commutator of the form A B A'.
+  class SetupCommutator < Commutator
+    def initialize: (untyped setup, untyped inner_commutator) -> untyped
+
+    attr_reader setup: untyped
+
+    attr_reader inner_commutator: untyped
+
+    def eql?: (untyped other) -> untyped
+
+    alias == eql?
+
+    def hash: () -> untyped
+
+    def inverse: () -> untyped
+
+    def to_s: () -> ::String
+
+    def algorithm: () -> untyped
+  end
+end

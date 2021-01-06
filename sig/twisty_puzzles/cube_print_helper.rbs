@@ -1,0 +1,48 @@
+module TwistyPuzzles
+  # Module to print and display cube and Skewb states.
+  module CubePrintHelper
+    include Utils::ArrayHelper
+
+    def color_symbol: (untyped color) -> untyped
+
+    COLOR_MODES: untyped
+
+    ColorInfo: untyped
+
+    FACE_SYMBOL_INFOS: untyped
+
+    def color_character: (untyped color, untyped color_mode) -> untyped
+
+    def maybe_reverse: (untyped reverse_mode, untyped stuff) -> untyped
+
+    def face_lines: (untyped cube_state, untyped face_symbol, ?::Integer row_multiplicity, ?::Integer column_multiplicity) { (untyped) -> untyped } -> untyped
+
+    def simple_face_lines: (untyped cube_state, untyped face_symbol, untyped color_mode) -> untyped
+
+    SKEWB_FACE_SIZE: ::Integer
+
+    def skewb_ascii_art_line: (untyped first_color, untyped middle_color, untyped last_color, untyped num_first_color) -> untyped
+
+    def skewb_ascii_art: (untyped center_color, untyped corner_colors) -> untyped
+
+    # Prints a Skewb face like this:
+    # rrgww
+    # rgggw
+    # ggggg
+    # ogggb
+    # oogbb
+    def skewb_face_lines: (untyped cube_state, untyped face_symbol, untyped color_mode) -> untyped
+
+    def ll_string: (untyped cube_state, untyped color_mode) -> untyped
+
+    def cube_string: (untyped cube_state, untyped color_mode) -> untyped
+
+    def skewb_string: (untyped skewb_state, untyped color_mode) -> untyped
+
+    def empty_name: () -> " "
+
+    def pad_lines: (untyped lines, untyped padding) -> untyped
+
+    def zip_concat_lines: (*untyped args) -> untyped
+  end
+end
