@@ -50,15 +50,6 @@ const rb_data_type_t SkewbAlgorithmData_type = {
   RUBY_TYPED_FREE_IMMEDIATELY  
 };
 
-static void check_moves(const SkewbAlgorithmData* const data, const char* const name) {
-  for (size_t i = 0; i < data->size; ++i) {
-    const SkewbMoveType type = data->moves[i].type;
-    if (type != MOVE && type != ROTATION) {
-      rb_raise(rb_eRuntimeError, "invalid move type %d in %s", type, name);
-    }
-  }
-}
-
 static SkewbMove* malloc_moves(const size_t n) {
   SkewbMove* const moves = malloc(n * sizeof(SkewbMove));
   if (moves == NULL) {
@@ -122,7 +113,7 @@ static VALUE SkewbAlgorithm_initialize(const VALUE self, const VALUE moves) {
   data->size = RARRAY_LEN(moves);
   data->initialized = TRUE;
   data->moves = malloc_moves(data->size);
-  for (size_t i = 0; i < RARRAY_LEN(moves); ++i) {
+  for (long i = 0; i < RARRAY_LEN(moves); ++i) {
     const VALUE move = rb_ary_entry(moves, i);
     if (RARRAY_LEN(move) != 3) {
       rb_raise(rb_eArgError, "Moves must have 3 elements. Got %ld.", RARRAY_LEN(moves));
@@ -171,8 +162,8 @@ static face_index_t axis_face_on_corner(const Corner corner, const face_index_t 
 
 bool corners_eq(Corner left, Corner right) {
   return left.face_indices[0] == right.face_indices[0] &&
-    (left.face_indices[1] == right.face_indices[1] && left.face_indices[2] == right.face_indices[2] ||
-     left.face_indices[1] == right.face_indices[2] && left.face_indices[2] == right.face_indices[1]);
+    ((left.face_indices[1] == right.face_indices[1] && left.face_indices[2] == right.face_indices[2]) ||
+     (left.face_indices[1] == right.face_indices[2] && left.face_indices[2] == right.face_indices[1]));
 }
 
 size_t equivalent_corner_index(const FaceCorners corners, const Corner corner) {  

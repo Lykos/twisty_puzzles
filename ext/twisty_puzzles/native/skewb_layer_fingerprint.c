@@ -32,7 +32,7 @@ static ID times = 848;
 
 typedef struct {
   Corner corner_pairs[max_corner_pair_group_size][2];
-  int num_corner_pairs;
+  size_t num_corner_pairs;
   // Number of different group fingerprints. This can be used to merge several group fingerprints.
   int num_group_fingerprints;
 } CornerPairGroup;
@@ -55,7 +55,7 @@ static bool has_color_at(const ActualCornerStickers actual, const size_t index, 
 }
 
 typedef struct {
-  int layer_index;
+  size_t layer_index;
   bool is_oriented;
   bool is_present;
 } ActualCornerStickersInfo;
@@ -268,4 +268,5 @@ void init_skewb_layer_fingerprint_method_under(const VALUE module) {
   plus = rb_intern("+");
   times = rb_intern("*");
   rb_define_singleton_method(module, "skewb_layer_fingerprint", skewb_layer_fingerprint, 2);
+  init_corner_pair_groups();
 }

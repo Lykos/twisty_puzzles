@@ -56,17 +56,6 @@ size_t center_sticker_index(const face_index_t on_face_index) {
   return on_face_index * skewb_stickers_per_face;
 }
 
-static VALUE part_type_from_symbol(const VALUE part_type_symbol) {
-  Check_Type(face_symbol, T_SYMBOL);
-  if (SYM2ID(part_type_symbol) == center_part_type_id) {
-    return CENTER;
-  } else if (SYM2ID(part_type_symbol) == corner_part_type_id) {
-    return CORNER;
-  } else {
-    rb_raise(rb_eArgError, "Invalid part type symbol %+"PRIsVALUE"", part_type_symbol);
-  }
-}
-
 static VALUE part_type_to_symbol(const SkewbPartType part_type) {
   // Caching these keys isn't easy because the garbage collector will get them.
   switch (part_type) {

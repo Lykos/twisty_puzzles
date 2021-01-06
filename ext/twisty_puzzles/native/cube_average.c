@@ -59,7 +59,7 @@ static VALUE CubeAverage_alloc(const VALUE klass) {
 
 static VALUE CubeAverage_initialize(const VALUE self, const VALUE capacity, const VALUE initial_average) {
   Check_Type(capacity, T_FIXNUM);
-  const size_t n = FIX2INT(capacity);
+  const long n = FIX2INT(capacity);
   if (n < 3) {
     rb_raise(rb_eArgError, "The number of elements for a cube average has to be at least 3. Got %ld.", n);
   }
@@ -147,7 +147,7 @@ static VALUE CubeAverage_push_all(const VALUE self, const VALUE new_values) {
   const size_t insert_index = data->insert_index;
   const size_t capacity = data->capacity;
   const size_t start = num_values > capacity ? num_values - capacity : 0;
-  for (size_t i = start; i < RARRAY_LEN(new_values); ++i) {
+  for (long i = start; i < RARRAY_LEN(new_values); ++i) {
     const VALUE new_value = rb_ary_entry(new_values, i);
     data->values[(insert_index + i) % capacity] = NUM2DBL(new_value);
   }

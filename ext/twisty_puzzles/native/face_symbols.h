@@ -4,8 +4,8 @@
 
 #include "utils.h"
 
-typedef char face_index_t;
-typedef char axis_index_t;
+typedef unsigned char face_index_t;
+typedef unsigned char axis_index_t;
 
 #define cube_faces 6
 #define neighbor_faces 4

@@ -18,12 +18,12 @@ typedef struct {
   CubeMoveType type;
   face_index_t axis_face_index;
   direction_t direction;
-  size_t slice_index;
+  long slice_index;
 } CubeMove;
 
 typedef struct {
   size_t size;
-  size_t cube_size;
+  long cube_size;
   CubeMove* moves;
 } CubeAlgorithmData;
 
@@ -44,15 +44,6 @@ const rb_data_type_t CubeAlgorithmData_type = {
   NULL, NULL,
   RUBY_TYPED_FREE_IMMEDIATELY  
 };
-
-static void check_moves(const CubeAlgorithmData* const data, const char* const name) {
-  for (size_t i = 0; i < data->size; ++i) {
-    const CubeMoveType type = data->moves[i].type;
-    if (type != SLICE && type != FACE) {
-      rb_raise(rb_eRuntimeError, "invalid move type %d in %s", type, name);
-    }
-  }
-}
 
 static CubeMove* malloc_moves(const size_t n) {
   CubeMove* const moves = malloc(n * sizeof(CubeMove));
@@ -96,7 +87,7 @@ static CubeMoveType extract_move_type(const VALUE move_symbol) {
   }
 }
 
-static size_t components_for_move_type(const CubeMoveType type) {
+static long components_for_move_type(const CubeMoveType type) {
   switch (type) {
   case SLICE:
     return 4;
@@ -112,24 +103,25 @@ static VALUE CubeAlgorithm_initialize(const VALUE self, const VALUE cube_size, c
   CubeAlgorithmData* data;
   GetCubeAlgorithmData(self, data);
   data->size = RARRAY_LEN(moves);
-  data->cube_size = NUM2INT(cube_size);
+  data->cube_size = FIX2INT(cube_size);
+  check_cube_size(data->cube_size);
   data->moves = malloc_moves(data->size);
-  for (size_t i = 0; i < RARRAY_LEN(moves); ++i) {
+  for (long i = 0; i < RARRAY_LEN(moves); ++i) {
     const VALUE move = rb_ary_entry(moves, i);
     if (RARRAY_LEN(move) < 1) {
       rb_raise(rb_eArgError, "Moves cannot be empty.");
     }
     const CubeMoveType type = extract_move_type(rb_ary_entry(move, 0));
-    const size_t num_components = components_for_move_type(type);
+    const long num_components = components_for_move_type(type);
     if (RARRAY_LEN(move) != num_components) {
       rb_raise(rb_eArgError, "Moves with the given type need to have %ld elements. Got %ld.", num_components, RARRAY_LEN(move));
     }
     data->moves[i].type = type;
     data->moves[i].axis_face_index = face_index(rb_ary_entry(move, 1));
-    data->moves[i].direction = NUM2INT(rb_ary_entry(move, 2));
+    data->moves[i].direction = FIX2INT(rb_ary_entry(move, 2));
     if (type == SLICE) {
-      const size_t slice_index = NUM2INT(rb_ary_entry(move, 3));
-      if (slice_index >= data->cube_size) {
+      const long slice_index = FIX2INT(rb_ary_entry(move, 3));
+      if (slice_index < 0 || slice_index >= data->cube_size) {
         rb_raise(rb_eArgError, "Invalid slice index %ld for cube size %ld.", slice_index, data->cube_size);
       }
       data->moves[i].slice_index = slice_index;

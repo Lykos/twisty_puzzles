@@ -43,8 +43,6 @@ static int SkewbState_replace_face(const VALUE key, const VALUE value, const VAL
 
 static VALUE SkewbState_initialize(const VALUE self, const VALUE stickers) {
   Check_Type(stickers, T_HASH);
-  SkewbStateData* data;
-  GetSkewbStateData(self, data);
   if (RHASH_SIZE(stickers) != skewb_faces) {
     rb_raise(rb_eTypeError, "Skewbs must have %d faces. Got %ld.", skewb_faces, RHASH_SIZE(stickers));
   }

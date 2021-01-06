@@ -64,7 +64,7 @@ int log2_64_floor(uint64_t value) {
     return tab64[((uint64_t)((value - (value >> 1))*0x07EDD5E59A4E28C2)) >> 58];
 }
 
-uint64_t iexp(const uint64_t base, uint32_t exp) {
+uint64_t iexp(const uint64_t base, const uint32_t exp) {
   uint64_t result = 1;
   for (uint32_t m = 1 << 31; m; m >>= 1) {
     result = result * result;
@@ -73,4 +73,10 @@ uint64_t iexp(const uint64_t base, uint32_t exp) {
     }
   }
   return result;
+}
+
+void check_cube_size(const long cube_size) {
+  if (cube_size <= 0) {
+    rb_raise(rb_eArgError, "Cube size must be positive. Got %ld.", cube_size);
+  }
 }

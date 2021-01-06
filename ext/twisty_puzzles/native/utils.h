@@ -26,3 +26,5 @@ int color_eq(VALUE left, VALUE right);
 int log2_64_floor(uint64_t value);
 
 uint64_t iexp(uint64_t base, uint32_t exp);
+
+void check_cube_size(long cube_size);
