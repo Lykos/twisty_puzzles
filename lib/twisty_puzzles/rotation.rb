@@ -35,10 +35,12 @@ module TwistyPuzzles
 
       direction = translated_direction(skewb_direction)
 
-      Algorithm.new([
-                      Rotation.new(corner.faces[skewb_direction.value], direction),
-                      Rotation.new(corner.faces[0], direction)
-                    ])
+      Algorithm.new(
+        [
+          Rotation.new(corner.faces[skewb_direction.value], direction),
+          Rotation.new(corner.faces[0], direction)
+        ]
+      )
     end
 
     def to_s

@@ -4,6 +4,7 @@ require 'twisty_puzzles/cube_direction'
 require 'twisty_puzzles/rotation'
 
 module TwistyPuzzles
+  # A transformation consisting of mirroring and rotating that can be applied to an algorithm.
   class AlgorithmTransformation
     def initialize(rotation, mirror, mirror_normal_face)
       @rotation = rotation

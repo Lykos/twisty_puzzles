@@ -64,7 +64,7 @@ module TwistyPuzzles
       true
     end
 
-    def num_incarnations(cube_size)
+    def num_incarnations(_cube_size)
       1
     end
 
@@ -90,7 +90,7 @@ module TwistyPuzzles
       self::ELEMENTS[index]
     end
 
-    def self.valid?(face_symbols)
+    def self.valid?(_face_symbols)
       false
     end
 

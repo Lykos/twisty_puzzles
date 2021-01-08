@@ -57,6 +57,7 @@ module TwistyPuzzles
         rotation_neighbors = rotation.axis_face.neighbors
         face_index = rotation_neighbors.index(@axis_face)
         raise unless face_index
+
         new_axis_face =
           rotation_neighbors[(face_index + rotation.direction.value) % rotation_neighbors.length]
         fields = replace_once(identifying_fields, @axis_face, new_axis_face)

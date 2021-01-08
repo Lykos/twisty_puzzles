@@ -8,16 +8,26 @@ describe Coordinate do
 
     # rubocop:disable Lint/BinaryOperatorWithIdenticalOperands
     it 'checks equivalence of coordinates appropriately' do
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, 0)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-       described_class.from_indices(Face::U, n, 1, -7)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::D, n, 1, 0)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, -1)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n + 2, 1, 0)).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::U, n, 1, 0)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+               described_class.from_indices(Face::U, n, 1, -7)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::D, n, 1, 0)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::U, n, 1, -1)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::U, n + 2, 1, 0)
+      ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 
@@ -141,16 +151,26 @@ describe Coordinate do
 
     # rubocop:disable Lint/BinaryOperatorWithIdenticalOperands
     it 'checks equivalence of coordinates appropriately' do
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, 0)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-       described_class.from_indices(Face::U, n, 1, -6)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::D, n, 1, 0)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, -1)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n + 2, 1, 0)).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::U, n, 1, 0)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+               described_class.from_indices(Face::U, n, 1, -6)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::D, n, 1, 0)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::U, n, 1, -1)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+                     described_class.from_indices(Face::U, n + 2, 1, 0)
+      ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 

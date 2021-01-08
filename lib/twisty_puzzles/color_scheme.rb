@@ -95,10 +95,12 @@ module TwistyPuzzles
 
     def chirality_corner_source_and_unknown_index(obvious_turned_face_symbols_to_colors)
       corner_matcher =
-        CornerMatcher.new(CHIRALITY_FACE_SYMBOLS.map do |s|
-                            # This will return nil for exactly one face that we don't know yet.
-                            @colors_to_face_symbols[obvious_turned_face_symbols_to_colors[s]]
-                          end)
+        CornerMatcher.new(
+          CHIRALITY_FACE_SYMBOLS.map do |s|
+            # This will return nil for exactly one face that we don't know yet.
+            @colors_to_face_symbols[obvious_turned_face_symbols_to_colors[s]]
+          end
+        )
 
       # There should be exactly one corner that gets mapped to the chirality corner.
       chirality_corner_source =
