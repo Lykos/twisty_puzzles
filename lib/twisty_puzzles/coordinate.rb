@@ -6,6 +6,7 @@ require 'twisty_puzzles/native'
 
 module TwistyPuzzles
   # Coordinate of a sticker on the cube.
+  # rubocop:disable  Metrics/ClassLength
   class Coordinate
     def self.highest_coordinate(cube_size)
       cube_size - 1
@@ -119,6 +120,23 @@ module TwistyPuzzles
     def self.center(face, cube_size)
       m = middle(cube_size)
       from_indices(face, cube_size, m, m)
+    end
+
+    def self.face(face, cube_size)
+      neighbor_a, neighbor_b = face.neighbors[0..1]
+      coordinate_range(cube_size).collect_concat do |x|
+        coordinate_range(cube_size).map do |y|
+          from_face_distances(face, cube_size, neighbor_a => x, neighbor_b => y)
+        end
+      end
+    end
+
+    def self.layer(face, cube_size)
+      face.neighbors.zip(face.neighbors.rotate(1)).collect_concat do |neighbor, next_neighbor|
+        coordinate_range(cube_size).map do |i|
+          from_face_distances(neighbor, cube_size, face => 0, next_neighbor => i)
+        end
+      end + self.face(face, cube_size)
     end
 
     def self.edges_outside(face, cube_size)
@@ -261,6 +279,7 @@ module TwistyPuzzles
       rots
     end
   end
+  # rubocop:enable Metrics/ClassLength
 
   # Coordinate of a sticker on the Skewb.
   class SkewbCoordinate

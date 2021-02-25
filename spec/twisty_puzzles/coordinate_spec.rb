@@ -337,4 +337,55 @@ describe Coordinate do
       expect(described_class.solved_positions(part, n, 0)).to contain_exactly(described_class.from_indices(Face::B, n, 1, 0), described_class.from_indices(Face::R, n, 1, n - 1))
     end
   end
+
+  context 'for 3x3' do
+    it 'gets the right coordinates for the edges outside the U face' do
+      expect(Coordinate.edges_outside(Face::U, 3)).to contain_exactly(
+        described_class.from_indices(Face::F, 3, 0, 1),
+        described_class.from_indices(Face::R, 3, 0, 1),
+        described_class.from_indices(Face::L, 3, 0, 1),
+        described_class.from_indices(Face::B, 3, 0, 1)
+      )
+    end
+
+    it 'gets the right coordinates for the U face' do
+      expect(Coordinate.face(Face::U, 3)).to contain_exactly(
+        described_class.from_indices(Face::U, 3, 0, 0),
+        described_class.from_indices(Face::U, 3, 0, 1),
+        described_class.from_indices(Face::U, 3, 0, 2),
+        described_class.from_indices(Face::U, 3, 1, 0),
+        described_class.from_indices(Face::U, 3, 1, 1),
+        described_class.from_indices(Face::U, 3, 1, 2),
+        described_class.from_indices(Face::U, 3, 2, 0),
+        described_class.from_indices(Face::U, 3, 2, 1),
+        described_class.from_indices(Face::U, 3, 2, 2)
+      )
+    end
+
+    it 'gets the right coordinates for the U layer' do
+      expect(Coordinate.layer(Face::U, 3)).to contain_exactly(
+        described_class.from_indices(Face::U, 3, 0, 0),
+        described_class.from_indices(Face::U, 3, 0, 1),
+        described_class.from_indices(Face::U, 3, 0, 2),
+        described_class.from_indices(Face::U, 3, 1, 0),
+        described_class.from_indices(Face::U, 3, 1, 1),
+        described_class.from_indices(Face::U, 3, 1, 2),
+        described_class.from_indices(Face::U, 3, 2, 0),
+        described_class.from_indices(Face::U, 3, 2, 1),
+        described_class.from_indices(Face::U, 3, 2, 2),
+        described_class.from_indices(Face::F, 3, 0, 0),
+        described_class.from_indices(Face::F, 3, 0, 1),
+        described_class.from_indices(Face::F, 3, 0, 2),
+        described_class.from_indices(Face::R, 3, 0, 0),
+        described_class.from_indices(Face::R, 3, 0, 1),
+        described_class.from_indices(Face::R, 3, 0, 2),
+        described_class.from_indices(Face::L, 3, 0, 0),
+        described_class.from_indices(Face::L, 3, 0, 1),
+        described_class.from_indices(Face::L, 3, 0, 2),
+        described_class.from_indices(Face::B, 3, 0, 0),
+        described_class.from_indices(Face::B, 3, 0, 1),
+        described_class.from_indices(Face::B, 3, 0, 2)
+      )
+    end
+  end
 end
