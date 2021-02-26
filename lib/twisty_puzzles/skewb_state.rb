@@ -26,10 +26,12 @@ module TwistyPuzzles
               next unless c2.face_symbols.include?(c1_rot.face_symbols.first)
 
               c2_rot = c2.rotate_face_symbol_up(c1_rot.face_symbols.first)
-              check_parts.push([
-                                 SkewbCoordinate.for_corner(c1_rot),
-                                 SkewbCoordinate.for_corner(c2_rot)
-                               ])
+              check_parts.push(
+                [
+                  SkewbCoordinate.for_corner(c1_rot),
+                  SkewbCoordinate.for_corner(c2_rot)
+                ]
+              )
             end
             matching_corners.push(check_parts)
           end

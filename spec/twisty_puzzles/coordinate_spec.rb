@@ -8,16 +8,26 @@ describe Coordinate do
 
     # rubocop:disable Lint/BinaryOperatorWithIdenticalOperands
     it 'checks equivalence of coordinates appropriately' do
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, 0)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-       described_class.from_indices(Face::U, n, 1, -7)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::D, n, 1, 0)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, -1)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n + 2, 1, 0)).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n, 1, 0)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n, 1, -7)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::D, n, 1, 0)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n, 1, -1)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n + 2, 1, 0)
+      ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 
@@ -120,19 +130,39 @@ describe Coordinate do
     end
 
     it 'does the right thing for a corner' do
-      expect(described_class.from_indices(Face::U, n, 0, 0).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 0, 0), described_class.from_indices(Face::U, n, 0, -1), described_class.from_indices(Face::U, n, -1, -1), described_class.from_indices(Face::U, n, -1, 0))
+      expect(described_class.from_indices(Face::U, n, 0, 0).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 0, 0),
+        described_class.from_indices(Face::U, n, 0, -1),
+        described_class.from_indices(Face::U, n, -1, -1),
+        described_class.from_indices(Face::U, n, -1, 0)
+      )
     end
 
     it 'does the right thing for a wing' do
-      expect(described_class.from_indices(Face::U, n, 0, 2).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 0, 2), described_class.from_indices(Face::U, n, 2, -1), described_class.from_indices(Face::U, n, -1, -3), described_class.from_indices(Face::U, n, -3, 0))
+      expect(described_class.from_indices(Face::U, n, 0, 2).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 0, 2),
+        described_class.from_indices(Face::U, n, 2, -1),
+        described_class.from_indices(Face::U, n, -1, -3),
+        described_class.from_indices(Face::U, n, -3, 0)
+      )
     end
 
     it 'does the right thing for a midge' do
-      expect(described_class.from_indices(Face::U, n, 0, 3).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 0, 3), described_class.from_indices(Face::U, n, 3, -1), described_class.from_indices(Face::U, n, -1, -4), described_class.from_indices(Face::U, n, -4, 0))
+      expect(described_class.from_indices(Face::U, n, 0, 3).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 0, 3),
+        described_class.from_indices(Face::U, n, 3, -1),
+        described_class.from_indices(Face::U, n, -1, -4),
+        described_class.from_indices(Face::U, n, -4, 0)
+      )
     end
 
     it 'does the right thing for an oblique' do
-      expect(described_class.from_indices(Face::U, n, 1, 2).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 1, 2), described_class.from_indices(Face::U, n, 2, -2), described_class.from_indices(Face::U, n, -2, -3), described_class.from_indices(Face::U, n, -3, 1))
+      expect(described_class.from_indices(Face::U, n, 1, 2).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 1, 2),
+        described_class.from_indices(Face::U, n, 2, -2),
+        described_class.from_indices(Face::U, n, -2, -3),
+        described_class.from_indices(Face::U, n, -3, 1)
+      )
     end
   end
 
@@ -141,16 +171,26 @@ describe Coordinate do
 
     # rubocop:disable Lint/BinaryOperatorWithIdenticalOperands
     it 'checks equivalence of coordinates appropriately' do
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, 0)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-       described_class.from_indices(Face::U, n, 1, -6)).to be(true)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::D, n, 1, 0)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n, 1, -1)).to be(false)
-      expect(described_class.from_indices(Face::U, n, 1, 0) ==
-             described_class.from_indices(Face::U, n + 2, 1, 0)).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n, 1, 0)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n, 1, -6)
+      ).to be(true)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::D, n, 1, 0)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n, 1, -1)
+      ).to be(false)
+      expect(
+        described_class.from_indices(Face::U, n, 1, 0) ==
+        described_class.from_indices(Face::U, n + 2, 1, 0)
+      ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 
