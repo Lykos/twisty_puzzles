@@ -10,23 +10,23 @@ describe Coordinate do
     it 'checks equivalence of coordinates appropriately' do
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::U, n, 1, 0)
+        described_class.from_indices(Face::U, n, 1, 0)
       ).to be(true)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-               described_class.from_indices(Face::U, n, 1, -7)
+        described_class.from_indices(Face::U, n, 1, -7)
       ).to be(true)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::D, n, 1, 0)
+        described_class.from_indices(Face::D, n, 1, 0)
       ).to be(false)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::U, n, 1, -1)
+        described_class.from_indices(Face::U, n, 1, -1)
       ).to be(false)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::U, n + 2, 1, 0)
+        described_class.from_indices(Face::U, n + 2, 1, 0)
       ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
@@ -130,19 +130,39 @@ describe Coordinate do
     end
 
     it 'does the right thing for a corner' do
-      expect(described_class.from_indices(Face::U, n, 0, 0).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 0, 0), described_class.from_indices(Face::U, n, 0, -1), described_class.from_indices(Face::U, n, -1, -1), described_class.from_indices(Face::U, n, -1, 0))
+      expect(described_class.from_indices(Face::U, n, 0, 0).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 0, 0),
+        described_class.from_indices(Face::U, n, 0, -1),
+        described_class.from_indices(Face::U, n, -1, -1),
+        described_class.from_indices(Face::U, n, -1, 0)
+      )
     end
 
     it 'does the right thing for a wing' do
-      expect(described_class.from_indices(Face::U, n, 0, 2).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 0, 2), described_class.from_indices(Face::U, n, 2, -1), described_class.from_indices(Face::U, n, -1, -3), described_class.from_indices(Face::U, n, -3, 0))
+      expect(described_class.from_indices(Face::U, n, 0, 2).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 0, 2),
+        described_class.from_indices(Face::U, n, 2, -1),
+        described_class.from_indices(Face::U, n, -1, -3),
+        described_class.from_indices(Face::U, n, -3, 0)
+      )
     end
 
     it 'does the right thing for a midge' do
-      expect(described_class.from_indices(Face::U, n, 0, 3).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 0, 3), described_class.from_indices(Face::U, n, 3, -1), described_class.from_indices(Face::U, n, -1, -4), described_class.from_indices(Face::U, n, -4, 0))
+      expect(described_class.from_indices(Face::U, n, 0, 3).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 0, 3),
+        described_class.from_indices(Face::U, n, 3, -1),
+        described_class.from_indices(Face::U, n, -1, -4),
+        described_class.from_indices(Face::U, n, -4, 0)
+      )
     end
 
     it 'does the right thing for an oblique' do
-      expect(described_class.from_indices(Face::U, n, 1, 2).rotations).to contain_exactly(described_class.from_indices(Face::U, n, 1, 2), described_class.from_indices(Face::U, n, 2, -2), described_class.from_indices(Face::U, n, -2, -3), described_class.from_indices(Face::U, n, -3, 1))
+      expect(described_class.from_indices(Face::U, n, 1, 2).rotations).to contain_exactly(
+        described_class.from_indices(Face::U, n, 1, 2),
+        described_class.from_indices(Face::U, n, 2, -2),
+        described_class.from_indices(Face::U, n, -2, -3),
+        described_class.from_indices(Face::U, n, -3, 1)
+      )
     end
   end
 
@@ -153,23 +173,23 @@ describe Coordinate do
     it 'checks equivalence of coordinates appropriately' do
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::U, n, 1, 0)
+        described_class.from_indices(Face::U, n, 1, 0)
       ).to be(true)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-               described_class.from_indices(Face::U, n, 1, -6)
+        described_class.from_indices(Face::U, n, 1, -6)
       ).to be(true)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::D, n, 1, 0)
+        described_class.from_indices(Face::D, n, 1, 0)
       ).to be(false)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::U, n, 1, -1)
+        described_class.from_indices(Face::U, n, 1, -1)
       ).to be(false)
       expect(
         described_class.from_indices(Face::U, n, 1, 0) ==
-                     described_class.from_indices(Face::U, n + 2, 1, 0)
+        described_class.from_indices(Face::U, n + 2, 1, 0)
       ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
@@ -355,6 +375,57 @@ describe Coordinate do
     it 'gets the right solved positions for wing BR' do
       part = Wing.for_face_symbols(%i[B R])
       expect(described_class.solved_positions(part, n, 0)).to contain_exactly(described_class.from_indices(Face::B, n, 1, 0), described_class.from_indices(Face::R, n, 1, n - 1))
+    end
+  end
+
+  context 'for 3x3' do
+    it 'gets the right coordinates for the edges outside the U face' do
+      expect(Coordinate.edges_outside(Face::U, 3)).to contain_exactly(
+        described_class.from_indices(Face::F, 3, 0, 1),
+        described_class.from_indices(Face::R, 3, 0, 1),
+        described_class.from_indices(Face::L, 3, 0, 1),
+        described_class.from_indices(Face::B, 3, 0, 1)
+      )
+    end
+
+    it 'gets the right coordinates for the U face' do
+      expect(Coordinate.face(Face::U, 3)).to contain_exactly(
+        described_class.from_indices(Face::U, 3, 0, 0),
+        described_class.from_indices(Face::U, 3, 0, 1),
+        described_class.from_indices(Face::U, 3, 0, 2),
+        described_class.from_indices(Face::U, 3, 1, 0),
+        described_class.from_indices(Face::U, 3, 1, 1),
+        described_class.from_indices(Face::U, 3, 1, 2),
+        described_class.from_indices(Face::U, 3, 2, 0),
+        described_class.from_indices(Face::U, 3, 2, 1),
+        described_class.from_indices(Face::U, 3, 2, 2)
+      )
+    end
+
+    it 'gets the right coordinates for the U layer' do
+      expect(Coordinate.layer(Face::U, 3)).to contain_exactly(
+        described_class.from_indices(Face::U, 3, 0, 0),
+        described_class.from_indices(Face::U, 3, 0, 1),
+        described_class.from_indices(Face::U, 3, 0, 2),
+        described_class.from_indices(Face::U, 3, 1, 0),
+        described_class.from_indices(Face::U, 3, 1, 1),
+        described_class.from_indices(Face::U, 3, 1, 2),
+        described_class.from_indices(Face::U, 3, 2, 0),
+        described_class.from_indices(Face::U, 3, 2, 1),
+        described_class.from_indices(Face::U, 3, 2, 2),
+        described_class.from_indices(Face::F, 3, 0, 0),
+        described_class.from_indices(Face::F, 3, 0, 1),
+        described_class.from_indices(Face::F, 3, 0, 2),
+        described_class.from_indices(Face::R, 3, 0, 0),
+        described_class.from_indices(Face::R, 3, 0, 1),
+        described_class.from_indices(Face::R, 3, 0, 2),
+        described_class.from_indices(Face::L, 3, 0, 0),
+        described_class.from_indices(Face::L, 3, 0, 1),
+        described_class.from_indices(Face::L, 3, 0, 2),
+        described_class.from_indices(Face::B, 3, 0, 0),
+        described_class.from_indices(Face::B, 3, 0, 1),
+        described_class.from_indices(Face::B, 3, 0, 2)
+      )
     end
   end
 end
