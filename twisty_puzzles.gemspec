@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'twisty_puzzles'
   s.version = TwistyPuzzles::VERSION
-  s.date = '2020-04-21'
   s.summary = <<~SUMMARY
     Gem for my cube_trainer rails app. Some things are better left in a separate gem with no rails, e.g. native extensions.
     The main purpose is to support my Rails app, but if it's useful for someone else, feel free to use it at your own risk.

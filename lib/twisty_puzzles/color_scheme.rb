@@ -143,7 +143,7 @@ module TwistyPuzzles
                 "Color #{c} cannot be part of the color scheme because it is a reserved color."
         end
       end
-      raise ArgumentError unless face_symbols_to_colors.values.all? { |c| c.is_a?(Symbol) }
+      raise ArgumentError unless face_symbols_to_colors.values.all?(Symbol)
     end
 
     def add_missing_mappings(turned_face_symbols_to_colors, chirality_corner_source, unknown_index)

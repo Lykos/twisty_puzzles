@@ -6,7 +6,7 @@ module TwistyPuzzles
   class MoveTypeCreator
     def initialize(capture_keys, move_class)
       raise TypeError unless move_class.is_a?(Class)
-      raise TypeError unless capture_keys.all? { |k| k.is_a?(Symbol) }
+      raise TypeError unless capture_keys.all?(Symbol)
 
       @capture_keys = capture_keys.freeze
       @move_class = move_class
