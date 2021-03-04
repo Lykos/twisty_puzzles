@@ -75,8 +75,13 @@ module TwistyPuzzles
 
     alias == eql?
 
+    def rotation_algorithms
+      Rotation::ALL_ROTATIONS.combination(2).reject do |r0, r1|
+        r0.inverse == r1
+      end.map { |rs| Algorithm.new(rs) } # rubocop:disable Style/MultilineBlockChain
+    end
+
     def equal_modulo_rotations?(other)
-      rotation_algorithms = Rotation::ALL_ROTATIONS.combination(2).select { |r0, r1| r0.inverse != r1 }.map { |rs| Algorithm.new(rs) }.freeze
       rotation_algorithms.any? { |r| r.apply_temporarily_to(self) { |state| state == other } }
     end
 

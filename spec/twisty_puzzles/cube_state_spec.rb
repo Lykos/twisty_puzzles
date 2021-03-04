@@ -80,7 +80,12 @@ shared_examples 'cube_state' do |cube_size|
 
   it 'is equal modulo rotations to a state after multiple rotations' do
     property_of do
-      Rantly { r0 = rotation; r1 = rotation; guard r0 != r1.inverse; Algorithm.new([r0, r1]) }
+      Rantly do
+        r0 = rotation
+        r1 = rotation
+        guard r0 != r1.inverse
+        Algorithm.new([r0, r1])
+      end
     end.check do |r|
       other_cube_state = cube_state.dup
       r.apply_to(other_cube_state)

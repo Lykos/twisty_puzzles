@@ -165,3 +165,5 @@ Lint/LambdaWithoutLiteralBlock: # (new in 1.8)
   Enabled: true
 Style/EndlessMethod: # (new in 1.8)
   Enabled: true
+Lint/RedundantDirGlobSort: # (new in 1.8)
+  Enabled: false
