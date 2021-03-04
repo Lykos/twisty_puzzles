@@ -58,6 +58,46 @@ shared_examples 'cube_state' do |cube_size|
     end
   end
 
+  it 'is not equal to a state after a rotation' do
+    property_of do
+      Rantly { Algorithm.move(rotation) }
+    end.check do |r|
+      other_cube_state = cube_state.dup
+      r.apply_to(other_cube_state)
+      expect(other_cube_state == cube_state).to be_falsey
+    end
+  end
+
+  it 'is equal modulo rotations to a state after a rotation' do
+    property_of do
+      Rantly { Algorithm.move(rotation) }
+    end.check do |r|
+      other_cube_state = cube_state.dup
+      r.apply_to(other_cube_state)
+      expect(other_cube_state.equal_modulo_rotations?(cube_state)).to be_truthy
+    end
+  end
+
+  it 'is equal modulo rotations to a state after multiple rotations' do
+    property_of do
+      Rantly { r0 = rotation; r1 = rotation; guard r0 != r1.inverse; Algorithm.new([r0, r1]) }
+    end.check do |r|
+      other_cube_state = cube_state.dup
+      r.apply_to(other_cube_state)
+      expect(other_cube_state.equal_modulo_rotations?(cube_state)).to be_truthy
+    end
+  end
+
+  it 'is not equal modulo rotations to a state with one sticker changed' do
+    property_of do
+      Rantly { cube_coordinate(cube_size) }
+    end.check do |c|
+      other_cube_state = cube_state.dup
+      other_cube_state[c] = :other_color
+      expect(other_cube_state.equal_modulo_rotations?(cube_state)).to be_falsey
+    end
+  end
+
   it 'is equal to the original state when doing reversible appliable' do
     property_of do
       Rantly { cube_algorithm(cube_size) }
