@@ -16,6 +16,12 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
     OPENING_PAREN = '('
     CLOSING_BRACKET = ']'
     CLOSING_PAREN = ')'
+    SLASH = '/'
+    COMMA = ','
+    SETUP_SEPARATORS = %w[; :].freeze
+    PURE_SEPARATORS = [SLASH, COMMA].freeze
+    SEPARATORS = (SETUP_SEPARATORS + PURE_SEPARATORS).freeze
+
     TIMES = '*'
 
     def initialize(alg_string, move_parser)
@@ -156,11 +162,11 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       parse_open_bracket
       first_part = parse_nonempty_moves_with_triggers
       skip_spaces
-      parse_pure_separator
+      separator = parse_pure_separator
       second_part = parse_nonempty_moves_with_triggers
       skip_spaces
       parse_close_bracket
-      PureCommutator.new(first_part, second_part)
+      pseudo_pure_commutator(separator, first_part, second_part)
     end
 
     def parse_pure_commutator_no_brackets
@@ -179,7 +185,9 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
     end
 
     def parse_pure_separator
-      complain('middle of pure commutator') unless PURE_SEPARATORS.include?(@scanner.getch)
+      separator = @scanner.getch
+      complain('middle of pure commutator') unless PURE_SEPARATORS.include?(separator)
+      separator
     end
 
     def parse_commutator_internal_after_separator(setup_or_first_part, separator)
@@ -188,15 +196,21 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
         SetupCommutator.new(setup_or_first_part, inner_commutator)
       elsif PURE_SEPARATORS.include?(separator)
         second_part = parse_nonempty_moves_with_triggers
-        PureCommutator.new(setup_or_first_part, second_part)
+        pseudo_pure_commutator(separator, setup_or_first_part, second_part)
       else
         complain('end of setup or middle of pure commutator') unless @scanner.eos?
       end
     end
 
-    SETUP_SEPARATORS = %w[; :].freeze
-    PURE_SEPARATORS = %w[/ ,].freeze
-    SEPARATORS = (SETUP_SEPARATORS + PURE_SEPARATORS).freeze
+    def pseudo_pure_commutator(separator, first_part, second_part)
+      if separator == COMMA
+        PureCommutator.new(first_part, second_part)
+      elsif separator == SLASH
+        SlashCommutator.new(first_part, second_part)
+      else
+        complain('middle of pure commutator') unless PURE_SEPARATORS.include?(separator)
+      end
+    end
 
     def parse_separator
       separator = @scanner.getch

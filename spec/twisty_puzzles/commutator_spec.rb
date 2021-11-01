@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
 describe PureCommutator do
+  let(:cube_size) { 3 }
   let(:commutator) { parse_commutator('[R, U\' L\' U]') }
   let(:no_brackets_commutator) { parse_commutator('R, U\' L\' U') }
-  let(:no_brackets_slash_commutator) { parse_commutator('[R/U\' L\' U]') }
-  let(:slash_commutator) { parse_commutator('R/U\' L\' U') }
+  let(:like_slash_commutator) { parse_commutator('U M\' U2 M U') }
+  let(:no_brackets_slash_commutator) { parse_commutator('[U/M\']') }
+  let(:slash_commutator) { parse_commutator('U/M\'') }
 
   it 'is equal to its variant without brackets' do
     expect(commutator).to eq(no_brackets_commutator)
   end
 
   it 'is equal to its variant without brackets with slash' do
-    expect(commutator).to eq(no_brackets_slash_commutator)
+    expect(like_slash_commutator.algorithm.cancelled(cube_size)).to eq(no_brackets_slash_commutator.algorithm.cancelled(cube_size))
   end
 
   it 'is equal to its variant with slash' do
-    expect(commutator).to eq(slash_commutator)
+    expect(like_slash_commutator.algorithm.cancelled(cube_size)).to eq(slash_commutator.algorithm.cancelled(cube_size))
   end
 
   it 'is equal to the inverse of its inverse' do
@@ -34,36 +36,37 @@ end
 describe SetupCommutator do
   let(:commutator) { parse_commutator('[U\' : [R, U\' L\' U]]') }
   let(:no_inner_brackets_commutator) { parse_commutator('[U\' : R, U\' L\' U]') }
-  let(:no_inner_brackets_slash_commutator) { parse_commutator('[U\' : R/ U\' L\' U]') }
   let(:no_outer_brackets_commutator) { parse_commutator('U\' : [R, U\' L\' U]') }
-  let(:no_outer_brackets_slash_commutator) { parse_commutator('U\' : [R/ U\' L\' U]') }
   let(:no_brackets_commutator) { parse_commutator('U\' : R, U\' L\' U') }
-  let(:no_brackets_slash_commutator) { parse_commutator('U\' : R / U\' L\' U') }
-  let(:slash_commutator) { parse_commutator('U\' : R, U\' L\' U') }
+  let(:like_slash_commutator) { parse_commutator('[R : U M\' U2 M U]') }
+  let(:no_inner_brackets_slash_commutator) { parse_commutator('[R : U/M\']') }
+  let(:no_outer_brackets_slash_commutator) { parse_commutator('R : [U/M\']') }
+  let(:no_brackets_slash_commutator) { parse_commutator('R : U / M\'') }
+  let(:slash_commutator) { parse_commutator('R : U/M\'') }
   let(:rotation_commutator) { parse_commutator('[x2 : [R, U\' L\' U]]') }
 
-  it 'is equal to its variant without brackets and with slash' do
-    expect(commutator).to eq(no_brackets_slash_commutator)
-  end
-
-  it 'is equal to its variant with slash' do
-    expect(commutator).to eq(slash_commutator)
+  it 'is equal to its variant without brackets' do
+    expect(commutator).to eq(no_brackets_commutator)
   end
 
   it 'is equal to its variant without outer brackets' do
     expect(commutator).to eq(no_outer_brackets_commutator)
   end
 
-  it 'is equal to its variant without outer brackets with slash' do
-    expect(commutator).to eq(no_outer_brackets_slash_commutator)
-  end
-
   it 'is equal to its variant without inner brackets' do
     expect(commutator).to eq(no_inner_brackets_commutator)
   end
 
+  it 'is equal to its variant without outer brackets with slash' do
+    expect(like_slash_commutator.algorithm.cancelled(cube_size)).to eq(no_outer_brackets_slash_commutator.algorithm.cancelled(cube_size))
+  end
+
   it 'is equal to its variant without inner brackets with slash' do
-    expect(commutator).to eq(no_inner_brackets_slash_commutator)
+    expect(like_slash_commutator.algorithm.cancelled(cube_size)).to eq(no_inner_brackets_slash_commutator.algorithm.cancelled(cube_size))
+  end
+
+  it 'is equal to its variant without brackets and with slash' do
+    expect(like_slash_commutator.algorithm.cancelled(cube_size)).to eq(no_brackets_slash_commutator.algorithm.cancelled(cube_size))
   end
 
   it 'is equal to the inverse of its inverse' do

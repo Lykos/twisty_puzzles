@@ -133,9 +133,12 @@ module TwistyPuzzles
 
     def *(other)
       raise TypeError unless other.is_a?(Integer)
-      raise ArgumentError if other.negative?
 
-      self.class.new(@moves * other)
+      if other.negative?
+        inverse * (-other)
+      else
+        self.class.new(@moves * other)
+      end
     end
 
     def compiled_for_skewb

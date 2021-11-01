@@ -83,6 +83,21 @@ module TwistyPuzzles
     end
   end
 
+  # Slash commutator of the form A B A2 B' A.
+  class SlashCommutator < PureCommutator
+    def inverse
+      SlashCommutator.new(first_part.inverse, second_part)
+    end
+
+    def to_s
+      "[#{@first_part}/#{@second_part}]"
+    end
+
+    def algorithm
+      first_part + second_part + first_part * 2 + second_part.inverse + first_part
+    end
+  end
+
   # Setup commutator of the form A B A'.
   class SetupCommutator < Commutator
     def initialize(setup, inner_commutator)
