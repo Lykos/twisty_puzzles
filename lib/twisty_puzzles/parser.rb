@@ -96,9 +96,7 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
         moves.push(m)
       end
       skip_spaces
-      if @scanner.peek(1) == TIMES
-        moves *= parse_multiplier
-      end
+      moves *= parse_multiplier if @scanner.peek(1) == TIMES
       Algorithm.new(moves)
     end
 

@@ -46,7 +46,7 @@ describe Algorithm do
   end
 
   it 'parses multipliers correctly' do
-    expect(parse_algorithm("R U * 2")).to eq_cube_algorithm("R U R U")
+    expect(parse_algorithm('R U * 2')).to eq_cube_algorithm('R U R U')
   end
 
   it 'computes the move count of algorithms correctly' do
