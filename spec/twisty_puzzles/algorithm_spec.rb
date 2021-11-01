@@ -14,7 +14,7 @@ RSpec::Matchers.define(:cancel_moves) do |cube_size, metric, expected|
 
   failure_message do |actual|
     "expected that #{actual[0]} + #{actual[1]} would cancel #{expected} moves #{metric} on " \
-    "#{cube_size}x#{cube_size} cubes. Got #{actual[0].cancellations(actual[1], cube_size, metric)}"
+      "#{cube_size}x#{cube_size} cubes. Got #{actual[0].cancellations(actual[1], cube_size, metric)}"
   end
 end
 

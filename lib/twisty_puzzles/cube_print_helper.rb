@@ -72,9 +72,9 @@ module TwistyPuzzles
     def skewb_ascii_art_line(first_color, middle_color, last_color, num_first_color)
       raise if num_first_color > SKEWB_FACE_SIZE / 2
 
-      first_color * num_first_color +
-        middle_color * (SKEWB_FACE_SIZE - 2 * num_first_color) +
-        last_color * num_first_color
+      (first_color * num_first_color) +
+        (middle_color * (SKEWB_FACE_SIZE - (2 * num_first_color))) +
+        (last_color * num_first_color)
     end
 
     def skewb_ascii_art(center_color, corner_colors)
@@ -116,7 +116,7 @@ module TwistyPuzzles
       front_face = face_lines(cube_state, :F, 1, 3) { |c| color_character(c, color_mode) }
       right_face = face_lines(cube_state, :R, 1, 3) { |c| color_character(c, color_mode) }
       pll_line = front_face.first + right_face.first
-      (top_face + [pll_line] * 3).join("\n")
+      (top_face + ([pll_line] * 3)).join("\n")
     end
 
     def cube_string(cube_state, color_mode)
@@ -150,7 +150,7 @@ module TwistyPuzzles
     end
 
     def pad_lines(lines, padding)
-      lines.map { |line| empty_name * padding + line }
+      lines.map { |line| (empty_name * padding) + line }
     end
 
     def zip_concat_lines(*args)

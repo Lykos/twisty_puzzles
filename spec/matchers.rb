@@ -49,7 +49,7 @@ RSpec::Matchers.define(:equivalent_cube_algorithm) do |expected, cube_size, colo
     actual.apply_to(actual_cube_state)
 
     "expected that #{actual} would have the same effect on the cube as #{expected}.\n" \
-    "Got:\n#{actual_cube_state.colored_to_s}\ninstead of:\n#{expected_cube_state.colored_to_s}"
+      "Got:\n#{actual_cube_state.colored_to_s}\ninstead of:\n#{expected_cube_state.colored_to_s}"
   end
 end
 
@@ -79,7 +79,7 @@ RSpec::Matchers.define(:equivalent_skewb_algorithm) do |expected, color_scheme|
     actual.apply_to(actual_skewb_state)
 
     "expected that #{actual} would have the same effect on the skewb as #{expected}.\n" \
-    "Got:\n#{actual_skewb_state.colored_to_s}\ninstead of:\n#{expected_skewb_state.colored_to_s}"
+      "Got:\n#{actual_skewb_state.colored_to_s}\ninstead of:\n#{expected_skewb_state.colored_to_s}"
   end
 end
 
@@ -101,7 +101,7 @@ RSpec::Matchers.define(:equivalent_sarahs_skewb_algorithm) do |expected, color_s
     actual.apply_to(actual_skewb_state)
 
     "expected that #{actual} would have the same effect on the skewb as #{expected}.\n" \
-    "Got:\n#{actual_skewb_state.colored_to_s}\ninstead of:\n#{expected_skewb_state.colored_to_s}"
+      "Got:\n#{actual_skewb_state.colored_to_s}\ninstead of:\n#{expected_skewb_state.colored_to_s}"
   end
 end
 

@@ -68,8 +68,8 @@ module TwistyPuzzles
 
     def equivalent_slice_move?(other, cube_size)
       cube_size == 3 && other.slice_index == 1 &&
-        (@axis_face == other.axis_face && @direction == other.direction ||
-         @axis_face == other.axis_face.opposite && @direction == other.direction.inverse)
+        ((@axis_face == other.axis_face && @direction == other.direction) ||
+         (@axis_face == other.axis_face.opposite && @direction == other.direction.inverse))
     end
   end
 

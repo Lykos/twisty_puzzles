@@ -28,7 +28,7 @@ module TwistyPuzzles
 
     # Middle coordinate for uneven numbers, the one before for even numbers
     def self.middle_or_before(cube_size)
-      cube_size - cube_size / 2 - 1
+      cube_size - (cube_size / 2) - 1
     end
 
     # Middle coordinate for uneven numbers, the one after for even numbers
@@ -38,7 +38,7 @@ module TwistyPuzzles
 
     # The last coordinate that is strictly before the middle
     def self.last_before_middle(cube_size)
-      cube_size / 2 - 1
+      (cube_size / 2) - 1
     end
 
     def self.canonicalize(index, cube_size)
@@ -310,7 +310,7 @@ module TwistyPuzzles
 
     def self.for_corner(corner)
       native = Native::SkewbCoordinate.for_corner(corner.face_symbols)
-      new(Face.for_face_symbol(corner.face_symbols.first), 1 + corner.piece_index % 4, native)
+      new(Face.for_face_symbol(corner.face_symbols.first), 1 + (corner.piece_index % 4), native)
     end
 
     def hash

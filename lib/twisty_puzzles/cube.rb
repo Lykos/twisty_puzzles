@@ -155,7 +155,7 @@ module TwistyPuzzles
 
     def self.parse(piece_description)
       face_symbols =
-        piece_description.upcase.strip.split('').map do |e|
+        piece_description.upcase.strip.chars.map do |e|
           FACE_SYMBOLS[FACE_NAMES.index(e)]
         end
       for_face_symbols(face_symbols)
@@ -538,7 +538,7 @@ module TwistyPuzzles
     end
 
     def num_incarnations(cube_size)
-      cube_size > 3 ? cube_size / 2 - 1 : 0
+      cube_size > 3 ? (cube_size / 2) - 1 : 0
     end
 
     # One index of such a piece on a on a NxN face.
@@ -637,7 +637,7 @@ module TwistyPuzzles
     ELEMENTS = generate_parts
 
     def num_incarnations(cube_size)
-      cube_size > 3 ? cube_size / 2 - 1 : 0
+      cube_size > 3 ? (cube_size / 2) - 1 : 0
     end
 
     # One index of such a piece on a on a NxN face.
@@ -663,7 +663,7 @@ module TwistyPuzzles
       if cube_size.even? || cube_size <= 3
         0
       else
-        cube_size / 2 - 1
+        (cube_size / 2) - 1
       end
     end
 
