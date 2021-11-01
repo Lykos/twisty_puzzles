@@ -135,7 +135,7 @@ module TwistyPuzzles
       raise TypeError unless other.is_a?(Integer)
 
       if other.negative?
-        inverse * (-other)
+        inverse * -other
       else
         self.class.new(@moves * other)
       end

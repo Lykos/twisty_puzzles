@@ -94,7 +94,7 @@ module TwistyPuzzles
     end
 
     def algorithm
-      first_part + second_part + first_part * 2 + second_part.inverse + first_part
+      first_part + second_part + (first_part * 2) + second_part.inverse + first_part
     end
   end
 
