@@ -95,6 +95,10 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       while (m = begin skip_spaces; parse_move_internal end)
         moves.push(m)
       end
+      skip_spaces
+      if @scanner.peek(1) == TIMES
+        moves *= parse_multiplier
+      end
       Algorithm.new(moves)
     end
 
