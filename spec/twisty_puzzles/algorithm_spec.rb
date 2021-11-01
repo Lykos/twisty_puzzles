@@ -49,6 +49,10 @@ describe Algorithm do
     expect(parse_algorithm('R U * 2')).to eq_cube_algorithm('R U R U')
   end
 
+  it 'parses alternative inverses correctly' do
+    expect(parse_algorithm('R U’')).to eq_cube_algorithm("R U'")
+  end
+
   it 'computes the move count of algorithms correctly' do
     algorithm = parse_algorithm("R2 U F' S M2 E'")
     expect(algorithm.move_count(cube_size)).to eq(9)
