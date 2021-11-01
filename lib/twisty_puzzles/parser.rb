@@ -156,7 +156,7 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       parse_open_bracket
       first_part = parse_nonempty_moves_with_triggers
       skip_spaces
-      parse_comma
+      parse_pure_separator
       second_part = parse_nonempty_moves_with_triggers
       skip_spaces
       parse_close_bracket
@@ -166,27 +166,27 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
     def parse_pure_commutator_no_brackets
       first_part_or_algorithm = parse_moves_with_triggers
       skip_spaces
-      if @scanner.eos? || !@scanner.peek(1) == ','
+      if @scanner.eos? || !PURE_SEPARATORS.include?(@scanner.peek(1))
         return FakeCommutator.new(first_part_or_algorithm)
       end
 
       first_part = first_part_or_algorithm
       complain('move') if first_part.empty?
-      parse_comma
+      parse_pure_separator
       second_part = parse_nonempty_moves_with_triggers
       skip_spaces
       PureCommutator.new(first_part, second_part)
     end
 
-    def parse_comma
-      complain('middle of pure commutator') unless @scanner.getch == ','
+    def parse_pure_separator
+      complain('middle of pure commutator') unless PURE_SEPARATORS.include?(@scanner.getch)
     end
 
     def parse_commutator_internal_after_separator(setup_or_first_part, separator)
-      if [':', ';'].include?(separator)
+      if SETUP_SEPARATORS.include?(separator)
         inner_commutator = parse_setup_commutator_inner
         SetupCommutator.new(setup_or_first_part, inner_commutator)
-      elsif separator == ','
+      elsif PURE_SEPARATORS.include?(separator)
         second_part = parse_nonempty_moves_with_triggers
         PureCommutator.new(setup_or_first_part, second_part)
       else
@@ -194,7 +194,9 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       end
     end
 
-    SEPARATORS = %w[; : ,].freeze
+    SETUP_SEPARATORS = %w[; :].freeze
+    PURE_SEPARATORS = %w[/ ,].freeze
+    SEPARATORS = (SETUP_SEPARATORS + PURE_SEPARATORS).freeze
 
     def parse_separator
       separator = @scanner.getch
