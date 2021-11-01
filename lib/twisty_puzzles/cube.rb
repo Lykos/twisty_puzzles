@@ -34,6 +34,14 @@ module TwistyPuzzles
 
     attr_reader :piece_index, :face_symbols
 
+    def self.min_parseable_face_symbols
+      self::FACES
+    end
+
+    def self.max_parseable_face_symbols
+      self::FACES
+    end
+
     def self.generate_parts
       valid_face_symbol_combinations =
         FACE_SYMBOLS.permutation(self::FACES).select do |p|
@@ -327,6 +335,14 @@ module TwistyPuzzles
   class MoveableCenter < Part
     FACES = 1
 
+    def self.min_parseable_face_symbols
+      self::CORRESPONDING_PART_CLASS::FACES
+    end
+
+    def self.max_parseable_face_symbols
+      self::CORRESPONDING_PART_CLASS::FACES
+    end
+
     def self.min_cube_size
       4
     end
@@ -467,11 +483,15 @@ module TwistyPuzzles
       false
     end
 
+    def self.max_parseable_face_symbols
+      FACES + 1
+    end
+
     def self.for_face_symbols(face_symbols)
       # One additional face symbol is usually mentioned for wings.
       raise unless face_symbols.length == FACES || face_symbols.length == FACES + 1
 
-      if face_symbols.length == 3
+      if face_symbols.length == FACES + 1
         for_corner_face_symbols(face_symbols)
       else
         for_face_symbols_internal(face_symbols)
