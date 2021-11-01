@@ -77,8 +77,8 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
     end
 
     # Parses at least one move.
-    def parse_nonempty_moves
-      moves = parse_moves
+    def parse_nonempty_moves_with_triggers
+      moves = parse_moves_with_triggers
       complain('move') if moves.empty?
       moves
     end
@@ -117,8 +117,24 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       if @scanner.peek(1) == OPENING_BRACKET
         parse_commutator_internal
       else
-        FakeCommutator.new(parse_moves_with_triggers)
+        parse_commutator_no_brackets
       end
+    end
+
+    def parse_commutator_no_brackets
+      setup_or_first_part_or_algorithm = parse_moves_with_triggers
+      skip_spaces
+      if @scanner.eos? || !SEPARATORS.include?(@scanner.peek(1))
+        return FakeCommutator.new(setup_or_first_part_or_algorithm)
+      end
+
+      setup_or_first_part = setup_or_first_part_or_algorithm
+      complain('move') if setup_or_first_part.empty?
+      separator = parse_separator
+      comm = parse_commutator_internal_after_separator(setup_or_first_part, separator)
+      skip_spaces
+      complain('end of commutator') unless @scanner.eos?
+      comm
     end
 
     def parse_algorithm
@@ -131,20 +147,39 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       if @scanner.peek(1) == OPENING_BRACKET
         parse_pure_commutator
       else
-        FakeCommutator.new(parse_moves_with_triggers)
+        parse_pure_commutator_no_brackets
       end
     end
 
     def parse_pure_commutator
       skip_spaces
       parse_open_bracket
-      first_part = parse_nonempty_moves
+      first_part = parse_nonempty_moves_with_triggers
       skip_spaces
-      complain('middle of pure commutator') unless @scanner.getch == ','
-      second_part = parse_nonempty_moves
+      parse_comma
+      second_part = parse_nonempty_moves_with_triggers
       skip_spaces
       parse_close_bracket
       PureCommutator.new(first_part, second_part)
+    end
+
+    def parse_pure_commutator_no_brackets
+      first_part_or_algorithm = parse_moves_with_triggers
+      skip_spaces
+      if @scanner.eos? || !@scanner.peek(1) == ','
+        return FakeCommutator.new(first_part_or_algorithm)
+      end
+
+      first_part = first_part_or_algorithm
+      complain('move') if first_part.empty?
+      parse_comma
+      second_part = parse_nonempty_moves_with_triggers
+      skip_spaces
+      PureCommutator.new(first_part, second_part)
+    end
+
+    def parse_comma
+      complain('middle of pure commutator') unless @scanner.getch == ','
     end
 
     def parse_commutator_internal_after_separator(setup_or_first_part, separator)
@@ -152,19 +187,27 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
         inner_commutator = parse_setup_commutator_inner
         SetupCommutator.new(setup_or_first_part, inner_commutator)
       elsif separator == ','
-        second_part = parse_nonempty_moves
+        second_part = parse_nonempty_moves_with_triggers
         PureCommutator.new(setup_or_first_part, second_part)
       else
         complain('end of setup or middle of pure commutator') unless @scanner.eos?
       end
     end
 
+    SEPARATORS = %w[; : ,].freeze
+
+    def parse_separator
+      separator = @scanner.getch
+      complain('separator between commutator parts') unless SEPARATORS.include?(separator)
+      separator
+    end
+
     def parse_commutator_internal
       skip_spaces
       parse_open_bracket
-      setup_or_first_part = parse_nonempty_moves
+      setup_or_first_part = parse_nonempty_moves_with_triggers
       skip_spaces
-      separator = @scanner.getch
+      separator = parse_separator
       comm = parse_commutator_internal_after_separator(setup_or_first_part, separator)
       skip_spaces
       parse_close_bracket

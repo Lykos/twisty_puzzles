@@ -2,6 +2,11 @@
 
 describe PureCommutator do
   let(:commutator) { parse_commutator('[R, U\' L\' U]') }
+  let(:no_brackets_commutator) { parse_commutator('R, U\' L\' U') }
+
+  it 'is equal to its variant without brackets' do
+    expect(commutator).to eq(no_brackets_commutator)
+  end
 
   it 'is equal to the inverse of its inverse' do
     expect(commutator.inverse.inverse).to eq(commutator)
@@ -18,7 +23,26 @@ end
 
 describe SetupCommutator do
   let(:commutator) { parse_commutator('[U\' : [R, U\' L\' U]]') }
+  let(:no_inner_brackets_commutator) { parse_commutator('[U\' : R, U\' L\' U]') }
+  let(:no_outer_brackets_commutator) { parse_commutator('U\' : [R, U\' L\' U]') }
+  let(:no_brackets_commutator) { parse_commutator('U\' : R, U\' L\' U') }
   let(:rotation_commutator) { parse_commutator('[x2 : [R, U\' L\' U]]') }
+
+  it 'is equal to its variant without brackets' do
+    expect(commutator).to eq(no_brackets_commutator)
+  end
+
+  it 'is equal to its variant without outer brackets' do
+    expect(commutator).to eq(no_outer_brackets_commutator)
+  end
+
+  it 'is equal to its variant without inner brackets' do
+    expect(commutator).to eq(no_inner_brackets_commutator)
+  end
+
+  it 'is equal to the inverse of its inverse' do
+    expect(commutator.inverse.inverse).to eq(commutator)
+  end
 
   it 'is equal to the inverse of its inverse' do
     expect(commutator.inverse.inverse).to eq(commutator)
