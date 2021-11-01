@@ -35,14 +35,15 @@ end
 
 describe SetupCommutator do
   let(:commutator) { parse_commutator('[U\' : [R, U\' L\' U]]') }
+  let(:cube_size) { 3 }
   let(:no_inner_brackets_commutator) { parse_commutator('[U\' : R, U\' L\' U]') }
   let(:no_outer_brackets_commutator) { parse_commutator('U\' : [R, U\' L\' U]') }
   let(:no_brackets_commutator) { parse_commutator('U\' : R, U\' L\' U') }
-  let(:like_slash_commutator) { parse_commutator('[R : U M\' U2 M U]') }
-  let(:no_inner_brackets_slash_commutator) { parse_commutator('[R : U/M\']') }
-  let(:no_outer_brackets_slash_commutator) { parse_commutator('R : [U/M\']') }
-  let(:no_brackets_slash_commutator) { parse_commutator('R : U / M\'') }
-  let(:slash_commutator) { parse_commutator('R : U/M\'') }
+  let(:like_slash_commutator) { parse_commutator('[B : U M\' U2 M U]') }
+  let(:no_inner_brackets_slash_commutator) { parse_commutator('[B : U/M\']') }
+  let(:no_outer_brackets_slash_commutator) { parse_commutator('B : [U/M\']') }
+  let(:no_brackets_slash_commutator) { parse_commutator('B : U / M\'') }
+  let(:slash_commutator) { parse_commutator('B : U/M\'') }
   let(:rotation_commutator) { parse_commutator('[x2 : [R, U\' L\' U]]') }
 
   it 'is equal to its variant without brackets' do

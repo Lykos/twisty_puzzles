@@ -178,10 +178,10 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
 
       first_part = first_part_or_algorithm
       complain('move') if first_part.empty?
-      parse_pure_separator
+      separator = parse_pure_separator
       second_part = parse_nonempty_moves_with_triggers
       skip_spaces
-      PureCommutator.new(first_part, second_part)
+      pseudo_pure_commutator(separator, first_part, second_part)
     end
 
     def parse_pure_separator
