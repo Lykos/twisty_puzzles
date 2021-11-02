@@ -3,8 +3,6 @@ module TwistyPuzzles
   class SkewbState
     include CubePrintHelper
 
-    include StateHelper
-
     include CubeConstants
 
     # Pairs of coordinate pairs that should match in case of solved layers.
@@ -59,7 +57,5 @@ module TwistyPuzzles
     # Note that this does NOT say that the layer corresponding to the given face is solved.
     # The face argument is used as the position where a solved face is present.
     def layer_at_face_solved?: (untyped face) -> (::FalseClass | untyped)
-
-    def rotate_face: (untyped face, untyped direction) -> untyped
   end
 end

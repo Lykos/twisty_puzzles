@@ -93,13 +93,16 @@ static VALUE StickerCycle_initialize(const VALUE self, const VALUE cube_size, co
 static VALUE StickerCycle_apply_to(const VALUE self, const VALUE cube_state) {
   const StickerCycleData* sticker_cycle_data;
   GetInitializedStickerCycleData(self, sticker_cycle_data);
+
   const CubeStateData* cube_state_data;
   GetInitializedCubeStateData(cube_state, cube_state_data);
 
   if (cube_state_data->cube_size != sticker_cycle_data->cube_size) {
     rb_raise(rb_eArgError, "Cube size of sticker cycle must equal cube size of cube state. Got %ld vs %ld.", sticker_cycle_data->cube_size, cube_state_data->cube_size);
   }
-  apply_sticker_cycle(cube_state_data->stickers, sticker_cycle_data->indices, sticker_cycle_data->length, false);
+  if (sticker_cycle_data->length >= 2) {
+    apply_sticker_cycle(cube_state_data->stickers, sticker_cycle_data->indices, sticker_cycle_data->length, false);
+  }
   return Qnil;
 }
 

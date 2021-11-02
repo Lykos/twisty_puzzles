@@ -5,8 +5,6 @@ module TwistyPuzzles
 
     include CubePrintHelper
 
-    include StateHelper
-
     include CubeConstants
 
     def self.check_cube_size: (untyped cube_size) -> untyped
@@ -30,6 +28,10 @@ module TwistyPuzzles
     alias == eql?
 
     def hash: () -> untyped
+
+    def rotation_algorithms: () -> ::Array[Algorithm]
+
+    def equal_modulo_rotations?: (Algorithm other) -> bool
 
     # TODO: Get rid of this backwards compatibility artifact
     def sticker_array: (untyped face) -> untyped

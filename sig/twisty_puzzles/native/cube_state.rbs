@@ -1,0 +1,7 @@
+module TwistyPuzzles
+  module Native
+    class CubeState
+      def initialize: (::Integer cube_size, untyped stickers) -> untyped
+    end
+  end
+end

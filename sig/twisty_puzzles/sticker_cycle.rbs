@@ -3,31 +3,41 @@ module TwistyPuzzles
   class StickerCycle
     include ReversibleApplyable
 
-    def initialize: (untyped cube_size, untyped sticker_cycle) -> untyped
+    def self.from_coordinates: (Integer cube_size, ::Array[Coordinate]) -> StickerCycle
+    
+    def initialize: (Native::StickerCycle native) -> untyped
 
-    attr_reader cube_size: untyped
+    attr_reader native: Native::StickerCycle
 
-    attr_reader sticker_cycle: untyped
+    def eql?: (untyped other) -> bool
 
-    def apply_to: (untyped cube_state) -> untyped
+    alias == eql?
 
-    def inverse: () -> untyped
+    def hash: () -> ::Integer
+
+    def cube_size: () -> ::Integer
+
+    def length: () -> ::Integer
+
+    def apply_to: (CubeState cube_state) -> untyped
+
+    def inverse: () -> StickerCycle
   end
 
   # A set of disjoint sticker cycles that can be applied to a cube state together
   class StickerCycles
     include ReversibleApplyable
 
-    def initialize: (untyped cube_size, untyped sticker_cycles) -> untyped
+    def initialize: (::Integer cube_size, ::Array[StickerCycle] sticker_cycles) -> untyped
 
-    attr_reader cube_size: untyped
+    attr_reader cube_size: ::Integer
 
-    attr_reader sticker_cycles: untyped
+    attr_reader sticker_cycles: ::Array[StickerCycle]
 
-    def apply_to: (untyped cube_state) -> untyped
+    def apply_to: (CubeState cube_state) -> untyped
 
-    def +: (untyped other) -> untyped
+    def +: (StickerCycles other) -> StickerCycles
 
-    def inverse: () -> untyped
+    def inverse: () -> StickerCycles
   end
 end

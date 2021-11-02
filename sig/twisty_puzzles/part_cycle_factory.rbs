@@ -3,14 +3,14 @@ module TwistyPuzzles
   class PartCycleFactory
     include Utils::ArrayHelper
 
-    def initialize: (untyped cube_size, untyped incarnation_index) -> untyped
+    def initialize: (::Integer cube_size, ::Integer incarnation_index) -> untyped
 
-    def coordinates: (untyped part) -> untyped
+    def coordinates: (Part part) -> ::Array[Coordinate]
 
-    def multi_twist: (untyped parts) -> untyped
+    def multi_twist: (::Array[Corner | Edge] parts) -> StickerCycles
 
-    def check_type_consistency: (untyped parts) -> (nil | untyped)
+    def check_type_consistency: (::Array[Part] parts) -> nil
 
-    def construct: (untyped parts) -> untyped
+    def construct: (::Array[Part] parts) -> StickerCycles
   end
 end

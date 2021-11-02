@@ -73,6 +73,10 @@ module TwistyPuzzles
 
     alias == eql?
 
+    def hash
+      @hash ||= [self.class, @native].hash
+    end
+
     def rotation_algorithms
       Rotation::ALL_ROTATIONS.combination(2).reject do |r0, r1|
         r0.inverse == r1
@@ -81,10 +85,6 @@ module TwistyPuzzles
 
     def equal_modulo_rotations?(other)
       rotation_algorithms.any? { |r| r.apply_temporarily_to(self) { |state| state == other } }
-    end
-
-    def hash
-      @hash ||= [self.class, @native].hash
     end
 
     # TODO: Get rid of this backwards compatibility artifact

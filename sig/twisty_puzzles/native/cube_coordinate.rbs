@@ -1,0 +1,6 @@
+module TwistyPuzzles
+  module Native
+    class CubeCoordinate
+    end
+  end
+end

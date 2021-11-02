@@ -12,7 +12,7 @@ module TwistyPuzzles
 
     def self.from_coordinates(cube_size, coordinates)
       CubeState.check_cube_size(cube_size)
-      raise TypeError unless coordinates.all?(Coordinate)
+      raise TypeError unless coordinates.all?(CubeCoordinate)
 
       new(Native::StickerCycle.new(cube_size, coordinates.map(&:native)))
     end
@@ -24,7 +24,7 @@ module TwistyPuzzles
     end
 
     attr_reader :native
-
+    
     def eql?(other)
       self.class.equal?(other.class) && @native == other.native
     end
@@ -35,12 +35,12 @@ module TwistyPuzzles
       @hash ||= [self.class, @native].hash
     end
 
-    def dup
-      StickerCycle.new(@native.dup)
-    end
-
     def cube_size
       @native.cube_size
+    end
+
+    def length
+      @native.length
     end
 
     def apply_to(cube_state)

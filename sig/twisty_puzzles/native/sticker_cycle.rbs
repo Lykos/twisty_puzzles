@@ -1,0 +1,23 @@
+module TwistyPuzzles
+  module Native
+    class StickerCycle
+      def initialize: (Integer cube_size, ::Array[CubeCoordinate]) -> StickerCycle
+
+      def eql?: (untyped other) -> bool
+
+      alias == eql?
+
+      def hash: () -> ::Integer
+
+      def cube_size: () -> ::Integer
+
+      def coordinates: () -> ::Array[CubeCoordinate]
+
+      def length: () -> ::Integer
+
+      def apply_to: (CubeState cube_state) -> untyped
+
+      def inverse: () -> StickerCycle
+    end
+  end
+end

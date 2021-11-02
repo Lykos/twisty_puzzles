@@ -28,7 +28,7 @@ module TwistyPuzzles
         raise TypeError, 'Twists are only supported for edges and corners.'
       end
 
-      cycles = parts.map { |p| StickerCycle.new(@cube_size, coordinates(p)) }
+      cycles = parts.map { |p| StickerCycle.from_coordinates(@cube_size, coordinates(p)) }
       StickerCycles.new(@cube_size, cycles)
     end
 

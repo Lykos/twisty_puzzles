@@ -13,9 +13,19 @@ module TwistyPuzzles
 
     CLOSING_PAREN: ::String
 
+    SLASH: ::String
+
+    COMMA: ::String
+
+    SETUP_SEPARATORS: ::Array[::String]
+
+    PURE_SEPARATORS: ::Array[::String]
+
+    SEPARATORS: ::Array[::String]
+
     TIMES: ::String
 
-    def initialize: (untyped alg_string, untyped move_parser) -> untyped
+    def initialize: (::String alg_string, AbstractMoveParser move_parser) -> untyped
 
     def parse_open_paren: () -> untyped
 
@@ -23,20 +33,22 @@ module TwistyPuzzles
 
     def parse_times: () -> untyped
 
-    def parse_factor: () -> untyped
+    def parse_factor: () -> ::Integer
 
-    def parse_multiplier: () -> untyped
+    def parse_multiplier: () -> ::Integer
 
-    def parse_trigger: () -> untyped
+    def parse_trigger: () -> Algorithm
 
     # Parses at least one move and allows for triggers in parentheses.
-    def parse_moves_with_triggers: () -> untyped
+    def parse_nonempty_moves_with_triggers: () -> Algorithm
+
+    def parse_moves_with_triggers: () -> Algorithm
 
     # Parses at least one move.
-    def parse_nonempty_moves: () -> untyped
+    def parse_nonempty_moves: () -> Algorithm
 
     # Parses a series of moves.
-    def parse_moves: () -> untyped
+    def parse_moves: () -> Algorithm
 
     def complain: (untyped parsed_object) -> untyped
 
@@ -46,34 +58,44 @@ module TwistyPuzzles
 
     def parse_close_bracket: () -> untyped
 
-    def parse_commutator: () -> untyped
+    def parse_commutator: () -> Commutator
 
-    def parse_algorithm: () -> untyped
+    def parse_commutator_no_brackets: () -> Commutator
 
-    def parse_setup_commutator_inner: () -> untyped
+    def parse_algorithm: () -> Algorithm
 
-    def parse_pure_commutator: () -> untyped
+    def parse_setup_commutator_inner: () -> Commutator
 
-    def parse_commutator_internal_after_separator: (untyped setup_or_first_part, untyped separator) -> untyped
+    def parse_pure_commutator: () -> Commutator
 
-    def parse_commutator_internal: () -> untyped
+    def parse_pure_commutator_no_brackets: () -> Commutator
 
-    def parse_move_internal: () -> (nil | untyped)
+    def parse_pure_separator: () -> ::String
+
+    def parse_commutator_internal_after_separator: (Algorithm setup_or_first_part, ::String separator) -> Commutator
+
+    def pseudo_pure_commutator: (::String separator, Algorithm first_part, Algorithm second_part) -> PureCommutator
+
+    def parse_separator: () -> ::String
+
+    def parse_commutator_internal: () -> Commutator
+
+    def parse_move_internal: () -> (nil | AbstractMove)
 
     def skip_spaces: () -> untyped
   end
 
-  def parse_commutator: (untyped alg_string, ?complete_parse: bool complete_parse) -> untyped
+  def parse_commutator: (::String alg_string, ?complete_parse: bool complete_parse) -> Commutator
 
-  def parse_cube_algorithm: (untyped alg_string, ?complete_parse: bool complete_parse) -> untyped
+  def parse_cube_algorithm: (::String alg_string, ?complete_parse: bool complete_parse) -> Algorithm
 
-  def parse_cube_move: (untyped move_string) -> untyped
+  def parse_cube_move: (::String move_string) -> CubeMove
 
   alias parse_algorithm parse_cube_algorithm
 
   alias parse_move parse_cube_move
 
-  def parse_skewb_algorithm: (untyped alg_string, untyped notation, ?complete_parse: bool complete_parse) -> untyped
+  def parse_skewb_algorithm: (::String alg_string, SkewbNotation notation, ?complete_parse: bool complete_parse) -> Algorithm
 
-  def parse_skewb_move: (untyped move_string, untyped notation) -> untyped
+  def parse_skewb_move: (::String move_string, SkewbNotation notation) -> SkewbMove
 end

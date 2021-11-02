@@ -1,26 +1,26 @@
 module TwistyPuzzles
   # Coordinate of a sticker on the cube.
   class Coordinate
-    def self.highest_coordinate: (untyped cube_size) -> untyped
+    def self.highest_coordinate: (::Integer cube_size) -> untyped
 
-    def self.invert_coordinate: (untyped index, untyped cube_size) -> untyped
+    def self.invert_coordinate: (untyped index, ::Integer cube_size) -> untyped
 
-    def self.coordinate_range: (untyped cube_size) -> untyped
+    def self.coordinate_range: (::Integer cube_size) -> untyped
 
-    def self.middle: (untyped cube_size) -> untyped
+    def self.middle: (::Integer cube_size) -> untyped
 
     # Middle coordinate for uneven numbers, the one before for even numbers
-    def self.middle_or_before: (untyped cube_size) -> untyped
+    def self.middle_or_before: (::Integer cube_size) -> untyped
 
     # Middle coordinate for uneven numbers, the one after for even numbers
-    def self.middle_or_after: (untyped cube_size) -> untyped
+    def self.middle_or_after: (::Integer cube_size) -> untyped
 
     # The last coordinate that is strictly before the middle
-    def self.last_before_middle: (untyped cube_size) -> untyped
+    def self.last_before_middle: (::Integer cube_size) -> untyped
 
-    def self.canonicalize: (untyped index, untyped cube_size) -> untyped
+    def self.canonicalize: (untyped index, ::Integer cube_size) -> untyped
 
-    def self.from_face_distances: (untyped face, untyped cube_size, untyped face_distances) -> untyped
+    def self.from_face_distances: (Face face, ::Integer cube_size, untyped face_distances) -> untyped
 
     def self.match_coordinate_internal: (untyped base_coordinate, untyped other_face_symbols) -> untyped
 
@@ -29,13 +29,13 @@ module TwistyPuzzles
 
     # The coordinate of the solved position of all stickers of this part.
     # rubocop:disable Metrics/AbcSize
-    def self.solved_positions: (untyped part, untyped cube_size, untyped incarnation_index) -> untyped
+    def self.solved_positions: (untyped part, ::Integer cube_size, untyped incarnation_index) -> untyped
 
-    def self.center: (untyped face, untyped cube_size) -> untyped
+    def self.center: (Face face, ::Integer cube_size) -> untyped
 
-    def self.edges_outside: (untyped face, untyped cube_size) -> untyped
+    def self.edges_outside: (Face face, ::Integer cube_size) -> untyped
 
-    def self.from_indices: (untyped face, untyped cube_size, untyped x_index, untyped y_index) -> untyped
+    def self.from_indices: (Face face, ::Integer cube_size, untyped x_index, untyped y_index) -> untyped
 
     def initialize: (untyped native) -> untyped
 
@@ -65,7 +65,7 @@ module TwistyPuzzles
 
     def jump_to_coordinates: (untyped new_coordinates) -> untyped
 
-    def make_coordinate_at_edge_to: (untyped face) -> untyped
+    def make_coordinate_at_edge_to: (Face face) -> untyped
 
     # Returns neighbor faces that are closer to this coordinate than their opposite face.
     def close_neighbor_faces: () -> untyped
@@ -89,15 +89,15 @@ module TwistyPuzzles
 
     include CubeConstants
 
-    def initialize: (untyped face, untyped coordinate, untyped native) -> untyped
+    def initialize: (Face face, untyped coordinate, untyped native) -> untyped
 
     attr_reader native: untyped
 
     attr_reader coordinate: untyped
 
-    def self.for_center: (untyped face) -> untyped
+    def self.for_center: (Face face) -> untyped
 
-    def self.corners_on_face: (untyped face) -> untyped
+    def self.corners_on_face: (Face face) -> untyped
 
     def self.for_corner: (untyped corner) -> untyped
 
