@@ -27,21 +27,20 @@ module TwistyPuzzles
     # Returns an alternative representation of the same rotation
     def alternative: () -> Rotation
 
-    def equivalent_internal?: (untyped other, untyped _cube_size) -> (::TrueClass | ::FalseClass)
+    def equivalent_internal?: (self other, ::Integer _cube_size) -> (::TrueClass | ::FalseClass)
 
-    # rubocop:disable Metrics/AbcSize
-    def prepend_rotation: (untyped other, untyped _cube_size) -> Algorithm
+    def prepend_rotation: (Rotation other, ::Integer _cube_size) -> (nil | Algorithm)
 
-    def prepend_fat_m_slice_move: (untyped _other, untyped _cube_size) -> nil
+    def prepend_fat_m_slice_move: (FatMSliceMove _other, ::Integer _cube_size) -> nil
 
-    def prepend_fat_move: (untyped other, untyped cube_size) -> (nil | Algorithm)
+    def prepend_fat_move: (FatMove other, ::Integer cube_size) -> (nil | Algorithm)
 
-    def prepend_slice_move: (untyped _other, untyped _cube_size) -> nil
+    def prepend_slice_move: (SliceMove _other, ::Integer _cube_size) -> nil
 
-    def move_count: (untyped _cube_size, ?::Symbol _metric) -> 0
+    def move_count: (::Integer _cube_size, ?::Symbol _metric) -> 0
 
     private
 
-    def compatible_fat_move?: (AxisFaceAndDirectionMove other) -> (::TrueClass | ::FalseClass)
+    def compatible_fat_move?: (FatMove other) -> (::TrueClass | ::FalseClass)
   end
 end
