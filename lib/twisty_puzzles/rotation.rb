@@ -22,6 +22,7 @@ module TwistyPuzzles
       when SkewbDirection::ZERO then CubeDirection::ZERO
       when SkewbDirection::FORWARD then CubeDirection::FORWARD
       when SkewbDirection::BACKWARD then CubeDirection::BACKWARD
+      else raise
       end
     end
 

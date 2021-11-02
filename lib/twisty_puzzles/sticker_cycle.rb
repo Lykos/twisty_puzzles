@@ -10,22 +10,47 @@ module TwistyPuzzles
   class StickerCycle
     include ReversibleApplyable
 
-    def initialize(cube_size, sticker_cycle)
-      @cube_size = cube_size
-      @sticker_cycle = sticker_cycle
+    def self.from_coordinates(cube_size, coordinates)
+      CubeState.check_cube_size(cube_size)
+      raise TypeError unless coordinates.all?(Coordinate)
+
+      new(Native::StickerCycle.new(cube_size, coordinates.map(&:native)))
+    end
+ 
+    def initialize(native)
+      raise TypeError unless native.is_a?(Native::StickerCycle)
+
+      @native = native
     end
 
-    attr_reader :cube_size, :sticker_cycle
+    attr_reader :native
+
+    def eql?(other)
+      self.class.equal?(other.class) && @native == other.native
+    end
+
+    alias == eql?
+
+    def hash
+      @hash ||= [self.class, @native].hash
+    end
+
+    def dup
+      StickerCycle.new(@native.dup)
+    end
+
+    def cube_size
+      @native.cube_size
+    end
 
     def apply_to(cube_state)
       raise TypeError unless cube_state.is_a?(CubeState)
-      raise ArgumentError unless cube_state.n == @cube_size
 
-      cube_state.apply_sticker_cycle(@sticker_cycle) if @sticker_cycle.length >= 2
+      @native.apply_to(cube_state.native)
     end
 
     def inverse
-      StickerCycle.new(@cube_size, @sticker_cycle.reverse)
+      StickerCycle.new(@native.inverse)
     end
   end
 
@@ -38,7 +63,7 @@ module TwistyPuzzles
       sticker_cycles.each do |c|
         raise TypeError unless c.is_a?(StickerCycle)
 
-        c.sticker_cycle.each do |s|
+        c.native.coordinates.each do |s|
           raise ArgumentError unless affected_set.add?(s)
         end
       end

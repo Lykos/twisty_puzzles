@@ -3,14 +3,12 @@
 require 'twisty_puzzles/coordinate'
 require 'twisty_puzzles/cube'
 require 'twisty_puzzles/cube_print_helper'
-require 'twisty_puzzles/state_helper'
 require 'twisty_puzzles/cube_constants'
 
 module TwistyPuzzles
   # Represents the state (i.e. the sticker positions) of a Skewb.
   class SkewbState
     include CubePrintHelper
-    include StateHelper
     include CubeConstants
     # Pairs of coordinate pairs that should match in case of solved layers.
     MATCHING_CORNERS =
@@ -150,15 +148,6 @@ module TwistyPuzzles
       return false unless native.face_solved?(face.face_symbol)
 
       layer_check_neighbors(face).map { |c| self[c] }.uniq.length == 1
-    end
-
-    def rotate_face(face, direction)
-      neighbors = face.neighbors
-      inverse_order_face = face.coordinate_index_close_to(neighbors[0]) <
-                           face.coordinate_index_close_to(neighbors[1])
-      direction = direction.inverse if inverse_order_face
-      cycle = SkewbCoordinate.corners_on_face(face)
-      apply_4sticker_cycle(cycle, direction)
     end
   end
 end

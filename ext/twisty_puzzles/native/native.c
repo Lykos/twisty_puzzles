@@ -9,6 +9,7 @@
 #include "skewb_coordinate.h"
 #include "skewb_layer_fingerprint.h"
 #include "skewb_state.h"
+#include "sticker_cycle.h"
 
 VALUE TwistyPuzzlesModule = Qnil;
 VALUE NativeModule = Qnil;
@@ -25,4 +26,5 @@ void Init_native() {
   init_skewb_coordinate_class_under(NativeModule);
   init_skewb_layer_fingerprint_method_under(NativeModule);
   init_skewb_state_class_under(NativeModule);
+  init_sticker_cycle_class_under(NativeModule);
 }

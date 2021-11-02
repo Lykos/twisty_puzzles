@@ -49,7 +49,7 @@ module TwistyPuzzles
       check_types(parts, Part)
       check_type_consistency(parts)
       part_coordinates = parts.map { |p| coordinates(p) }
-      cycles = part_coordinates.transpose.map { |c| StickerCycle.new(@cube_size, c) }
+      cycles = part_coordinates.transpose.map { |c| StickerCycle.from_coordinates(@cube_size, c) }
       StickerCycles.new(@cube_size, cycles)
     end
   end

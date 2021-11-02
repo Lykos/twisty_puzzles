@@ -4,7 +4,6 @@ require 'twisty_puzzles/cube'
 require 'twisty_puzzles/cube_constants'
 require 'twisty_puzzles/coordinate'
 require 'twisty_puzzles/cube_print_helper'
-require 'twisty_puzzles/state_helper'
 require 'twisty_puzzles/utils/array_helper'
 require 'twisty_puzzles/native'
 
@@ -13,7 +12,6 @@ module TwistyPuzzles
   class CubeState
     include Utils::ArrayHelper
     include CubePrintHelper
-    include StateHelper
     include CubeConstants
 
     def self.check_cube_size(cube_size)
