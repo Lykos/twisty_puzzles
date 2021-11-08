@@ -28,6 +28,17 @@ module TwistyPuzzles
       @colors_to_face_symbols = face_symbols_to_colors.invert
     end
 
+
+    def eql?(other)
+      self.class.equal?(other.class) && colors == other.colors
+    end
+
+    alias == eql?
+
+    def hash
+      @hash ||= ([self.class] + colors).hash
+    end
+
     def color(face_symbol)
       @face_symbols_to_colors[face_symbol]
     end
