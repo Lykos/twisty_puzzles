@@ -39,6 +39,10 @@ module TwistyPuzzles
       @parts.first.class
     end
 
+    def contains_any_part?(parts)
+      !(@parts & parts).empty?
+    end
+
     def to_s
       @parts.join(' ')
     end
@@ -49,6 +53,35 @@ module TwistyPuzzles
 
     def length
       @parts.length
+    end
+
+    def rotate_by(number)
+      self.class.new(@parts.rotate(number))
+    end
+
+    def map_rotate_by(number)
+      self.class.new(@parts.map { |p| p.rotate_by(number) })
+    end
+
+    def <=>(other)
+      @parts <=> other.parts
+    end
+
+    def canonicalize
+      @canonicalize ||=
+        @parts.map.with_index do |part, index|
+          min_part = part.rotations.min
+          map_rotate_by_number = part.rotations.index(min_part)
+          rotate_by(index).map_rotate_by(map_rotate_by_number)
+        end.min
+    end
+
+    def equivalent?(other)
+      self == other || canonicalize == other.canonicalize
+    end
+
+    def inverse
+      self.class.new([@parts[0]] + @parts[1..].reverse)
     end
 
     def self.from_raw_data(data)

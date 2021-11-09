@@ -1,0 +1,63 @@
+# frozen_string_literal: true
+
+describe PartCycle do
+  it 'can be serialized and deserialized' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(PartCycle.from_raw_data(c.to_raw_data)).to eq(c)
+    end
+  end
+
+  it 'can be inverted and it still starts with the same part' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.inverse.parts.first).to eq(c.parts.first)
+    end
+  end
+
+  it 'is the inverse of its inverse' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.inverse.inverse).to eq(c)
+    end
+  end
+
+  it 'is equal to its inverse iff its length is 1' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      if c.parts.size == 1
+        expect(c.inverse).to eq(c)
+      else
+        expect(c.inverse).not_to eq(c)
+      end
+    end
+  end
+
+  it 'is equivalent to itself' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.equivalent?(c)).to be(true)
+    end
+  end
+
+  it 'is equivalent to a rotation of itself' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.equivalent?(c.rotate_by(1))).to be(true)
+    end
+  end
+
+  it 'is equivalent to a per-element rotation of itself' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.equivalent?(c.map_rotate_by(1))).to be(true)
+    end
+  end
+end

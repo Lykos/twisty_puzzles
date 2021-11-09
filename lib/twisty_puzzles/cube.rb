@@ -675,5 +675,5 @@ module TwistyPuzzles
 
   # TODO: Add obliques
 
-  PART_TYPES = [Corner, Edge, XCenter, TCenter, Face, Edge, Midge, Wing].freeze
+  PART_TYPES = [Corner, Edge, XCenter, TCenter, Face, Midge, Wing].freeze
 end
