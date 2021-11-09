@@ -672,4 +672,8 @@ module TwistyPuzzles
       [1 + incarnation_index, cube_size / 2]
     end
   end
+
+  # TODO: Add obliques
+
+  PART_TYPES = [Corner, Edge, XCenter, TCenter, Face, Edge, Midge, Wing].freeze
 end

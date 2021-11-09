@@ -12,6 +12,15 @@ def corner
   choose(*Corner::ELEMENTS)
 end
 
+def part_type
+  choose(*PART_TYPES)
+end
+
+def part_cycle
+  t = part_type
+  PartCycle.new(Array.new(size) { choose(*t::ELEMENTS) })
+end
+
 def non_zero_cube_direction
   choose(*CubeDirection::NON_ZERO_DIRECTIONS)
 end

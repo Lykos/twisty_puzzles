@@ -13,6 +13,8 @@ module TwistyPuzzles
     include Utils::ArrayHelper
 
     def initialize(parts)
+      raise ArgumentError if parts.empty?
+
       check_types(parts, Part)
       check_type_consistency(parts)
 
@@ -29,6 +31,29 @@ module TwistyPuzzles
 
     def hash
       @hash ||= ([self.class] + @parts).hash
+    end
+
+    def part_type
+      @parts.first.class
+    end
+
+    def to_s
+      @parts.join(' ')
+    end
+
+    def to_raw_data
+      "#{part_type}(#{self})"
+    end
+
+    def length
+      @parts.length
+    end
+
+    def self.from_raw_data(data)
+      raw_part_type, raw_parts = data.match(/(.*)\((.*)\)/).captures
+      part_type = PART_TYPES.find { |p| p.name == raw_part_type }
+      parts = raw_parts.split.map { |r| part_type.parse(r) }
+      new(parts)
     end
 
     def check_type_consistency(parts)
