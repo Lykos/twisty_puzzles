@@ -12,6 +12,8 @@ module TwistyPuzzles
   class PartCycle
     include Utils::ArrayHelper
 
+    RAW_DATA_RESERVED = [' ', '(', ')'].freeze
+
     def initialize(parts)
       raise ArgumentError if parts.empty?
 
