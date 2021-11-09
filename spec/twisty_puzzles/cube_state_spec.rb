@@ -9,7 +9,7 @@ shared_examples 'cube_state' do |cube_size|
 
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:color_scheme) { ColorScheme::BERNHARD }
-  let(:cycle_factory) { PartCycleFactory.new(cube_size, 0) }
+  let(:cycle_factory) { StickerCycleFactory.new(cube_size, 0) }
 
   def construct_cycle(part_type, letters)
     cycle_factory.construct(letters.map { |l| letter_scheme.for_letter(part_type, l) })
@@ -517,7 +517,7 @@ shared_examples 'cube_state' do |cube_size|
     construct_cycle(Edge, %w[b c]).apply_to(expected_cube_state) if cube_size == 3
     wing_incarnations = letter_scheme.for_letter(Wing, 'e').num_incarnations(cube_size)
     wing_incarnations.times do |incarnation_index|
-      factory = PartCycleFactory.new(cube_size, incarnation_index)
+      factory = StickerCycleFactory.new(cube_size, incarnation_index)
       factory.construct([letter_scheme.for_letter(Wing, 'b'), letter_scheme.for_letter(Wing, 'c')]).apply_to(expected_cube_state)
       factory.construct([letter_scheme.for_letter(Wing, 'm'), letter_scheme.for_letter(Wing, 'i')]).apply_to(expected_cube_state)
     end

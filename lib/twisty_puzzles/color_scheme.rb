@@ -28,7 +28,6 @@ module TwistyPuzzles
       @colors_to_face_symbols = face_symbols_to_colors.invert
     end
 
-
     def eql?(other)
       self.class.equal?(other.class) && colors == other.colors
     end

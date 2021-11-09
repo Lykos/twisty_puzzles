@@ -2,10 +2,11 @@
 
 require 'twisty_puzzles/sticker_cycle'
 require 'twisty_puzzles/utils/array_helper'
+require 'twisty_puzzles/cube'
 
 module TwistyPuzzles
   # Factory for sticker cycles given part cycles.
-  class PartCycleFactory
+  class StickerCycleFactory
     include Utils::ArrayHelper
 
     def initialize(cube_size, incarnation_index)
