@@ -13,6 +13,7 @@ module TwistyPuzzles
   class PartCycle
     include Utils::ArrayHelper
     include Utils::StringHelper
+    extend Utils::StringHelper
 
     RAW_DATA_RESERVED = [' ', '(', ')'].freeze
 
