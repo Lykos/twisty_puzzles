@@ -25,18 +25,6 @@ describe PartCycle do
     end
   end
 
-  it 'is equal to its inverse iff its length is 1' do
-    property_of do
-      Rantly { part_cycle }
-    end.check do |c|
-      if c.parts.size == 1
-        expect(c.inverse).to eq(c)
-      else
-        expect(c.inverse).not_to eq(c)
-      end
-    end
-  end
-
   it 'is equivalent to itself' do
     property_of do
       Rantly { part_cycle }
