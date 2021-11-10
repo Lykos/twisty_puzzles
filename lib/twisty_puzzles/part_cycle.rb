@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'twisty_puzzles/utils/array_helper'
+require 'twisty_puzzles/utils/string_helper'
 require 'twisty_puzzles/sticker_cycle_factory'
 require 'twisty_puzzles/cube'
 
@@ -11,6 +12,7 @@ module TwistyPuzzles
   # Check StickerCycleFactory for making it concrete and applyable.
   class PartCycle
     include Utils::ArrayHelper
+    include Utils::StringHelper
 
     RAW_DATA_RESERVED = [' ', '(', ')'].freeze
 
@@ -48,7 +50,7 @@ module TwistyPuzzles
     end
 
     def to_raw_data
-      "#{part_type}(#{self})"
+      "#{simple_class_name(part_type)}(#{self})"
     end
 
     def length
@@ -86,7 +88,7 @@ module TwistyPuzzles
 
     def self.from_raw_data(data)
       raw_part_type, raw_parts = data.match(/(.*)\((.*)\)/).captures
-      part_type = PART_TYPES.find { |p| p.name == raw_part_type }
+      part_type = PART_TYPES.find { |p| simple_class_name(p) == raw_part_type }
       parts = raw_parts.split.map { |r| part_type.parse(r) }
       new(parts)
     end
