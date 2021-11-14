@@ -173,6 +173,10 @@ module TwistyPuzzles
       @native = native
     end
 
+    def to_s
+      "#{self.class}(#{face}, #{cube_size}, #{x}, #{y})"
+    end
+
     attr_reader :native
 
     def face

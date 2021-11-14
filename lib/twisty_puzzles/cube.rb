@@ -470,7 +470,6 @@ module TwistyPuzzles
   # Represents one wing or the position of one wing on the cube.
   class Wing < Part
     extend EdgeLike
-    WING_BASE_INDEX_INVERTED_FACE_SYMBOLS = %i[U R B].freeze
     FACES = 2
 
     ELEMENTS = generate_parts
@@ -543,8 +542,7 @@ module TwistyPuzzles
 
     # One index of such a piece on a on a NxN face.
     def base_index_on_other_face(face, _cube_size, incarnation_index)
-      # TODO: Make this more elegant than hardcoding
-      inverse = WING_BASE_INDEX_INVERTED_FACE_SYMBOLS.include?(face.face_symbol)
+      inverse = face.piece_index.even?
       coordinates = [0, 1 + incarnation_index]
       inverse ? coordinates.reverse : coordinates
     end
