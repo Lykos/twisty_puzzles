@@ -57,7 +57,7 @@ module TwistyPuzzles
     end
 
     def colors
-      @face_symbols_to_colors.values
+      @face_symbols_to_colors.to_a.sort_by(&:first).map(&:last)
     end
 
     def turned(top_color, front_color)

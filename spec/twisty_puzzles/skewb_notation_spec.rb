@@ -25,9 +25,9 @@ describe SkewbNotation do
   shared_examples 'notation' do |notation|
     context "when using #{notation.name} notation" do
       it 'stays empty if we serialize and then parse an empty algorithm' do
-        alg_string = described_class.fixed_corner.algorithm_to_string(Algorithm::EMPTY)
+        alg_string = described_class.fixed_corner.algorithm_to_string(Algorithm.empty)
         parsed_alg = parse_skewb_algorithm(alg_string, notation)
-        expect(parsed_alg).to equivalent_skewb_algorithm(Algorithm::EMPTY, color_scheme)
+        expect(parsed_alg).to equivalent_skewb_algorithm(Algorithm.empty, color_scheme)
       end
 
       it 'stays the same if we serialize and then parse an algorithm' do

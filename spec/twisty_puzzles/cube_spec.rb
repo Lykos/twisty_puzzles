@@ -222,12 +222,12 @@ describe Face do
   end
 
   it 'finds out what rotations to do to get to the position of the same face' do
-    expect(Face::U.rotation_to(Face::U)).to eq(Algorithm::EMPTY)
-    expect(Face::D.rotation_to(Face::D)).to eq(Algorithm::EMPTY)
-    expect(Face::F.rotation_to(Face::F)).to eq(Algorithm::EMPTY)
-    expect(Face::B.rotation_to(Face::B)).to eq(Algorithm::EMPTY)
-    expect(Face::R.rotation_to(Face::R)).to eq(Algorithm::EMPTY)
-    expect(Face::L.rotation_to(Face::L)).to eq(Algorithm::EMPTY)
+    expect(Face::U.rotation_to(Face::U)).to eq(Algorithm.empty)
+    expect(Face::D.rotation_to(Face::D)).to eq(Algorithm.empty)
+    expect(Face::F.rotation_to(Face::F)).to eq(Algorithm.empty)
+    expect(Face::B.rotation_to(Face::B)).to eq(Algorithm.empty)
+    expect(Face::R.rotation_to(Face::R)).to eq(Algorithm.empty)
+    expect(Face::L.rotation_to(Face::L)).to eq(Algorithm.empty)
   end
 
   it 'finds out what rotations to do to get to the position of an opposite face' do
