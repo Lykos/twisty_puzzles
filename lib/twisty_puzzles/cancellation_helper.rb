@@ -43,7 +43,7 @@ module TwistyPuzzles
       raise TypeError unless algorithm.is_a?(Algorithm)
 
       CubeState.check_cube_size(cube_size)
-      alg = Algorithm::EMPTY
+      alg = Algorithm.empty
       algorithm.moves.each do |m|
         alg = push_with_cancellation(alg, m, cube_size)
       end
@@ -107,7 +107,7 @@ module TwistyPuzzles
     def self.rotation_sequences
       @rotation_sequences ||=
         begin
-          trivial_rotation_algs = [Algorithm::EMPTY]
+          trivial_rotation_algs = [Algorithm.empty]
           single_rotation_algs = Rotation::NON_ZERO_ROTATIONS.map { |e| Algorithm.move(e) }
           combined_rotation_algs = self.combined_rotation_algs
           rotation_algs = trivial_rotation_algs + single_rotation_algs + combined_rotation_algs

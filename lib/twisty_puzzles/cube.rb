@@ -286,7 +286,7 @@ module TwistyPuzzles
     # lie where the given other face currently is.
     def rotation_to(other)
       if other == self
-        Algorithm::EMPTY
+        Algorithm.empty
       else
         # There can be multiple solutions.
         axis_face =

@@ -20,7 +20,9 @@ module TwistyPuzzles
       @moves = moves
     end
 
-    EMPTY = Algorithm.new([])
+    def self.empty
+      Algorithm.new([])
+    end
 
     # Creates a one move algorithm.
     def self.move(move)
