@@ -79,6 +79,21 @@ module TwistyPuzzles
         end.min
     end
 
+    # Note that this returns the same answer for all rotations of one part.
+    def contains?(part)
+      @parts.any? { |p| p.turned_equals?(part) }
+    end
+
+    # Returns an equivalent cycle that starts with the given part.
+    # Raises an error if the cycle doesn't contain the given part.
+    def start_with(part)
+      raise ArgumentError unless contains?(part)
+
+      index = @parts.find_index { |p| p.turned_equals?(part) }
+      map_rotate_by_number = @parts[index].rotations.index(part)
+      rotate_by(@parts.length - index).map_rotate_by(map_rotate_by_number)
+    end
+
     def equivalent?(other)
       self == other || canonicalize == other.canonicalize
     end

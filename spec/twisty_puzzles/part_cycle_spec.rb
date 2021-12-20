@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'rantly'
+require 'rantly/rspec_extensions'
+require 'rantly/shrinks'
+
 describe PartCycle do
   it 'can be serialized and deserialized' do
     property_of do
@@ -46,6 +50,19 @@ describe PartCycle do
       Rantly { part_cycle }
     end.check do |c|
       expect(c.equivalent?(c.map_rotate_by(1))).to be(true)
+    end
+  end
+
+  it 'returns an equivalent cycle starting with the part given in start_with' do
+    property_of do
+      Rantly do
+        c = part_cycle
+        p = choose(*c.parts)
+        r = choose(*p.rotations)
+        [c, r]
+      end
+    end.check do |c, p|
+      expect(c.start_with(p).equivalent?(c)).to be(true)
     end
   end
 end
