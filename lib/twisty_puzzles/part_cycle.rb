@@ -17,7 +17,7 @@ module TwistyPuzzles
 
     RAW_DATA_RESERVED = [' ', '(', ')'].freeze
 
-    def initialize(parts, twist=0)
+    def initialize(parts, twist = 0)
       raise ArgumentError if parts.empty?
       raise TypeError unless twist.is_a?(Integer)
       raise ArgumentError if twist.negative?

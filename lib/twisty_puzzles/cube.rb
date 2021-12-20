@@ -74,7 +74,7 @@ module TwistyPuzzles
 
     def self.exists_on_cube_size?(cube_size)
       cube_size >= min_cube_size && cube_size <= max_cube_size &&
-        (cube_size % 2 == 0 ? self.exists_on_even_cube_sizes? : self.exists_on_odd_cube_sizes?)
+        (cube_size.even? ? exists_on_even_cube_sizes? : exists_on_odd_cube_sizes?)
     end
 
     def num_incarnations(_cube_size)
