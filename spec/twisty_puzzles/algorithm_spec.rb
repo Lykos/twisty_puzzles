@@ -53,6 +53,26 @@ describe Algorithm do
     expect(parse_algorithm('R U’')).to eq_cube_algorithm("R U'")
   end
 
+  it 'parses inverses with right single quotation mark correctly' do
+    expect(parse_algorithm('R U’')).to eq_cube_algorithm("R U'")
+  end
+
+  it 'parses inverses with left single quotation mark correctly' do
+    expect(parse_algorithm('R U‘')).to eq_cube_algorithm("R U'")
+  end
+
+  it 'parses inverses with left single quotation mark correctly' do
+    expect(parse_algorithm('R U‘')).to eq_cube_algorithm("R U'")
+  end
+
+  it 'parses inverses with grave accent correctly' do
+    expect(parse_algorithm('R U`')).to eq_cube_algorithm("R U'")
+  end
+
+  it 'parses inverses with acute accent correctly' do
+    expect(parse_algorithm('R U´')).to eq_cube_algorithm("R U'")
+  end
+
   it 'computes the move count of algorithms correctly' do
     algorithm = parse_algorithm("R2 U F' S M2 E'")
     expect(algorithm.move_count(cube_size)).to eq(9)
