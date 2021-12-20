@@ -16,6 +16,13 @@ describe Edge do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 3 }
 
+  it 'knows that it only exists on 3x3' do
+    expect(described_class.exists_on_cube_size?(2)).to be(false)
+    expect(described_class.exists_on_cube_size?(3)).to be(true)
+    expect(described_class.exists_on_cube_size?(4)).to be(false)
+    expect(described_class.exists_on_cube_size?(5)).to be(false)
+  end
+
   it 'returns the right solved_coordinate' do
     expect(letter_scheme.for_letter(described_class, 'a').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 0, 1)
     expect(letter_scheme.for_letter(described_class, 'b').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 1, 0)
@@ -48,6 +55,15 @@ describe Midge do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 5 }
 
+  it 'knows that it only exits on uneven cube sizes starting from 5' do
+    expect(described_class.exists_on_cube_size?(2)).to be(false)
+    expect(described_class.exists_on_cube_size?(3)).to be(false)
+    expect(described_class.exists_on_cube_size?(4)).to be(false)
+    expect(described_class.exists_on_cube_size?(5)).to be(true)
+    expect(described_class.exists_on_cube_size?(6)).to be(false)
+    expect(described_class.exists_on_cube_size?(7)).to be(true)
+  end
+
   it 'returns the right solved_coordinate' do
     expect(letter_scheme.for_letter(described_class, 'a').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 0, 2)
     expect(letter_scheme.for_letter(described_class, 'b').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 2, 0)
@@ -79,6 +95,14 @@ end
 describe Wing do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 4 }
+
+  it 'knows that it only exists on 4x4 and above' do
+    expect(described_class.exists_on_cube_size?(2)).to be(false)
+    expect(described_class.exists_on_cube_size?(3)).to be(false)
+    expect(described_class.exists_on_cube_size?(4)).to be(true)
+    expect(described_class.exists_on_cube_size?(5)).to be(true)
+    expect(described_class.exists_on_cube_size?(6)).to be(true)
+  end
 
   it 'parses wings in UB correctly' do
     expect(described_class.parse('UBl')).to eq(described_class.for_face_symbols(%i[B U]))
@@ -154,6 +178,15 @@ describe Corner do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 3 }
 
+  it 'knows that it exists on all cube sizes' do
+    expect(described_class.exists_on_cube_size?(2)).to be(true)
+    expect(described_class.exists_on_cube_size?(3)).to be(true)
+    expect(described_class.exists_on_cube_size?(4)).to be(true)
+    expect(described_class.exists_on_cube_size?(5)).to be(true)
+    expect(described_class.exists_on_cube_size?(6)).to be(true)
+    expect(described_class.exists_on_cube_size?(7)).to be(true)
+  end
+
   it 'returns the right solved_coordinate' do
     expect(letter_scheme.for_letter(described_class, 'a').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 0, -1)
     expect(letter_scheme.for_letter(described_class, 'b').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 0, 0)
@@ -184,6 +217,15 @@ end
 
 describe Face do
   let(:letter_scheme) { BernhardLetterScheme.new }
+
+  it 'knows that it only exits on uneven cube sizes' do
+    expect(described_class.exists_on_cube_size?(2)).to be(false)
+    expect(described_class.exists_on_cube_size?(3)).to be(true)
+    expect(described_class.exists_on_cube_size?(4)).to be(false)
+    expect(described_class.exists_on_cube_size?(5)).to be(true)
+    expect(described_class.exists_on_cube_size?(6)).to be(false)
+    expect(described_class.exists_on_cube_size?(7)).to be(true)
+  end
 
   it 'returns the right neighbor faces' do
     expect(Face::U.neighbors).to be_rotationally_equivalent_to([Face::R, Face::F, Face::L, Face::B])
@@ -276,6 +318,15 @@ describe TCenter do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 5 }
 
+  it 'knows that it only exits on uneven cube sizes starting from 5' do
+    expect(described_class.exists_on_cube_size?(2)).to be(false)
+    expect(described_class.exists_on_cube_size?(3)).to be(false)
+    expect(described_class.exists_on_cube_size?(4)).to be(false)
+    expect(described_class.exists_on_cube_size?(5)).to be(true)
+    expect(described_class.exists_on_cube_size?(6)).to be(false)
+    expect(described_class.exists_on_cube_size?(7)).to be(true)
+  end
+
   it 'returns the right solved_coordinate' do
     expect(letter_scheme.for_letter(described_class, 'a').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 1, 2)
     expect(letter_scheme.for_letter(described_class, 'b').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 2, 1)
@@ -307,6 +358,15 @@ end
 describe XCenter do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 4 }
+
+  it 'knows that it only exits on cube sizes starting from 4' do
+    expect(described_class.exists_on_cube_size?(2)).to be(false)
+    expect(described_class.exists_on_cube_size?(3)).to be(false)
+    expect(described_class.exists_on_cube_size?(4)).to be(true)
+    expect(described_class.exists_on_cube_size?(5)).to be(true)
+    expect(described_class.exists_on_cube_size?(6)).to be(true)
+    expect(described_class.exists_on_cube_size?(7)).to be(true)
+  end
 
   it 'returns the right solved_coordinate' do
     expect(letter_scheme.for_letter(described_class, 'a').solved_coordinate(cube_size, 0)).to eq_cube_coordinate(Face::U, cube_size, 1, -2)

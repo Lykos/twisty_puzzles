@@ -72,6 +72,11 @@ module TwistyPuzzles
       true
     end
 
+    def self.exists_on_cube_size?(cube_size)
+      cube_size >= min_cube_size && cube_size <= max_cube_size &&
+        (cube_size % 2 == 0 ? self.exists_on_even_cube_sizes? : self.exists_on_odd_cube_sizes?)
+    end
+
     def num_incarnations(_cube_size)
       1
     end
@@ -476,10 +481,6 @@ module TwistyPuzzles
 
     def self.min_cube_size
       4
-    end
-
-    def self.exists_on_odd_cube_sizes?
-      false
     end
 
     def self.max_parseable_face_symbols
