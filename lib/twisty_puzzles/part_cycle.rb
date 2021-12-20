@@ -17,16 +17,19 @@ module TwistyPuzzles
 
     RAW_DATA_RESERVED = [' ', '(', ')'].freeze
 
-    def initialize(parts)
+    def initialize(parts, twist=0)
       raise ArgumentError if parts.empty?
+      raise TypeError unless twist.is_a?(Integer)
+      raise ArgumentError if twist.negative?
 
       check_types(parts, Part)
       check_type_consistency(parts)
 
       @parts = parts
+      @twist = twist
     end
 
-    attr_reader :parts
+    attr_reader :parts, :twist
 
     def eql?(other)
       self.class.equal?(other.class) && @parts == other.parts
