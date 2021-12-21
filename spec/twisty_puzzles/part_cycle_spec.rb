@@ -62,7 +62,9 @@ describe PartCycle do
         [c, r]
       end
     end.check do |c, p|
-      expect(c.start_with(p).equivalent?(c)).to be(true)
+      restarted = c.start_with(p)
+      expect(restarted.equivalent?(c)).to be(true)
+      expect(restarted.parts.first).to eq(p)
     end
   end
 end

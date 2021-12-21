@@ -94,7 +94,7 @@ module TwistyPuzzles
 
       index = @parts.find_index { |p| p.turned_equals?(part) }
       map_rotate_by_number = @parts[index].rotations.index(part)
-      rotate_by(@parts.length - index).map_rotate_by(map_rotate_by_number)
+      rotate_by(index).map_rotate_by(map_rotate_by_number)
     end
 
     def equivalent?(other)
