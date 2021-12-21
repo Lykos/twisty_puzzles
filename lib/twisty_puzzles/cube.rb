@@ -122,7 +122,7 @@ module TwistyPuzzles
     end
 
     def inspect
-      "#{self.class}(#{@face_symbols.map(&:to_s).join(', ')})"
+      @inspect ||= "#{self.class.name.split('::').last}(#{@face_symbols.map(&:to_s).join(', ')})"
     end
 
     def to_s

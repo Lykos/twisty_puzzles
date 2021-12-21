@@ -37,6 +37,10 @@ module TwistyPuzzles
 
     alias == eql?
 
+    def inspect
+      @inspect ||= "#{self.class.name.split('::').last}(#{@parts.map(&:inspect).join(', ')})"
+    end
+
     def hash
       @hash ||= ([self.class] + @parts).hash
     end
