@@ -69,11 +69,11 @@ module TwistyPuzzles
     end
 
     def rotate_by(number)
-      self.class.new(@parts.rotate(number))
+      self.class.new(@parts.rotate(number), @twist)
     end
 
     def map_rotate_by(number)
-      self.class.new(@parts.map { |p| p.rotate_by(number) })
+      self.class.new(@parts.map { |p| p.rotate_by(number) }, @twist)
     end
 
     def <=>(other)

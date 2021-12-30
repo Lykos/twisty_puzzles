@@ -53,6 +53,22 @@ describe PartCycle do
     end
   end
 
+  it 'a rotation preserves the twist' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.rotate_by(1).twist).to eq(c.twist)
+    end
+  end
+
+  it 'a per-element rotation preserves the twist' do
+    property_of do
+      Rantly { part_cycle }
+    end.check do |c|
+      expect(c.map_rotate_by(1).twist).to eq(c.twist)
+    end
+  end
+
   it 'returns an equivalent cycle starting with the part given in start_with' do
     property_of do
       Rantly do
