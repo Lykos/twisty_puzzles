@@ -7,6 +7,7 @@ require 'twisty_puzzles/reversible_applyable'
 
 module TwistyPuzzles
   # A sticker cycle that can be applied to a cube state.
+  # TODO: Deprecate
   class StickerCycle
     include ReversibleApplyable
 
@@ -55,6 +56,7 @@ module TwistyPuzzles
   end
 
   # A set of disjoint sticker cycles that can be applied to a cube state together
+  # TODO: Deprecate
   class StickerCycles
     include ReversibleApplyable
 
@@ -64,7 +66,10 @@ module TwistyPuzzles
         raise TypeError unless c.is_a?(StickerCycle)
 
         c.native.coordinates.each do |s|
-          raise ArgumentError unless affected_set.add?(s)
+          unless affected_set.add?(s)
+            raise ArgumentError,
+                  'There is an intersection between part cycles'
+          end
         end
       end
       @cube_size = cube_size

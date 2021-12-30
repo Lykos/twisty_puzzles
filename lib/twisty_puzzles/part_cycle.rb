@@ -21,6 +21,7 @@ module TwistyPuzzles
       raise ArgumentError if parts.empty?
       raise TypeError unless twist.is_a?(Integer)
       raise ArgumentError if twist.negative?
+      raise ArgumentError if twist >= parts.first.rotations.length
 
       check_types(parts, Part)
       check_type_consistency(parts)
@@ -32,17 +33,18 @@ module TwistyPuzzles
     attr_reader :parts, :twist
 
     def eql?(other)
-      self.class.equal?(other.class) && @parts == other.parts
+      self.class.equal?(other.class) && @parts == other.parts && @twist == other.twist
     end
 
     alias == eql?
 
     def inspect
-      @inspect ||= "#{self.class.name.split('::').last}(#{@parts.map(&:inspect).join(', ')})"
+      @inspect ||=
+        "#{self.class.name.split('::').last}(#{@parts.map(&:inspect).join(', ')}#{twist_suffix})"
     end
 
     def hash
-      @hash ||= ([self.class] + @parts).hash
+      @hash ||= [self.class, @parts, @twist].hash
     end
 
     def part_type
@@ -50,15 +52,16 @@ module TwistyPuzzles
     end
 
     def contains_any_part?(parts)
-      !(@parts & parts).empty?
+      parts.any? { |p| contains?(p) }
     end
 
     def to_s
-      @parts.join(' ')
+      @to_s ||= @parts.join(' ')
     end
 
     def to_raw_data
-      "#{simple_class_name(part_type)}(#{self})"
+      @to_raw_data ||=
+        "#{simple_class_name(part_type)}(#{self}#{twist_suffix})"
     end
 
     def length
@@ -74,7 +77,7 @@ module TwistyPuzzles
     end
 
     def <=>(other)
-      @parts <=> other.parts
+      [part_type, @parts, @twist] <=> [other.part_type, other.parts, other.twist]
     end
 
     def canonicalize
@@ -106,14 +109,22 @@ module TwistyPuzzles
     end
 
     def inverse
-      self.class.new([@parts[0]] + @parts[1..].reverse)
+      inverse_twist = @twist.zero? ? @twist : parts.first.rotations.length - @twist
+      self.class.new([@parts[0]] + @parts[1..].reverse, inverse_twist)
     end
 
     def self.from_raw_data(data)
-      raw_part_type, raw_parts = data.match(/(.*)\((.*)\)/).captures
+      raw_part_type, raw_parts, raw_twist = data.match(/^(.*)\((.*?)(?:, (.+))?\)$/).captures
       part_type = PART_TYPES.find { |p| simple_class_name(p) == raw_part_type }
+      twist = raw_twist ? Integer(raw_twist) : 0
       parts = raw_parts.split.map { |r| part_type.parse(r) }
-      new(parts)
+      new(parts, twist)
+    end
+
+    private
+
+    def twist_suffix
+      @twist.positive? ? ", #{@twist}" : ''
     end
 
     def check_type_consistency(parts)

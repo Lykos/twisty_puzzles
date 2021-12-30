@@ -18,7 +18,8 @@ end
 
 def part_cycle
   t = part_type
-  PartCycle.new(Array.new(size) { choose(*t::ELEMENTS) })
+  num_twists = t::ELEMENTS.first.rotations.length
+  PartCycle.new(Array.new(size) { choose(*t::ELEMENTS) }, range(0, num_twists - 1))
 end
 
 def non_zero_cube_direction

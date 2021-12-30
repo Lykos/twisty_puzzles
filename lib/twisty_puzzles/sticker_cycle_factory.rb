@@ -6,6 +6,7 @@ require 'twisty_puzzles/cube'
 
 module TwistyPuzzles
   # Factory for sticker cycles given part cycles.
+  # TODO: Deprecate
   class StickerCycleFactory
     include Utils::ArrayHelper
 

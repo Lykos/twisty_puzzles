@@ -390,7 +390,8 @@ module TwistyPuzzles
     attr_reader :corresponding_part
 
     def inspect
-      "#{self.class}(#{face_symbol}, #{@corresponding_part.inspect})"
+      @inspect ||=
+        "#{self.class.name.split('::').last}(#{face_symbol}, #{@corresponding_part.inspect})"
     end
 
     def rotate_by(_number)
