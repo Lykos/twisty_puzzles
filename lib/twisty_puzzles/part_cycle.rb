@@ -77,7 +77,7 @@ module TwistyPuzzles
     end
 
     def <=>(other)
-      [part_type, @parts, @twist] <=> [other.part_type, other.parts, other.twist]
+      [part_type.name, @parts, @twist] <=> [other.part_type.name, other.parts, other.twist]
     end
 
     def canonicalize
