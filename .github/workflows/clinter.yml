@@ -2,7 +2,7 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 name: c-linter
 
-on: [push, pull-request]
+on: [push, pull_request]
 jobs:
   c-linter:
     runs-on: ubuntu-latest
