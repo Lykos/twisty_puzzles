@@ -1,5 +1,6 @@
-![Ruby](https://github.com/Lykos/twisty_puzzles/workflows/Ruby/badge.svg)
-![Rubocop](https://github.com/Lykos/twisty_puzzles/workflows/Rubocop/badge.svg)
+[![Ruby](https://github.com/Lykos/twisty_puzzles/workflows/Ruby/badge.svg)](https://github.com/Lykos/twisty_puzzles/actions/workflows/ruby.yml)
+[![Rubocop](https://github.com/Lykos/twisty_puzzles/workflows/Rubocop/badge.svg)](https://github.com/Lykos/twisty_puzzles/actions/workflows/rubocop.yml)
+[![cpp-linter](https://github.com/Lykos/twisty_puzzles/workflows/c-linter/badge.svg)](https://github.com/Lykos/twisty_puzzles/actions/workflows/clinter.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Gem Version](https://badge.fury.io/rb/twisty_puzzles.svg)](https://badge.fury.io/rb/twisty_puzzles)
 
