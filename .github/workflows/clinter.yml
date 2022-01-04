@@ -2,12 +2,7 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 name: c-linter
 
-on:
-  push:
-    paths-ignore: "docs/**"
-  pull_request:
-    paths-ignore: "docs/**"
-
+on: [push, pull-request]
 jobs:
   c-linter:
     runs-on: ubuntu-latest
