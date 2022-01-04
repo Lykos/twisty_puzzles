@@ -1,6 +1,6 @@
 # Workflow syntax:
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
-name: cpp-linter
+name: c-linter
 
 on:
   push:
@@ -17,6 +17,9 @@ jobs:
         id: linter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # The C code is in the ext directory
+          repo-root: ext
 
       - name: Fail fast?!
         if: steps.linter.outputs.checks-failed > 0
