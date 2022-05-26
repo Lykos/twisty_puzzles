@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.homepage = REPO_URI
   s.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
 
-  s.metadata['rubygems_mfa_required'] = true
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = REPO_URI
   s.metadata['changelog_uri'] = "#{REPO_URI}/blob/master/CHANGELOG.md"
