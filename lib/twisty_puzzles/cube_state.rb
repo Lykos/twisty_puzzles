@@ -35,7 +35,7 @@ module TwistyPuzzles
     end
 
     def self.create_stickers_hash(stickers)
-      FACE_SYMBOLS.zip(stickers).map do |face_symbol, face_stickers|
+      FACE_SYMBOLS.zip(stickers).to_h do |face_symbol, face_stickers|
         face = Face.for_face_symbol(face_symbol)
         face_hash = {
           stickers: face_stickers,
@@ -46,7 +46,7 @@ module TwistyPuzzles
           y_base_face_symbol: face.coordinate_index_base_face(0).face_symbol
         }
         [face_symbol, face_hash]
-      end.to_h
+      end
     end
 
     def initialize(native)
