@@ -76,7 +76,7 @@ module TwistyPuzzles
     end
 
     def algorithm
-      @commutators.map(&:algorithm).inject(Algorithm.empty) { |a, b| a + b }
+      @commutators.sum(Algorithm.empty, &:algorithm)
     end
   end
 
