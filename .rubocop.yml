@@ -5,6 +5,7 @@ AllCops:
   TargetRubyVersion: 3.0
   Exclude:
   - 'Steepfile'
+  - 'tmp/**/*'
 Layout/LineLength:
   Max: 100
   # TODO: This is temporary
@@ -218,4 +219,38 @@ Style/StringChars: # new in 1.12
 Performance/ConcurrentMonotonicTime: # new in 1.12
   Enabled: true
 Performance/MapCompact: # new in 1.11
+  Enabled: true
+Gemspec/DeprecatedAttributeAssignment: # new in 1.30
+  Enabled: true
+Gemspec/RequireMFA: # new in 1.23
+  Enabled: true
+Lint/RefinementImportMethods: # new in 1.27
+  Enabled: true
+Lint/UselessRuby2Keywords: # new in 1.23
+  Enabled: true
+Naming/BlockForwarding: # new in 1.24
+  Enabled: true
+Security/CompoundHash: # new in 1.28
+  Enabled: true
+Style/EnvHome: # new in 1.29
+  Enabled: true
+Style/FetchEnvVar: # new in 1.28
+  Enabled: true
+Style/FileRead: # new in 1.24
+  Enabled: true
+Style/FileWrite: # new in 1.24
+  Enabled: true
+Style/MapCompactWithConditionalBlock: # new in 1.30
+  Enabled: true
+Style/MapToHash: # new in 1.24
+  Enabled: true
+Style/NestedFileDirname: # new in 1.26
+  Enabled: true
+Style/ObjectThen: # new in 1.28
+  Enabled: true
+Style/OpenStructUse: # new in 1.23
+  Enabled: true
+Style/RedundantInitialize: # new in 1.27
+  Enabled: true
+Performance/StringIdentifierArgument: # new in 1.13
   Enabled: true

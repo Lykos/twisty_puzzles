@@ -35,7 +35,7 @@ module TwistyPuzzles
     alias == eql?
 
     def hash
-      @hash ||= ([self.class] + colors).hash
+      @hash ||= [self.class, colors].hash
     end
 
     def color(face_symbol)

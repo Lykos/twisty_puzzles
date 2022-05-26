@@ -11,7 +11,7 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
   end
 
   # Parser for commutators and algorithms.
-  class Parser
+  class Parser # rubocop:disable Metrics/ClassLength
     OPENING_BRACKET = '['
     OPENING_PAREN = '('
     CLOSING_BRACKET = ']'
