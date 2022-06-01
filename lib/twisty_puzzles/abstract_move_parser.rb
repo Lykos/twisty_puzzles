@@ -21,11 +21,11 @@ module TwistyPuzzles
 
     def parse_named_captures(match)
       present_named_captures = match.named_captures.compact
-      present_named_captures.map do |name, string|
+      present_named_captures.to_h do |name, string|
         key = parse_part_key(name).to_sym
         value = parse_move_part(name, string)
         [key, value]
-      end.to_h
+      end
     end
 
     def parse_move(move_string)

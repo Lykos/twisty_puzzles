@@ -23,7 +23,7 @@ module TwistyPuzzles
     end
 
     def hash
-      @hash ||= ([self.class] + identifying_fields).hash
+      @hash ||= [self.class, identifying_fields].hash
     end
 
     def eql?(other)

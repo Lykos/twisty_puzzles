@@ -35,7 +35,7 @@ module TwistyPuzzles
     alias == eql?
 
     def hash
-      @hash ||= ([self.class] + colors).hash
+      @hash ||= [self.class, colors].hash
     end
 
     def color(face_symbol)
@@ -167,9 +167,10 @@ module TwistyPuzzles
 
     def obvious_turned_face_symbols_to_colors(top_color, front_color)
       result = { U: top_color, F: front_color }
-      opposites = result.map do |face_symbol, color|
-        [opposite_face_symbol(face_symbol), opposite_color(color)]
-      end.to_h
+      opposites =
+        result.to_h do |face_symbol, color|
+          [opposite_face_symbol(face_symbol), opposite_color(color)]
+        end
       result.merge!(opposites)
     end
 

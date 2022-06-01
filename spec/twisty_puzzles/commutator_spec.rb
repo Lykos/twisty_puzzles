@@ -33,6 +33,29 @@ describe PureCommutator do
   end
 end
 
+describe CommutatorSequence do
+  let(:cube_size) { 3 }
+  let(:commutator) { parse_commutator('[R, U\' L\' U] + [L, U]') }
+  let(:algorithm) { parse_algorithm('R U\' L\' U R\' U\' L U L U L\' U\'') }
+  let(:inverse) { parse_commutator('[U, L] + [U\' L\' U, R]') }
+
+  it 'has the right inverse' do
+    expect(commutator.inverse).to eq(inverse)
+  end
+
+  it 'has the right algorithm inverse' do
+    expect(commutator.algorithm.inverse).to eq(inverse.algorithm)
+  end
+
+  it 'has the right algorithm' do
+    expect(commutator.algorithm).to eq(algorithm)
+  end
+
+  it 'is printed appropriately' do
+    expect(commutator.to_s).to eq('[R, U\' L\' U] + [L, U]')
+  end
+end
+
 describe SetupCommutator do
   let(:commutator) { parse_commutator('[U\' : [R, U\' L\' U]]') }
   let(:cube_size) { 3 }

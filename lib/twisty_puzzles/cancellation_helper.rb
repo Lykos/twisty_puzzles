@@ -111,9 +111,9 @@ module TwistyPuzzles
           single_rotation_algs = Rotation::NON_ZERO_ROTATIONS.map { |e| Algorithm.move(e) }
           combined_rotation_algs = self.combined_rotation_algs
           rotation_algs = trivial_rotation_algs + single_rotation_algs + combined_rotation_algs
-          rotation_algs.map do |alg|
+          rotation_algs.to_h do |alg|
             [rotated_center_state(alg.moves), alg]
-          end.to_h.freeze
+          end.freeze
         end
     end
 

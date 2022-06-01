@@ -11,13 +11,14 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
   end
 
   # Parser for commutators and algorithms.
-  class Parser
+  class Parser # rubocop:disable Metrics/ClassLength
     OPENING_BRACKET = '['
     OPENING_PAREN = '('
     CLOSING_BRACKET = ']'
     CLOSING_PAREN = ')'
     SLASH = '/'
     COMMA = ','
+    PLUS = '+'
     SETUP_SEPARATORS = %w[; :].freeze
     PURE_SEPARATORS = [SLASH, COMMA].freeze
     SEPARATORS = (SETUP_SEPARATORS + PURE_SEPARATORS).freeze
@@ -141,6 +142,8 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       separator = parse_separator
       comm = parse_commutator_internal_after_separator(setup_or_first_part, separator)
       skip_spaces
+      return parse_commutator_sum_with_prefix(comm) if @scanner.peek(1) == PLUS
+
       complain('end of commutator') unless @scanner.eos?
       comm
     end
@@ -230,8 +233,21 @@ module TwistyPuzzles # rubocop:disable Style/Documentation
       skip_spaces
       parse_close_bracket
       skip_spaces
+      return parse_commutator_sum_with_prefix(comm) if @scanner.peek(1) == PLUS
+
       complain('end of commutator') unless @scanner.eos?
       comm
+    end
+
+    def parse_plus
+      complain('operator of commutator sequence') unless @scanner.getch == PLUS
+    end
+
+    def parse_commutator_sum_with_prefix(commutator)
+      skip_spaces
+      parse_plus
+      skip_spaces
+      CommutatorSequence.new([commutator, parse_commutator])
     end
 
     def parse_move_internal

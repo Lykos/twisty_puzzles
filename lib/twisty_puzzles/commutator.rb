@@ -19,7 +19,7 @@ module TwistyPuzzles
   # Algorithm that is used like a commutator but actually isn't one.
   class FakeCommutator < Commutator
     def initialize(algorithm)
-      raise ArgumentError unless algorithm.is_a?(Algorithm)
+      raise TypeError unless algorithm.is_a?(Algorithm)
 
       super()
       @algorithm = algorithm
@@ -46,11 +46,45 @@ module TwistyPuzzles
     end
   end
 
+  # A commutator sequence of the form [A, B] + [C, D].
+  class CommutatorSequence < Commutator
+    def initialize(commutators)
+      raise TypeError unless commutators.is_a?(Array) && commutators.all?(Commutator)
+
+      super()
+      @commutators = commutators
+    end
+
+    attr_reader :commutators
+
+    def eql?(other)
+      self.class.equal?(other.class) && @commutators == other.commutators
+    end
+
+    alias == eql?
+
+    def hash
+      @hash ||= [self.class, @commutators].hash
+    end
+
+    def inverse
+      CommutatorSequence.new(@commutators.map(&:inverse).reverse)
+    end
+
+    def to_s
+      @commutators.join(' + ')
+    end
+
+    def algorithm
+      @commutators.sum(Algorithm.empty, &:algorithm)
+    end
+  end
+
   # Pure commutator of the form A B A' B'.
   class PureCommutator < Commutator
     def initialize(first_part, second_part)
-      raise ArgumentError unless first_part.is_a?(Algorithm)
-      raise ArgumentError unless second_part.is_a?(Algorithm)
+      raise TypeError unless first_part.is_a?(Algorithm)
+      raise TypeError unless second_part.is_a?(Algorithm)
 
       super()
       @first_part = first_part
@@ -101,9 +135,9 @@ module TwistyPuzzles
   # Setup commutator of the form A B A'.
   class SetupCommutator < Commutator
     def initialize(setup, inner_commutator)
-      raise ArgumentError, 'Setup move has to be an algorithm.' unless setup.is_a?(Algorithm)
+      raise TypeError, 'Setup move has to be an algorithm.' unless setup.is_a?(Algorithm)
       unless inner_commutator.is_a?(Commutator)
-        raise ArgumentError, 'Inner commutator has to be a commutator.'
+        raise TypeError, 'Inner commutator has to be a commutator.'
       end
 
       super()

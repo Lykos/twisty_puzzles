@@ -38,7 +38,7 @@ module TwistyPuzzles
     alias == eql?
 
     def hash
-      @hash ||= ([self.class] + @moves).hash
+      @hash ||= [self.class, @moves].hash
     end
 
     def length
