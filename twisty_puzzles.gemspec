@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rantly'
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rspec-prof'
-  s.add_development_dependency 'rubocop', '~> 1.7'
+  s.add_development_dependency 'rubocop', '~> 1.38'
   s.add_development_dependency 'rubocop-performance'
   s.add_development_dependency 'rubocop-rake'
   s.add_development_dependency 'simplecov'

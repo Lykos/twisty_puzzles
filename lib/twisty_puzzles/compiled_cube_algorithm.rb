@@ -50,7 +50,7 @@ module TwistyPuzzles
       when SliceMove then transform_slice_move(decided_move)
       when FatMove then transform_fat_move(decided_move)
       else
-        raise TypeError, "Invalid move type #{move.class} that becomes #{decided_move.class} "\
+        raise TypeError, "Invalid move type #{move.class} that becomes #{decided_move.class} " \
                          "for cube size #{cube_size}."
       end
     end

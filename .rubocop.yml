@@ -53,7 +53,7 @@ Style/IpAddresses:
   Enabled: true
 Style/MethodCallWithArgsParentheses:
   Enabled: true
-  IgnoredMethods:
+  AllowedMethods:
   - print
   - puts
   - warn
@@ -178,8 +178,6 @@ Style/EndlessMethod: # (new in 1.8)
   Enabled: true
 Style/IfWithBooleanLiteralBranches: # (new in 1.9)
   Enabled: true
-Gemspec/DateAssignment: # (new in 1.10)
-  Enabled: true
 Style/HashConversion: # (new in 1.10)
   Enabled: true
 Performance/RedundantEqualityComparisonBlock: # (new in 1.10)
@@ -253,4 +251,26 @@ Style/OpenStructUse: # new in 1.23
 Style/RedundantInitialize: # new in 1.27
   Enabled: true
 Performance/StringIdentifierArgument: # new in 1.13
+  Enabled: true
+Layout/LineContinuationLeadingSpace: # new in 1.31
+  Enabled: true
+Layout/LineContinuationSpacing: # new in 1.31
+  Enabled: true
+Lint/ConstantOverwrittenInRescue: # new in 1.31
+  Enabled: true
+Lint/DuplicateMagicComment: # new in 1.37
+  Enabled: true
+Lint/NonAtomicFileOperation: # new in 1.31
+  Enabled: true
+Lint/RequireRangeParentheses: # new in 1.32
+  Enabled: true
+Style/EmptyHeredoc: # new in 1.32
+  Enabled: true
+Style/MagicCommentFormat: # new in 1.35
+  Enabled: true
+Style/OperatorMethodCall: # new in 1.37
+  Enabled: true
+Style/RedundantEach: # new in 1.38
+  Enabled: true
+Style/RedundantStringEscape: # new in 1.37
   Enabled: true
