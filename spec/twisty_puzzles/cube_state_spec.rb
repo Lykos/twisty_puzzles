@@ -386,6 +386,138 @@ shared_examples 'cube_state' do |cube_size|
     expect_stickers_changed(cube_state, changed_parts)
   end
 
+  it "has the right state after applying a u slice move" do
+    if cube_size >= 4
+      parse_algorithm("u").apply_to(cube_state)
+      changed_parts = {
+        [:F, 1, 1] => :blue,
+        [:L, 1, 1] => :orange,
+        [:B, 1, 1] => :green,
+        [:R, 1, 1] => :red
+      }
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, 1, x]] ||= :green
+        changed_parts[[:L, 1, x]] ||= :red
+        changed_parts[[:B, 1, x]] ||= :blue
+        changed_parts[[:R, 1, x]] ||= :orange
+      end
+    expect_stickers_changed(cube_state, changed_parts)
+    end
+  end
+
+    it "has the right state after applying a u' slice move" do
+      if cube_size >= 4
+      parse_algorithm("u'").apply_to(cube_state)
+      changed_parts = {
+        [:F, 1, cube_size - 2] => :green,
+        [:L, 1, cube_size - 2] => :red,
+        [:B, 1, cube_size - 2] => :blue,
+        [:R, 1, cube_size - 2] => :orange
+      }
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, 1, x]] ||= :blue
+        changed_parts[[:L, 1, x]] ||= :orange
+        changed_parts[[:B, 1, x]] ||= :green
+        changed_parts[[:R, 1, x]] ||= :red
+      end
+      expect_stickers_changed(cube_state, changed_parts)
+      end
+    end
+    
+    it "has the right state after applying a d slice move" do
+      if cube_size >= 4
+      parse_algorithm("d").apply_to(cube_state)
+      changed_parts = {
+        [:F, cube_size - 2, cube_size - 2] => :green,
+        [:L, cube_size - 2, cube_size - 2] => :red,
+        [:B, cube_size - 2, cube_size - 2] => :blue,
+        [:R, cube_size - 2, cube_size - 2] => :orange
+      }
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, cube_size - 2, x]] ||= :blue
+        changed_parts[[:L, cube_size - 2, x]] ||= :orange
+        changed_parts[[:B, cube_size - 2, x]] ||= :green
+        changed_parts[[:R, cube_size - 2, x]] ||= :red
+      end
+      expect_stickers_changed(cube_state, changed_parts)
+      end
+    end
+
+  it "has the right state after applying a d' slice move" do
+    if cube_size >= 4
+      parse_algorithm("d'").apply_to(cube_state)
+      changed_parts = {
+        [:F, cube_size - 2, 1] => :blue,
+        [:L, cube_size - 2, 1] => :orange,
+        [:B, cube_size - 2, 1] => :green,
+        [:R, cube_size - 2, 1] => :red
+      }
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, cube_size - 2, x]] ||= :green
+        changed_parts[[:L, cube_size - 2, x]] ||= :red
+        changed_parts[[:B, cube_size - 2, x]] ||= :blue
+        changed_parts[[:R, cube_size - 2, x]] ||= :orange
+      end
+    expect_stickers_changed(cube_state, changed_parts)
+    end
+  end
+
+  it "has the right state after applying a l slice move" do
+    if cube_size >= 4
+      parse_algorithm("l").apply_to(cube_state)
+      changed_parts = {}
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, x, cube_size - 2]] ||= :yellow
+        changed_parts[[:U, x, cube_size - 2]] ||= :orange
+        changed_parts[[:B, x, cube_size - 2]] ||= :white
+        changed_parts[[:D, x, cube_size - 2]] ||= :red
+      end
+      expect_stickers_changed(cube_state, changed_parts)
+    end
+  end
+
+  it "has the right state after applying a l' slice move" do
+    if cube_size >= 4
+      parse_algorithm("l'").apply_to(cube_state)
+      changed_parts = {}
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, x, cube_size - 2]] ||= :white
+        changed_parts[[:U, x, cube_size - 2]] ||= :red
+        changed_parts[[:B, x, cube_size - 2]] ||= :yellow
+        changed_parts[[:D, x, cube_size - 2]] ||= :orange
+      end
+      expect_stickers_changed(cube_state, changed_parts)
+    end
+  end
+
+  it "has the right state after applying a r slice move" do
+    if cube_size >= 4
+      parse_algorithm("r").apply_to(cube_state)
+      changed_parts = {}
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, x, 1]] ||= :yellow
+        changed_parts[[:U, x, 1]] ||= :orange
+        changed_parts[[:B, x, 1]] ||= :white
+        changed_parts[[:D, x, 1]] ||= :red
+      end
+      expect_stickers_changed(cube_state, changed_parts)
+    end
+  end
+
+  it "has the right state after applying a r' slice move" do
+    if cube_size >= 4
+      parse_algorithm("r'").apply_to(cube_state)
+      changed_parts = {}
+      0.upto(cube_size - 1) do |x|
+        changed_parts[[:F, x, 1]] ||= :white
+        changed_parts[[:U, x, 1]] ||= :red
+        changed_parts[[:B, x, 1]] ||= :yellow
+        changed_parts[[:D, x, 1]] ||= :orange
+      end
+      expect_stickers_changed(cube_state, changed_parts)
+    end
+  end
+
   it 'has the right state after applying an y rotation' do
     parse_algorithm('y').apply_to(cube_state)
     changed_parts = {}
@@ -488,6 +620,15 @@ shared_examples 'cube_state' do |cube_size|
     expected_cube_state = create_interesting_cube_state(cube_size)
     parse_algorithm('B z').apply_to(expected_cube_state)
     expect(cube_state).to eq_puzzle_state(expected_cube_state)
+  end
+
+  it "does l slice moves like Lw L'" do
+    if cube_size >= 4
+      parse_algorithm('l').apply_to(cube_state)
+      expected_cube_state = create_interesting_cube_state(cube_size)
+      parse_algorithm("Lw L'").apply_to(expected_cube_state)
+      expect(cube_state).to eq_puzzle_state(expected_cube_state)
+    end
   end
 
   it 'does a Niklas alg properly' do
