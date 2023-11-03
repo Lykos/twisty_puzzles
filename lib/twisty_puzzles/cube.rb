@@ -384,7 +384,7 @@ module TwistyPuzzles
     def self.for_face_symbols(face_symbols)
       unless face_symbols.length == self::CORRESPONDING_PART_CLASS::FACES
         raise ArgumentError, "Need #{self::CORRESPONDING_PART_CLASS::FACES} face_symbols for a " \
-                             "#{self.name}, have #{face_symbols.inspect}."
+                             "#{name}, have #{face_symbols.inspect}."
       end
 
       corresponding_part = self::CORRESPONDING_PART_CLASS.for_face_symbols(face_symbols)

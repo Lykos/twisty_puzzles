@@ -56,7 +56,7 @@ module TwistyPuzzles
       face_symbol_info = FACE_SYMBOL_INFOS[face_symbol]
       stickers = cube_state.sticker_array(face)
       lines =
-        stickers.collect_concat do |sticker_line|
+        stickers.flat_map do |sticker_line|
           line = sticker_line.map { |c| yield(c) * column_multiplicity }
           [maybe_reverse(face_symbol_info.reverse_columns_mode, line).join] * row_multiplicity
         end

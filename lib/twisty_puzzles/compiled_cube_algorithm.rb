@@ -56,7 +56,7 @@ module TwistyPuzzles
     end
 
     def self.for_moves(cube_size, moves)
-      transformed_moves = moves.collect_concat { |m| transform_move(m, cube_size) }
+      transformed_moves = moves.flat_map { |m| transform_move(m, cube_size) }
       native = Native::CubeAlgorithm.new(cube_size, transformed_moves)
       new(native)
     end

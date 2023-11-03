@@ -32,15 +32,5 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.md']
   s.license = 'MIT'
   s.add_runtime_dependency 'colorize'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'rake', '~> 13.0'
-  s.add_development_dependency 'rake-compiler'
-  s.add_development_dependency 'rantly'
-  s.add_development_dependency 'rspec', '~> 3.8'
-  s.add_development_dependency 'rspec-prof'
-  s.add_development_dependency 'rubocop', '~> 1.38'
-  s.add_development_dependency 'rubocop-performance'
-  s.add_development_dependency 'rubocop-rake'
-  s.add_development_dependency 'simplecov'
   s.metadata['rubygems_mfa_required'] = 'true'
 end

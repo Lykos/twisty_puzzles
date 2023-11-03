@@ -18,7 +18,7 @@ module TwistyPuzzles
       check_move_corner_pairs(move_corner_pairs)
       @name = name
       @move_to_corner = move_corner_pairs.to_h.freeze
-      @corner_to_move = move_corner_pairs.collect_concat do |m, c|
+      @corner_to_move = move_corner_pairs.flat_map do |m, c|
         c.rotations.map { |e| [e, m] }
       end.to_h.freeze
       @move_strings = move_corner_pairs.map(&:first).freeze

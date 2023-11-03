@@ -124,7 +124,7 @@ module TwistyPuzzles
 
     def self.face(face, cube_size)
       neighbor_a, neighbor_b = face.neighbors[0..1]
-      coordinate_range(cube_size).collect_concat do |x|
+      coordinate_range(cube_size).flat_map do |x|
         coordinate_range(cube_size).map do |y|
           from_face_distances(face, cube_size, neighbor_a => x, neighbor_b => y)
         end
@@ -132,7 +132,7 @@ module TwistyPuzzles
     end
 
     def self.layer(face, cube_size)
-      face.neighbors.zip(face.neighbors.rotate(1)).collect_concat do |neighbor, next_neighbor|
+      face.neighbors.zip(face.neighbors.rotate(1)).flat_map do |neighbor, next_neighbor|
         coordinate_range(cube_size).map do |i|
           from_face_distances(neighbor, cube_size, face => 0, next_neighbor => i)
         end
@@ -140,7 +140,7 @@ module TwistyPuzzles
     end
 
     def self.edges_outside(face, cube_size)
-      face.neighbors.zip(face.neighbors.rotate(1)).collect_concat do |neighbor, next_neighbor|
+      face.neighbors.zip(face.neighbors.rotate(1)).flat_map do |neighbor, next_neighbor|
         1.upto(cube_size - 2).map do |i|
           from_face_distances(neighbor, cube_size, face => 0, next_neighbor => i)
         end

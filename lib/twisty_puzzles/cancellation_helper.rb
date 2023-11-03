@@ -95,7 +95,7 @@ module TwistyPuzzles
     end
 
     def self.combined_rotation_algs
-      Rotation::NON_ZERO_ROTATIONS.collect_concat do |left|
+      Rotation::NON_ZERO_ROTATIONS.flat_map do |left|
         second_rotations =
           Rotation::NON_ZERO_ROTATIONS.reject do |e|
             e.direction.double_move? || e.same_axis?(left)
