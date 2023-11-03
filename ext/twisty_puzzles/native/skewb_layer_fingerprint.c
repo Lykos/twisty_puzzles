@@ -258,7 +258,7 @@ static void init_corner_pair_groups_for_face_index(const face_index_t layer_face
   }
 }
 
-static void init_corner_pair_groups() {
+static void init_corner_pair_groups(void) {
   for (face_index_t layer_face_index = 0; layer_face_index < cube_faces; ++layer_face_index) {
     init_corner_pair_groups_for_face_index(layer_face_index);
   }

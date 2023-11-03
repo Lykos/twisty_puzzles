@@ -14,7 +14,7 @@
 VALUE TwistyPuzzlesModule = Qnil;
 VALUE NativeModule = Qnil;
 
-void Init_native() {
+void Init_native(void) {
   TwistyPuzzlesModule = rb_define_module("TwistyPuzzles");
   NativeModule = rb_define_module_under(TwistyPuzzlesModule, "Native");
   init_cube_algorithm_class_under(NativeModule);

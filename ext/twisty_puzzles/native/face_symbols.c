@@ -57,7 +57,7 @@ size_t neighbor_index(const face_index_t base_face_index, const face_index_t oth
   return -1;
 }
 
-void init_face_symbols() {
+void init_face_symbols(void) {
   face_ids[U] = rb_intern("U");
   face_ids[F] = rb_intern("F");
   face_ids[R] = rb_intern("R");

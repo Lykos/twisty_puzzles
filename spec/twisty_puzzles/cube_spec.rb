@@ -16,7 +16,7 @@ describe Edge do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 3 }
 
-  xit 'rotates by a rotation' do
+  it 'rotates by a rotation' do
     rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
