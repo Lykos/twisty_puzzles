@@ -148,6 +148,11 @@ module TwistyPuzzles
       self.class.for_face_symbols(@face_symbols.rotate(number))
     end
 
+    def mirror(normal_face)
+      mirrored_face_symbols = @face_symbols.map { |f| f.mirror(normal_face) }.reverse
+      self.class.for_face_symbols(mirrored_face_symbols)
+    end
+
     # Returns true if the pieces are equal modulo rotation.
     def turned_equals?(other)
       @face_symbols.include?(other.face_symbols.first) &&
@@ -206,6 +211,10 @@ module TwistyPuzzles
     end
 
     ELEMENTS = generate_parts
+
+    def mirror(normal_face)
+      same_axis?(normal_face) ? opposite : self
+    end
 
     # Whether closeness to this face results in smaller indices for the stickers of other faces.
     def close_to_smaller_indices?

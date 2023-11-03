@@ -16,6 +16,34 @@ describe Edge do
   let(:letter_scheme) { BernhardLetterScheme.new }
   let(:cube_size) { 3 }
 
+  xit 'rotates by a rotation' do
+    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
+    expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
+    expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
+    expect(letter_scheme.for_letter(described_class, 'd').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'c'))
+    expect(letter_scheme.for_letter(described_class, 'e').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'i'))
+    expect(letter_scheme.for_letter(described_class, 'f').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'k'))
+    expect(letter_scheme.for_letter(described_class, 'g').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'j'))
+    expect(letter_scheme.for_letter(described_class, 'h').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'l'))
+    expect(letter_scheme.for_letter(described_class, 'i').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'q'))
+    expect(letter_scheme.for_letter(described_class, 'j').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'r'))
+    expect(letter_scheme.for_letter(described_class, 'k').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 's'))
+    expect(letter_scheme.for_letter(described_class, 'l').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 't'))
+    expect(letter_scheme.for_letter(described_class, 'm').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'e'))
+    expect(letter_scheme.for_letter(described_class, 'n').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'f'))
+    expect(letter_scheme.for_letter(described_class, 'o').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'g'))
+    expect(letter_scheme.for_letter(described_class, 'p').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'h'))
+    expect(letter_scheme.for_letter(described_class, 'q').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'm'))
+    expect(letter_scheme.for_letter(described_class, 'r').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'o'))
+    expect(letter_scheme.for_letter(described_class, 's').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'n'))
+    expect(letter_scheme.for_letter(described_class, 't').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'p'))
+    expect(letter_scheme.for_letter(described_class, 'u').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'v'))
+    expect(letter_scheme.for_letter(described_class, 'v').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'x'))
+    expect(letter_scheme.for_letter(described_class, 'w').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'u'))
+    expect(letter_scheme.for_letter(described_class, 'x').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'w'))
+  end
+
   it 'knows that it only exists on 3x3' do
     expect(described_class.exists_on_cube_size?(2)).to be(false)
     expect(described_class.exists_on_cube_size?(3)).to be(true)

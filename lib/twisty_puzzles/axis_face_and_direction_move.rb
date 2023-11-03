@@ -51,6 +51,8 @@ module TwistyPuzzles
     end
 
     def rotate_by(rotation)
+      raise TypeError unless rotation.is_a?(Rotation)
+
       if same_axis?(rotation)
         self
       else

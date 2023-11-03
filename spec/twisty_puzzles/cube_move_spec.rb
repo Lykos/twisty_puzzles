@@ -131,4 +131,66 @@ describe CubeMove do
     move = MaybeFatMaybeSliceMove.new(Face::U, CubeDirection::FORWARD)
     expect { move.decide_meaning(2) }.to raise_error(ArgumentError)
   end
+
+  it 'rotates an U move around U to U' do
+    move = FatMove.new(Face::U, CubeDirection::FORWARD, 1)
+    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    expect(move.rotate_by(rotation)).to eq(move)
+  end
+
+  it 'rotates an F move around U to R' do
+    move = FatMove.new(Face::F, CubeDirection::FORWARD, 1)
+    rotation = Rotation.new(Face::U, CubeDirection::ZERO)
+    expect(move.rotate_by(rotation)).to eq(move)
+  end
+
+  it 'rotates an F move around U to L' do
+    move = FatMove.new(Face::F, CubeDirection::FORWARD, 1)
+    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotated_move = FatMove.new(Face::L, CubeDirection::FORWARD, 1)
+    expect(move.rotate_by(rotation)).to eq(rotated_move)
+  end
+
+  it 'rotates an F move around U to R' do
+    move = FatMove.new(Face::F, CubeDirection::FORWARD, 1)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
+    rotated_move = FatMove.new(Face::R, CubeDirection::FORWARD, 1)
+    expect(move.rotate_by(rotation)).to eq(rotated_move)
+  end
+
+  it 'rotates an F move around U to B' do
+    move = FatMove.new(Face::F, CubeDirection::FORWARD, 1)
+    rotation = Rotation.new(Face::U, CubeDirection::DOUBLE)
+    rotated_move = FatMove.new(Face::B, CubeDirection::FORWARD, 1)
+    expect(move.rotate_by(rotation)).to eq(rotated_move)
+  end
+
+  it "mirrors an U move around F to U'" do
+    move = FatMove.new(Face::U, CubeDirection::FORWARD, 1)
+    mirrored_move = FatMove.new(Face::U, CubeDirection::BACKWARD, 1)
+    expect(move.mirror(Face::F)).to eq(mirrored_move)
+  end
+
+  it 'mirrors an U2 move around F to U2' do
+    move = FatMove.new(Face::U, CubeDirection::DOUBLE, 1)
+    expect(move.mirror(Face::F)).to eq(move)
+  end
+
+  it 'mirrors an U2 move around U to D2' do
+    move = FatMove.new(Face::U, CubeDirection::DOUBLE, 1)
+    mirrored_move = FatMove.new(Face::D, CubeDirection::DOUBLE, 1)
+    expect(move.mirror(Face::U)).to eq(mirrored_move)
+  end
+
+  it "mirrors an U move around U to D'" do
+    move = FatMove.new(Face::U, CubeDirection::FORWARD, 1)
+    mirrored_move = FatMove.new(Face::D, CubeDirection::BACKWARD, 1)
+    expect(move.mirror(Face::U)).to eq(mirrored_move)
+  end
+
+  it "mirrors an U move around D to D'" do
+    move = FatMove.new(Face::U, CubeDirection::FORWARD, 1)
+    mirrored_move = FatMove.new(Face::D, CubeDirection::BACKWARD, 1)
+    expect(move.mirror(Face::D)).to eq(mirrored_move)
+  end
 end

@@ -108,8 +108,11 @@ module TwistyPuzzles
       self == other || canonicalize == other.canonicalize
     end
 
+    def inverse_twist
+      @twist.zero? ? @twist : parts.first.rotations.length - @twist
+    end
+
     def inverse
-      inverse_twist = @twist.zero? ? @twist : parts.first.rotations.length - @twist
       self.class.new([@parts[0]] + @parts[1..].reverse, inverse_twist)
     end
 
@@ -119,6 +122,20 @@ module TwistyPuzzles
       twist = raw_twist ? Integer(raw_twist) : 0
       parts = raw_parts.split.map { |r| part_type.parse(r) }
       new(parts, twist)
+    end
+
+    def rotate_by_rotation(rotation)
+      raise TypeError unless rotation.is_a?(Rotation)
+
+      rotated_parts = parts.map { |_p| part.rotate_by_rotation(rotation) }
+      PartCycle.new(rotated_parts, part_cycle.twist)
+    end
+
+    def mirror(normal_face)
+      raise TypeError unless normal_face.is_a?(Face)
+
+      mirrored_parts = parts.map { |_p| part.mirror(normal_face) }
+      self.class.new(mirrored_parts, inverse_twist)
     end
 
     private
