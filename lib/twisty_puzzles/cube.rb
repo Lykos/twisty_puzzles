@@ -149,12 +149,12 @@ module TwistyPuzzles
     end
 
     def rotate_by_rotation(rotation)
-      rotated_face_symbols = faces.map { |f| f.rotate_by_rotation(rotation) }
+      rotated_face_symbols = corresponding_part.faces.map { |f| f.rotate_by_rotation(rotation) }
       self.class.for_face_symbols(rotated_face_symbols.map(&:face_symbol))
     end
 
     def mirror(normal_face)
-      mirrored_face_symbols = faces.map { |f| f.mirror(normal_face) }
+      mirrored_face_symbols = corresponding_part.faces.map { |f| f.mirror(normal_face) }
       transformed_face_symbols = mirrored_face_symbols.reverse.rotate(@face_symbols.length - 1)
       self.class.for_face_symbols(transformed_face_symbols.map(&:face_symbol))
     end
@@ -384,7 +384,7 @@ module TwistyPuzzles
     def self.for_face_symbols(face_symbols)
       unless face_symbols.length == self::CORRESPONDING_PART_CLASS::FACES
         raise ArgumentError, "Need #{self::CORRESPONDING_PART_CLASS::FACES} face_symbols for a " \
-                             "#{self.class}, have #{face_symbols.inspect}."
+                             "#{self.name}, have #{face_symbols.inspect}."
       end
 
       corresponding_part = self::CORRESPONDING_PART_CLASS.for_face_symbols(face_symbols)

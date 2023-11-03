@@ -127,14 +127,14 @@ module TwistyPuzzles
     def rotate_by_rotation(rotation)
       raise TypeError unless rotation.is_a?(Rotation)
 
-      rotated_parts = parts.map { |_p| part.rotate_by_rotation(rotation) }
-      PartCycle.new(rotated_parts, part_cycle.twist)
+      rotated_parts = @parts.map { |p| p.rotate_by_rotation(rotation) }
+      PartCycle.new(rotated_parts, @twist)
     end
 
     def mirror(normal_face)
       raise TypeError unless normal_face.is_a?(Face)
 
-      mirrored_parts = parts.map { |_p| part.mirror(normal_face) }
+      mirrored_parts = @parts.map { |p| p.mirror(normal_face) }
       self.class.new(mirrored_parts, inverse_twist)
     end
 

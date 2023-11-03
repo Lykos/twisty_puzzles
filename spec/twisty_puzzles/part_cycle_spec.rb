@@ -29,6 +29,24 @@ describe PartCycle do
     end
   end
 
+  it 'is the mirror of its mirror' do
+    property_of do
+      Rantly { Tuple.new([part_cycle, face]) }
+    end.check do |t|
+      c, f = t.array
+      expect(c.mirror(f).mirror(f)).to eq(c)
+    end
+  end
+
+  it 'rotating 4 times is equal' do
+    property_of do
+      Rantly { Tuple.new([part_cycle, rotation]) }
+    end.check do |t|
+      c, r = t.array
+      expect(c.rotate_by_rotation(r).rotate_by_rotation(r).rotate_by_rotation(r).rotate_by_rotation(r)).to eq(c)
+    end
+  end
+
   it 'is equivalent to itself' do
     property_of do
       Rantly { part_cycle }
