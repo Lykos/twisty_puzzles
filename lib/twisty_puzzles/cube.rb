@@ -155,7 +155,7 @@ module TwistyPuzzles
 
     def mirror(normal_face)
       mirrored_face_symbols = corresponding_part.faces.map { |f| f.mirror(normal_face) }
-      transformed_face_symbols = mirrored_face_symbols.reverse.rotate(@face_symbols.length - 1)
+      transformed_face_symbols = [mirrored_face_symbols[0]] + mirrored_face_symbols[1..].reverse
       self.class.for_face_symbols(transformed_face_symbols.map(&:face_symbol))
     end
 
