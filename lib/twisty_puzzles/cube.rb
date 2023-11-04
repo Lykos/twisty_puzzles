@@ -225,7 +225,7 @@ module TwistyPuzzles
       face_index = rotation_neighbors.index(self)
       raise unless face_index
 
-      rotation_neighbors[(face_index + rotation.direction.value) % rotation_neighbors.length]
+      rotation_neighbors[(face_index + rotation_neighbors.length - rotation.direction.value) % rotation_neighbors.length]
     end
 
     def mirror(normal_face)

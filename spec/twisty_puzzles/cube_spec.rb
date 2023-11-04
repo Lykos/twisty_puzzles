@@ -17,7 +17,7 @@ describe Edge do
   let(:cube_size) { 3 }
 
   it 'rotates by a rotation' do
-    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
     expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
@@ -111,7 +111,7 @@ describe Midge do
   let(:cube_size) { 5 }
 
   it 'rotates by a rotation' do
-    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
     expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
@@ -207,7 +207,7 @@ describe Wing do
   let(:cube_size) { 4 }
 
   it 'rotates by a rotation' do
-    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
     expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
@@ -344,7 +344,7 @@ describe Corner do
   let(:cube_size) { 3 }
 
   it 'rotates by a rotation' do
-    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
     expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
@@ -539,7 +539,7 @@ describe TCenter do
   let(:cube_size) { 5 }
 
   it 'rotates by a rotation' do
-    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
     expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
@@ -635,7 +635,7 @@ describe XCenter do
   let(:cube_size) { 4 }
 
   it 'rotates by a rotation' do
-    rotation = Rotation.new(Face::U, CubeDirection::FORWARD)
+    rotation = Rotation.new(Face::U, CubeDirection::BACKWARD)
     expect(letter_scheme.for_letter(described_class, 'a').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'b'))
     expect(letter_scheme.for_letter(described_class, 'b').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'd'))
     expect(letter_scheme.for_letter(described_class, 'c').rotate_by_rotation(rotation)).to eq(letter_scheme.for_letter(described_class, 'a'))
