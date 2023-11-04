@@ -543,6 +543,13 @@ module TwistyPuzzles
       end
     end
 
+    # Wings are weird to mirror because the main sticker changes.
+    def mirror(normal_face)
+      mirrored_face_symbols = corresponding_part.faces.map { |f| f.mirror(normal_face) }
+      transformed_face_symbols = mirrored_face_symbols[..-2].reverse + [mirrored_face_symbols[-1]]
+      self.class.for_face_symbols(transformed_face_symbols.map(&:face_symbol))
+    end
+
     private_class_method :for_corner_face_symbols
 
     def corresponding_part
