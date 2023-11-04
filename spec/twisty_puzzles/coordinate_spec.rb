@@ -31,6 +31,15 @@ describe Coordinate do
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
 
+    it 'computes distances correctly' do
+      expect(coordinate.distance_to(Face::U)).to eq(0)
+      expect(coordinate.distance_to(Face::D)).to eq(7)
+      expect(coordinate.distance_to(Face::F)).to eq(0)
+      expect(coordinate.distance_to(Face::B)).to eq(6)
+      expect(coordinate.distance_to(Face::R)).to eq(1)
+      expect(coordinate.distance_to(Face::L)).to eq(5)
+    end
+
     it 'returns the values passed in the constructor via the getters' do
       expect(coordinate.face).to eq(Face::U)
       expect(coordinate.cube_size).to eq(n)
@@ -193,6 +202,15 @@ describe Coordinate do
       ).to be(false)
     end
     # rubocop:enable Lint/BinaryOperatorWithIdenticalOperands
+
+    it 'computes distances correctly' do
+      expect(coordinate.distance_to(Face::U)).to eq(0)
+      expect(coordinate.distance_to(Face::D)).to eq(6)
+      expect(coordinate.distance_to(Face::F)).to eq(0)
+      expect(coordinate.distance_to(Face::B)).to eq(5)
+      expect(coordinate.distance_to(Face::R)).to eq(1)
+      expect(coordinate.distance_to(Face::L)).to eq(4)
+    end
 
     it 'checks coordinates appropriately' do
       expect { described_class.from_indices(Face::U, n, 0, 1.0) }.to raise_error(ArgumentError)

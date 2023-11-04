@@ -179,6 +179,19 @@ module TwistyPuzzles
 
     attr_reader :native
 
+    def distance_to(to_face)
+      return 0 if face == to_face
+      return cube_size if face == to_face.opposite
+
+      index = face.coordinate_index_close_to(to_face)
+      coordinate = coordinate(index)
+      if to_face.close_to_smaller_indices?
+        coordinate
+      else
+        Coordinate.invert_coordinate(coordinate, cube_size)
+      end
+    end
+
     def face
       @face ||= Face.for_face_symbol(@native.face)
     end
