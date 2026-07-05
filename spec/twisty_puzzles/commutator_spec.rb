@@ -113,3 +113,70 @@ describe SetupCommutator do
     expect(rotation_commutator.to_s).to eq('[x2 : [R, U\' L\' U]]')
   end
 end
+
+describe Commutator do
+  it 'raises NotImplementedError on abstract algorithm method' do
+    expect { described_class.new.algorithm }.to raise_error(NotImplementedError)
+  end
+
+  it 'delegates cancellations to algorithm' do
+    subclass =
+      Class.new(described_class) do
+        def initialize(alg)
+          super()
+          @alg = alg
+        end
+
+        def algorithm
+          @alg
+        end
+      end
+    c1 = subclass.new(parse_algorithm('R'))
+    c2 = subclass.new(parse_algorithm("R'"))
+    expect(c1.cancellations(c2, 3)).to eq(2)
+  end
+end
+
+describe FakeCommutator do
+  let(:alg) { parse_algorithm('R U') }
+  let(:fake) { described_class.new(alg) }
+
+  it 'validates algorithm type on initialization' do
+    expect { described_class.new(:invalid) }.to raise_error(TypeError)
+  end
+
+  it 'returns property, string representation, and inverse' do
+    expect(fake.algorithm).to eq(alg)
+    expect(fake.to_s).to eq('R U')
+    expect(fake.inverse).to eq(described_class.new(alg.inverse))
+  end
+
+  it 'compares and hashes correctly' do
+    fake2 = described_class.new(alg)
+    fake3 = described_class.new(parse_algorithm('R'))
+    expect(fake).to eq(fake2)
+    expect(fake).not_to eq(fake3)
+    expect(fake.hash).to eq(fake2.hash)
+  end
+end
+
+describe PureCommutator do
+  it 'validates types on initialization' do
+    expect { described_class.new(:invalid, parse_algorithm('R')) }.to raise_error(TypeError)
+    expect { described_class.new(parse_algorithm('R'), :invalid) }.to raise_error(TypeError)
+  end
+end
+
+describe SetupCommutator do
+  it 'validates types on initialization' do
+    expect { described_class.new(:invalid, parse_commutator('[R, U]')) }.to raise_error(TypeError)
+    expect { described_class.new(parse_algorithm('R'), :invalid) }.to raise_error(TypeError)
+  end
+end
+
+describe CommutatorSequence do
+  it 'validates types on initialization' do
+    expect { described_class.new(:invalid) }.to raise_error(TypeError)
+    expect { described_class.new([:invalid]) }.to raise_error(TypeError)
+  end
+end

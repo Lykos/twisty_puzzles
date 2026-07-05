@@ -330,7 +330,6 @@ Style/YAMLFileRead: # new in 1.53
   Enabled: true
 Performance/MapMethodChain: # new in 1.19
   Enabled: true
-
 Gemspec/AddRuntimeDependency:
   Enabled: true
 Gemspec/AttributeAssignment:

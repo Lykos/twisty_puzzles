@@ -33,4 +33,48 @@ describe LetterScheme do |_clazz|
     xcenter = letter_scheme.for_letter(XCenter, letter)
     expect(letter_scheme.letter(xcenter)).to be == letter
   end
+
+  it 'raises NotImplementedError on abstract methods during base initialization' do
+    expect { described_class.new }.to raise_error(NotImplementedError)
+  end
+
+  it 'raises NotImplementedError on abstract methods in subclasses' do
+    subclass =
+      Class.new(described_class) do
+        def alphabet
+          ['a']
+        end
+      end
+    expect { subclass.new.canonicalize_letter('a') }.to raise_error(NotImplementedError)
+  end
+
+  it 'validates letter correctly' do
+    expect(letter_scheme.valid_letter?('a')).to be(true)
+    expect(letter_scheme.valid_letter?('A')).to be(true)
+    expect(letter_scheme.valid_letter?('z')).to be(false)
+  end
+
+  it 'parses part correctly' do
+    expect(letter_scheme.parse_part(Corner, 'a')).to eq(letter_scheme.for_letter(Corner, 'a'))
+    expect(letter_scheme.parse_part(Corner, 'UFL')).to eq(Corner.for_face_symbols(%i[U F L]))
+  end
+
+  it 'provides shoot letters and default buffers on BernhardLetterScheme' do
+    expect(letter_scheme.shoot_letters(Corner)).to be_an(Array)
+    expect(letter_scheme.default_buffer(Corner)).to eq(Corner.for_face_symbols(%i[U L B]))
+  end
+
+  it 'raises error on uncanonical alphabet letters during initialization' do
+    subclass =
+      Class.new(described_class) do
+        def alphabet
+          ['A']
+        end
+
+        def canonicalize_letter(letter)
+          letter.downcase
+        end
+      end
+    expect { subclass.new }.to raise_error(/Uncanonical letter/)
+  end
 end
