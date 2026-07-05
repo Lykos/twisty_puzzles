@@ -42,6 +42,7 @@ end
 # This must be before we require twisty_puzzles.
 SimpleCov.start do
   add_filter '/spec/'
+  track_files 'lib/**/*.rb'
 end
 
 require 'twisty_puzzles'
