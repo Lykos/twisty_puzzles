@@ -2,7 +2,6 @@ plugins:
 - rubocop-performance
 - rubocop-rake
 AllCops:
-  NewCops: enable
   TargetRubyVersion: 3.0
   Exclude:
   - 'Steepfile'
@@ -330,4 +329,129 @@ Style/SingleLineDoEndBlock: # new in 1.57
 Style/YAMLFileRead: # new in 1.53
   Enabled: true
 Performance/MapMethodChain: # new in 1.19
+  Enabled: true
+
+Gemspec/AddRuntimeDependency:
+  Enabled: true
+Gemspec/AttributeAssignment:
+  Enabled: true
+Layout/EmptyLinesAfterModuleInclusion:
+  Enabled: true
+Lint/ArrayLiteralInRegexp:
+  Enabled: true
+Lint/ConstantReassignment:
+  Enabled: true
+Lint/CopDirectiveSyntax:
+  Enabled: true
+Lint/DataDefineOverride:
+  Enabled: true
+Lint/DuplicateSetElement:
+  Enabled: true
+Lint/HashNewWithKeywordArgumentsAsDefault:
+  Enabled: true
+Lint/ItWithoutArgumentsInBlock:
+  Enabled: true
+Lint/LiteralAssignmentInCondition:
+  Enabled: true
+Lint/NumericOperationWithConstantResult:
+  Enabled: true
+Lint/RedundantTypeConversion:
+  Enabled: true
+Lint/SharedMutableDefault:
+  Enabled: true
+Lint/SuppressedExceptionInNumberConversion:
+  Enabled: true
+Lint/UnescapedBracketInRegexp:
+  Enabled: true
+Lint/UnreachablePatternBranch:
+  Enabled: true
+Lint/UselessConstantScoping:
+  Enabled: true
+Lint/UselessDefaultValueArgument:
+  Enabled: true
+Lint/UselessDefined:
+  Enabled: true
+Lint/UselessNumericOperation:
+  Enabled: true
+Lint/UselessOr:
+  Enabled: true
+Naming/PredicateMethod:
+  Enabled: true
+Style/AmbiguousEndlessMethodDefinition:
+  Enabled: true
+Style/ArrayIntersectWithSingleElement:
+  Enabled: true
+Style/BitwisePredicate:
+  Enabled: true
+Style/CollectionQuerying:
+  Enabled: true
+Style/CombinableDefined:
+  Enabled: true
+Style/ComparableBetween:
+  Enabled: true
+Style/DigChain:
+  Enabled: true
+Style/EmptyClassDefinition:
+  Enabled: true
+Style/EmptyStringInsideInterpolation:
+  Enabled: true
+Style/FileNull:
+  Enabled: true
+Style/FileOpen:
+  Enabled: true
+Style/FileTouch:
+  Enabled: true
+Style/HashFetchChain:
+  Enabled: true
+Style/HashSlice:
+  Enabled: true
+Style/ItAssignment:
+  Enabled: true
+Style/ItBlockParameter:
+  Enabled: true
+Style/KeywordArgumentsMerging:
+  Enabled: true
+Style/MapIntoArray:
+  Enabled: true
+Style/MapJoin:
+  Enabled: true
+Style/ModuleMemberExistenceCheck:
+  Enabled: true
+Style/NegativeArrayIndex:
+  Enabled: true
+Style/OneClassPerFile:
+  Enabled: true
+Style/PartitionInsteadOfDoubleSelect:
+  Enabled: true
+Style/PredicateWithKind:
+  Enabled: true
+Style/ReduceToHash:
+  Enabled: true
+Style/RedundantArrayFlatten:
+  Enabled: true
+Style/RedundantFormat:
+  Enabled: true
+Style/RedundantInterpolationUnfreeze:
+  Enabled: true
+Style/RedundantMinMaxBy:
+  Enabled: true
+Style/ReverseFind:
+  Enabled: true
+Style/SafeNavigationChainLength:
+  Enabled: true
+Style/SelectByKind:
+  Enabled: true
+Style/SelectByRange:
+  Enabled: true
+Style/SendWithLiteralMethodName:
+  Enabled: true
+Style/SuperArguments:
+  Enabled: true
+Style/SuperWithArgsParentheses:
+  Enabled: true
+Style/TallyMethod:
+  Enabled: true
+Performance/StringBytesize:
+  Enabled: true
+Performance/ZipWithoutBlock:
   Enabled: true
