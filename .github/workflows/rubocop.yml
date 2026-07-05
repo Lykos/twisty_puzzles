@@ -12,7 +12,5 @@ jobs:
       with:
         ruby-version: 3.0.0
         bundler-cache: true
-    - name: Compile extensions
-      run: bundle exec rake compile
     - name: Run Rubocop
       run: bundle exec rubocop
