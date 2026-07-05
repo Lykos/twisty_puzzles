@@ -11,7 +11,7 @@ group :development do
   gem 'rantly'
   gem 'rspec', '~> 3.8'
   gem 'rspec-prof'
-  gem 'rubocop', '~> 1.38'
+  gem 'rubocop', '>= 1.38'
   gem 'rubocop-performance'
   gem 'rubocop-rake'
   gem 'simplecov'

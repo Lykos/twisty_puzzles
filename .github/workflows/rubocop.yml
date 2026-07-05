@@ -1,13 +1,18 @@
 name: Rubocop
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Rubocop Linter Action
-      uses: andrewmcodes/rubocop-linter-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set up Ruby 3.0
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.0
+        bundler-cache: true
+    - name: Compile extensions
+      run: bundle exec rake compile
+    - name: Run Rubocop
+      run: bundle exec rubocop

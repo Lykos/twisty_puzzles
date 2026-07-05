@@ -124,7 +124,7 @@ module TwistyPuzzles
     # face symbol and two given face symbol.
     class CornerMatcher
       def initialize(face_symbol_matchers)
-        unless face_symbol_matchers.count(&:nil?) == 1
+        unless face_symbol_matchers.one?(&:nil?)
           raise ArgumentError, 'Exactly one nil allowed in face symbol matchers.'
         end
 
@@ -173,7 +173,9 @@ module TwistyPuzzles
         end
       result.merge!(opposites)
     end
+  end
 
+  class ColorScheme
     WCA = new(
       U: :white,
       F: :green,

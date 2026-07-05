@@ -31,6 +31,6 @@ Gem::Specification.new do |s|
   s.extensions << 'ext/twisty_puzzles/native/extconf.rb'
   s.extra_rdoc_files = ['README.md']
   s.license = 'MIT'
-  s.add_runtime_dependency 'colorize'
+  s.add_dependency 'colorize'
   s.metadata['rubygems_mfa_required'] = 'true'
 end

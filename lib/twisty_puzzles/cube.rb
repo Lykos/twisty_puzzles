@@ -73,7 +73,7 @@ module TwistyPuzzles
     end
 
     def self.exists_on_cube_size?(cube_size)
-      cube_size >= min_cube_size && cube_size <= max_cube_size &&
+      cube_size.between?(min_cube_size, max_cube_size) &&
         (cube_size.even? ? exists_on_even_cube_sizes? : exists_on_odd_cube_sizes?)
     end
 
@@ -122,7 +122,7 @@ module TwistyPuzzles
     end
 
     def inspect
-      @inspect ||= "#{self.class.name.split('::').last}(#{@face_symbols.map(&:to_s).join(', ')})"
+      @inspect ||= "#{self.class.name.split('::').last}(#{@face_symbols.join(', ')})"
     end
 
     def to_s
@@ -447,6 +447,7 @@ module TwistyPuzzles
   # Represents one edge or the position of one edge on the cube.
   class Edge < Part
     extend EdgeLike
+
     FACES = 2
 
     ELEMENTS = generate_parts
@@ -477,6 +478,7 @@ module TwistyPuzzles
   # Represents one midge or the position of one midge on the cube.
   class Midge < Part
     extend EdgeLike
+
     FACES = 2
 
     ELEMENTS = generate_parts
@@ -502,6 +504,7 @@ module TwistyPuzzles
   # Represents one wing or the position of one wing on the cube.
   class Wing < Part
     extend EdgeLike
+
     FACES = 2
 
     ELEMENTS = generate_parts

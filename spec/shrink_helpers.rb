@@ -5,7 +5,7 @@ require 'rantly/shrinks'
 module TwistyPuzzles
   class Algorithm
     def shrink
-      a = Algorithm.new(@moves[0...position] + @moves[position + 1..])
+      a = Algorithm.new(@moves[0...position] + @moves[(position + 1)..])
       @position = position - 1
       a
     end
@@ -25,7 +25,7 @@ module TwistyPuzzles
 
   class PartCycle
     def shrink
-      a = PartCycle.new(@parts[0...position] + @parts[position + 1..])
+      a = PartCycle.new(@parts[0...position] + @parts[(position + 1)..])
       @position = position - 1
       a
     end

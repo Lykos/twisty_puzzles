@@ -11,6 +11,7 @@ module TwistyPuzzles
     include Comparable
     include Utils::StringHelper
     include Utils::ArrayHelper
+
     AXES = %w[y z x].freeze
     # rubocop:disable Style/StringHashKeys
     SLICE_FACES = { 'E' => Face::D, 'S' => Face::F, 'M' => Face::L }.freeze
@@ -162,7 +163,7 @@ module TwistyPuzzles
     def prepend_to(other, cube_size)
       this = decide_meaning(cube_size)
       other = other.decide_meaning(cube_size)
-      method_symbol = "prepend_#{snake_case_class_name(this.class)}".to_sym
+      method_symbol = :"prepend_#{snake_case_class_name(this.class)}"
       unless other.respond_to?(method_symbol)
         raise NotImplementedError, "#{other.class}##{method_symbol} is not implemented"
       end

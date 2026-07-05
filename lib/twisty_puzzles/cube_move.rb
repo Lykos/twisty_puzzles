@@ -110,7 +110,7 @@ module TwistyPuzzles
     end
 
     def to_s
-      "#{@width > 2 ? @width : ''}#{@axis_face.name}#{@width > 1 ? 'w' : ''}#{@direction.name}"
+      "#{@width if @width > 2}#{@axis_face.name}#{'w' if @width > 1}#{@direction.name}"
     end
 
     def slice_move?
@@ -249,7 +249,7 @@ module TwistyPuzzles
     end
 
     def to_s
-      "#{@slice_index > 1 ? @slice_index : ''}#{@axis_face.name.downcase}#{@direction.name}"
+      "#{@slice_index if @slice_index > 1}#{@axis_face.name.downcase}#{@direction.name}"
     end
 
     def slice_move?

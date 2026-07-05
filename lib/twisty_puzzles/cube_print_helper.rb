@@ -81,12 +81,12 @@ module TwistyPuzzles
       raise unless corner_colors.length == 4
 
       first_part =
-        (1..SKEWB_FACE_SIZE / 2).to_a.reverse.map do |i|
+        (1..(SKEWB_FACE_SIZE / 2)).to_a.reverse.map do |i|
           skewb_ascii_art_line(corner_colors[0], center_color, corner_colors[1], i)
         end
       middle_part = SKEWB_FACE_SIZE.odd? ? [center_color * SKEWB_FACE_SIZE] : []
       last_part =
-        (1..SKEWB_FACE_SIZE / 2).map do |i|
+        (1..(SKEWB_FACE_SIZE / 2)).map do |i|
           skewb_ascii_art_line(corner_colors[2], center_color, corner_colors[3], i)
         end
       first_part + middle_part + last_part

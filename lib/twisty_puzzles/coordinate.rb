@@ -109,8 +109,8 @@ module TwistyPuzzles
           base_indices = part.base_index_on_other_face(face, cube_size, incarnation_index).reverse
           base_coordinate = Coordinate.from_indices(face, cube_size, *base_indices)
           other_face_symbols = [part.face_symbols[0]] +
-                               part.corresponding_part.face_symbols[1...i + 1] +
-                               part.corresponding_part.face_symbols[i + 2..]
+                               part.corresponding_part.face_symbols[1...(i + 1)] +
+                               part.corresponding_part.face_symbols[(i + 2)..]
           match_coordinate_internal(base_coordinate, other_face_symbols)
         end
       [solved_coordinate] + other_coordinates
@@ -302,6 +302,7 @@ module TwistyPuzzles
   class SkewbCoordinate
     include Comparable
     include CubeConstants
+
     def initialize(face, coordinate, native)
       raise ArgumentError, "Unsuitable face #{face.inspect}." unless face.is_a?(Face)
       unless coordinate.is_a?(Integer) && coordinate >= 0 && coordinate < SKEWB_STICKERS

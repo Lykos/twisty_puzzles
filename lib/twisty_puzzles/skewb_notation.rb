@@ -105,11 +105,11 @@ module TwistyPuzzles
     def algorithm_to_string(algorithm)
       reversed_rotations = []
       num_tail_rotations = CancellationHelper.num_tail_rotations(algorithm)
-      alg_string = algorithm.moves[0...algorithm.length - num_tail_rotations].map do |m|
+      alg_string = algorithm.moves[0...(algorithm.length - num_tail_rotations)].map do |m|
         move_to_string(m, reversed_rotations)
       end.join(' ')
       new_tail_rotations = reversed_rotations.reverse! +
-                           algorithm.moves[algorithm.length - num_tail_rotations..]
+                           algorithm.moves[(algorithm.length - num_tail_rotations)..]
       cancelled_rotations = Algorithm.new(new_tail_rotations).cancelled(3)
       cancelled_rotations.empty? ? alg_string : "#{alg_string} #{cancelled_rotations}"
     end

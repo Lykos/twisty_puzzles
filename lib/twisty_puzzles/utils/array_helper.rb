@@ -98,7 +98,7 @@ module TwistyPuzzles
       end
 
       def replace_once(array, old_element, new_element)
-        raise ArgumentError unless array.count { |e| e == old_element } == 1
+        raise ArgumentError unless array.one?(old_element)
 
         new_array = array.dup
         new_array[new_array.index(old_element)] = new_element

@@ -10,6 +10,7 @@ module TwistyPuzzles
   class SkewbState
     include CubePrintHelper
     include CubeConstants
+
     # Pairs of coordinate pairs that should match in case of solved layers.
     MATCHING_CORNERS =
       begin
